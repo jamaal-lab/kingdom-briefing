@@ -158,7 +158,7 @@ function Practice() {
   return (
     <section id="practice" className="mx-auto max-w-[1320px] px-5 py-24 md:px-10 md:py-36">
       <div className="grid gap-12 md:grid-cols-12">
-        <Reveal className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#9A6B4A] md:col-span-3">The practice</Reveal>
+        <Reveal className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#7A4F33] md:col-span-3">The practice</Reveal>
         <div className="md:col-span-9">
           <SplitText
             as="p"
@@ -214,7 +214,7 @@ function Disciplines() {
               key={d.id}
               ref={(el) => void (refs.current[i] = el)}
               data-index={i}
-              className={`border-t border-white/15 py-12 transition-opacity duration-700 md:min-h-[52vh] ${current === i ? 'opacity-100' : 'md:opacity-40'}`}
+              className={`border-t py-12 transition-colors duration-700 md:min-h-[52vh] ${current === i ? 'border-[#C9A27A]' : 'border-white/15'}`}
             >
               <span className="font-mono text-xs text-[#C9A27A]">0{i + 1}</span>
               <h3 className="mt-4 font-atelier text-[clamp(2rem,4vw,3.4rem)] font-light leading-none">{d.title}</h3>
@@ -237,7 +237,7 @@ function Work() {
     <section id="work" className="mx-auto max-w-[1320px] px-5 py-24 md:px-10 md:py-36">
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#9A6B4A]">Selected work</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#7A4F33]">Selected work</p>
           <SplitText lines={['Five places,', 'each made for one site.']} className="mt-5 font-atelier text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1.02]" lineClassName="[&:nth-child(2)]:italic" />
         </div>
         <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-2">
@@ -258,13 +258,13 @@ function Work() {
       <ul className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-12">
         {shown.map(({ p, i }, k) => (
           <li key={p.id} className={k % 3 === 0 ? 'md:col-span-7' : k % 3 === 1 ? 'md:col-span-5 md:mt-24' : 'md:col-span-6 md:col-start-4'}>
-            <button type="button" onClick={() => setOpen(i)} className="group block w-full text-left" aria-label={`Open ${p.name}`}>
+            <button type="button" onClick={() => setOpen(i)} className="group block w-full text-left">
               <div className={`overflow-hidden bg-[#d8d1c6] ${k % 3 === 1 ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}>
                 <Picture asset={p.image} alt={p.image.alt} sizes="(min-width: 768px) 55vw, 100vw" className="block h-full w-full" imgClassName="h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-cinema)] group-hover:scale-[1.045]" />
               </div>
               <div className="mt-4 flex items-baseline justify-between gap-4 border-t border-[#1B1A17]/15 pt-4">
                 <h3 className="font-atelier text-2xl md:text-[1.75rem]">{p.name}</h3>
-                <span className="text-[11px] uppercase tracking-[0.2em] text-[#1B1A17]/55">{p.type}</span>
+                <span className="text-[11px] uppercase tracking-[0.2em] text-[#1B1A17]/70">{p.type}</span>
               </div>
               <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#1B1A17]/70">{p.summary}</p>
             </button>
@@ -346,13 +346,13 @@ function Process() {
   return (
     <section id="process" className="bg-[#E4DDD2]">
       <div className="mx-auto max-w-[1320px] px-5 py-24 md:px-10 md:py-32">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#9A6B4A]">How we work</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#7A4F33]">How we work</p>
         <SplitText lines={['Four stages, one conversation.']} className="mt-5 font-atelier text-[clamp(2.2rem,4.6vw,3.8rem)] font-light" />
         <ol ref={ref} className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
           <span aria-hidden="true" className={`absolute left-0 top-0 hidden h-px w-full origin-left bg-[#1B1A17]/30 transition-transform duration-[1800ms] ease-[var(--ease-cinema)] md:block ${inView ? 'scale-x-100' : 'scale-x-0'}`} />
           {PROCESS.map((s, i) => (
             <li key={s.step} className={`transition-[opacity,transform] duration-1000 ease-[var(--ease-cinema)] md:pt-8 ${inView ? 'opacity-100' : 'translate-y-4 opacity-0'}`} style={{ transitionDelay: `${300 + i * 140}ms` }}>
-              <span className="font-mono text-xs text-[#9A6B4A]">{s.step}</span>
+              <span className="font-mono text-xs text-[#7A4F33]">{s.step}</span>
               <h3 className="mt-3 font-atelier text-[1.7rem]">{s.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-[#1B1A17]/70">{s.body}</p>
             </li>

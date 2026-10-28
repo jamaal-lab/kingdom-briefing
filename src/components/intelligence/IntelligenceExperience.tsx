@@ -354,7 +354,7 @@ function Rail({ stage, awaiting }: { stage: number; awaiting: boolean }) {
             <span
               className={`relative z-10 block h-[19px] w-[19px] rotate-45 border transition-colors duration-500 ${state === 'todo' ? 'border-white/20 bg-ink' : state === 'waiting' ? 'border-gold bg-ink motion-safe:animate-[pulse-dot_1.2s_ease-in-out_infinite]' : 'border-gold bg-gold'}`}
             />
-            <span className={`mt-3 hidden text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.14em] sm:block ${state === 'todo' ? 'text-white/35' : 'text-ivory'}`}>{s}</span>
+            <span className={`mt-3 hidden text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.14em] sm:block ${state === 'todo' ? 'text-white/55' : 'text-ivory'}`}>{s}</span>
           </li>
         )
       })}

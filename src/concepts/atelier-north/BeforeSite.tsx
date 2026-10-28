@@ -19,7 +19,7 @@ export function BeforeSite() {
       <header className="border-b border-[#ddd] bg-white">
         <div className="mx-auto flex max-w-[1000px] flex-wrap items-center justify-between gap-3 px-4 py-4">
           <div className="text-[22px] font-bold text-[#2b4c7e]">
-            ATELIER NORTH <span className="font-normal text-[#888]">Architects</span>
+            ATELIER NORTH <span className="font-normal text-[#6b6b6b]">Architects</span>
           </div>
           <nav aria-label="Main">
             <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[14px] text-[#2b4c7e]">
@@ -44,7 +44,7 @@ export function BeforeSite() {
           <p className="mt-2 max-w-lg text-[15px]" style={{ textShadow: '1px 1px 2px #000' }}>
             We are a full service architecture firm dedicated to quality, innovation and customer satisfaction.
           </p>
-          <a href="#services" className="mt-4 rounded bg-[#3b82f6] px-5 py-2 text-[14px] font-bold text-white">
+          <a href="#services" className="mt-4 rounded bg-[#2563eb] px-5 py-2 text-[14px] font-bold text-white">
             Learn More
           </a>
         </div>
@@ -79,7 +79,7 @@ export function BeforeSite() {
                 </div>
                 <h3 className="mt-1 font-bold">{t}</h3>
                 <p className="mt-1 text-[14px] text-[#666]">{b}</p>
-                <a href="#inquiry" className="mt-2 inline-block text-[13px] text-[#3b82f6] underline">
+                <a href="#inquiry" className="mt-2 inline-block text-[13px] text-[#2563eb] underline">
                   Read more »
                 </a>
               </div>
@@ -128,10 +128,10 @@ export function BeforeSite() {
               Message*
               <textarea className="h-20 border border-[#bbb] px-2 py-1.5" disabled aria-describedby="before-note" />
             </label>
-            <button type="submit" className="mt-1 w-28 rounded bg-[#3b82f6] px-4 py-2 text-[14px] font-bold text-white">
+            <button type="submit" className="mt-1 w-28 rounded bg-[#2563eb] px-4 py-2 text-[14px] font-bold text-white">
               Submit
             </button>
-            <p id="before-note" className="text-[12px] text-[#888]">
+            <p id="before-note" className="text-[12px] text-[#6b6b6b]">
               {note ? 'This form is part of a fictional example and does not send anything.' : 'Example form — fields are disabled in this concept.'}
             </p>
           </form>

@@ -31,7 +31,7 @@ export function Standard() {
                 <a href={href} className="group block border-t border-line pt-5">
                   <span className="flex items-center justify-between">
                     <span className="display text-[1.7rem] text-ivory">{t}</span>
-                    <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-gold/70 transition-colors group-hover:text-gold">Live ↗</span>
+                    <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-gold transition-colors group-hover:text-champagne">Live ↗</span>
                   </span>
                   <span className="mt-3 block text-[0.92rem] leading-relaxed text-mist">{b}</span>
                 </a>

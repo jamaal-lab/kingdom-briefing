@@ -52,7 +52,7 @@ export function Nav() {
         }`}
       >
         <nav aria-label="Primary" className="mx-auto flex h-18 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12" style={{ height: '4.5rem' }}>
-          <a href="#top" aria-label="Bridge Web — back to top" className="-m-2 p-2">
+          <a href="#top" className="-m-2 p-2">
             <Logo />
           </a>
           <ul className="hidden items-center gap-9 lg:flex">

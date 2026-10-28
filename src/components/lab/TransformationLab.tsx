@@ -174,7 +174,7 @@ export function TransformationLab() {
                 <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                 <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                 <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="mx-auto rounded bg-white/5 px-10 py-1 font-mono text-[10px] text-white/45">atelier-north · concept</span>
+                <span className="mx-auto rounded bg-white/5 px-10 py-1 font-mono text-[10px] text-white/65">atelier-north · concept</span>
               </div>
             )}
             <div
