@@ -61,6 +61,11 @@ export function TransformationLab() {
   const frames = useRef<(HTMLIFrameElement | null)[]>([])
   const dragging = useRef(false)
 
+  // Phones start on the phone view; it is what their visitors would see.
+  useEffect(() => {
+    if (window.innerWidth < 640) setDevice('mobile')
+  }, [])
+
   // Fit the virtual device viewport to the available width.
   useEffect(() => {
     const el = viewport.current

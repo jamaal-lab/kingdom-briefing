@@ -178,7 +178,7 @@ export function Network() {
               ref={(el) => void (labelRefs.current[i] = el)}
               aria-hidden="true"
               style={{ opacity: 0 }}
-              className="whitespace-nowrap font-mono text-[10px] tracking-[0.18em] uppercase text-champagne/90"
+              className="hidden whitespace-nowrap font-mono text-[10px] tracking-[0.18em] uppercase text-champagne/90 min-[1200px]:block"
             >
               <span className="text-gold/80">0{i + 1}</span> {JOURNEY_STAGES[i]}
             </div>

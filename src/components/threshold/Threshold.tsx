@@ -194,6 +194,7 @@ export function Threshold() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_45%,transparent_40%,rgba(8,17,31,0.75)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-midnight via-midnight/55 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-midnight/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-midnight/75 via-midnight/25 to-transparent md:w-[62%]" />
         <div data-flash className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,rgba(245,225,180,0.9),rgba(231,210,160,0.15)_60%,transparent_80%)] opacity-0 mix-blend-screen" />
 
         {/* A — Arrival */}
@@ -240,7 +241,7 @@ export function Threshold() {
         <Chapter id="intelligence" index="D" label="Intelligence" title={['Every visitor,', 'understood.']} className="left-0 bottom-[10%] max-w-xl">
           Beneath the surface, an intelligent journey gathers context, classifies intent and prepares the next step — so the business answers as if it were expecting
           you.
-          <ol className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-champagne/80 sm:grid-cols-3">
+          <ol className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 font-mono min-[1200px]:sr-only text-[0.68rem] uppercase tracking-[0.14em] text-champagne/80 sm:grid-cols-3">
             {JOURNEY_STAGES.map((s, i) => (
               <li key={s}>
                 <span className="text-gold">0{i + 1}</span> {s}
@@ -291,7 +292,7 @@ export function Threshold() {
         </nav>
 
         {tier === 'poster' && (
-          <p className="absolute left-5 top-24 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-champagne/40 sm:left-8 lg:left-12">Still frames · interactive 3D on capable devices</p>
+          <p className="absolute left-5 top-24 hidden font-mono sm:block text-[0.6rem] uppercase tracking-[0.2em] text-champagne/40 sm:left-8 lg:left-12">Still frames · interactive 3D on capable devices</p>
         )}
       </div>
     </section>

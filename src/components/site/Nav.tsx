@@ -66,9 +66,11 @@ export function Nav() {
             ))}
           </ul>
           <div className="flex items-center gap-3">
-            <ButtonLink href="#consult" variant="ghost" arrow={false} className="hidden !min-h-10 !px-5 sm:inline-flex" onClick={() => track('cta_click', { location: 'nav' })}>
-              Consultation
-            </ButtonLink>
+            <span className="hidden sm:block">
+              <ButtonLink href="#consult" variant="ghost" arrow={false} className="!min-h-10 !px-5" onClick={() => track('cta_click', { location: 'nav' })}>
+                Consultation
+              </ButtonLink>
+            </span>
             <button
               ref={toggleRef}
               type="button"
