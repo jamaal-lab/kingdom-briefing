@@ -10,7 +10,7 @@
  * path-traced photography — see docs/ASSET_INVENTORY.md.
  */
 import { createRequire } from 'node:module'
-import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
+import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import sharp from 'sharp'
 
@@ -35,12 +35,20 @@ const SHOTS = [
 
 const args = process.argv.slice(2)
 const resume = args.includes('--resume')
+// --derive-only: skip rendering and rebuild derivatives from existing masters
+// (e.g. path-traced replacements dropped into media-masters/).
+const deriveOnly = args.includes('--derive-only')
 const filter = args.find((a) => !a.startsWith('--'))
-const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] })
+const browser = deriveOnly ? null : await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] })
 
 for (const shot of SHOTS) {
   if (filter && !shot.out.includes(filter)) continue
   if (resume && existsSync(join('media-masters', `${shot.out}.png`)) && existsSync(join('public', 'media', `${shot.out}-${shot.widths.at(-1)}.webp`))) continue
+  if (deriveOnly) {
+    await derive(shot, readFileSync(join('media-masters', `${shot.out}.png`)))
+    console.log(`${shot.out}: derivatives rebuilt`)
+    continue
+  }
   const q = new URLSearchParams(shot.query)
   const w = +q.get('w')
   const h = +q.get('h')
@@ -57,6 +65,12 @@ for (const shot of SHOTS) {
   mkdirSync(dirname(masterPath), { recursive: true })
   writeFileSync(masterPath, master)
 
+  await derive(shot, master)
+  console.log(`${shot.out}: ${w}×${h} in ${((Date.now() - started) / 1000).toFixed(1)}s`)
+}
+await browser?.close()
+
+async function derive(shot, master) {
   const outDir = join('public', 'media', dirname(shot.out))
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true })
   for (const width of shot.widths) {
@@ -64,6 +78,4 @@ for (const shot of SHOTS) {
     await img.clone().avif({ quality: width >= 2560 ? 58 : 52, effort: 6, chromaSubsampling: '4:4:4' }).toFile(join('public', 'media', `${shot.out}-${width}.avif`))
     await img.clone().webp({ quality: width >= 2560 ? 82 : 78, effort: 6 }).toFile(join('public', 'media', `${shot.out}-${width}.webp`))
   }
-  console.log(`${shot.out}: ${w}×${h} in ${((Date.now() - started) / 1000).toFixed(1)}s`)
 }
-await browser.close()

@@ -167,8 +167,19 @@ export function TransformationLab() {
         </Reveal>
 
         {/* Stage */}
-        <div ref={near} className={`mx-auto mt-10 ${device === 'mobile' ? 'max-w-[380px]' : ''}`}>
-          <div className={device === 'desktop' ? 'overflow-hidden rounded-[10px] border border-white/10 bg-charcoal shadow-[0_60px_120px_-40px_rgba(0,0,0,0.8)]' : 'rounded-[46px] border border-white/15 bg-[#05080e] p-3 shadow-[0_60px_120px_-40px_rgba(0,0,0,0.85)]'}>
+        {/* From sm up the stage box keeps one height for both devices, so switching never shifts the page. */}
+        <div ref={near} className="mx-auto mt-10">
+          <div className="relative">
+          {/* Spacer = desktop frame height (viewport at 16:10 + 38px browser bar). */}
+          <div aria-hidden="true" className="hidden sm:block" style={{ paddingTop: 'calc(62.5% + 38px)' }} />
+          <div className="sm:absolute sm:inset-0 sm:flex sm:justify-center">
+          <div
+            className={
+              device === 'desktop'
+                ? 'w-full self-start overflow-hidden rounded-[10px] border border-white/10 bg-charcoal shadow-[0_60px_120px_-40px_rgba(0,0,0,0.8)]'
+                : 'mx-auto w-full max-w-[380px] rounded-[46px] border border-white/15 bg-[#05080e] p-3 shadow-[0_60px_120px_-40px_rgba(0,0,0,0.85)] sm:h-full sm:w-auto sm:max-w-none'
+            }
+          >
             {device === 'desktop' && (
               <div className="flex h-9 items-center gap-2 border-b border-white/10 px-4" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
@@ -179,7 +190,7 @@ export function TransformationLab() {
             )}
             <div
               ref={viewport}
-              className={`relative touch-none select-none overflow-hidden bg-[#111] ${device === 'mobile' ? 'rounded-[34px]' : ''}`}
+              className={`relative touch-none select-none overflow-hidden bg-[#111] ${device === 'mobile' ? 'rounded-[34px] sm:h-full sm:w-auto' : ''}`}
               style={{ aspectRatio: `${vp.w} / ${vp.h}` }}
               onPointerDown={(e) => {
                 dragging.current = true
@@ -228,6 +239,8 @@ export function TransformationLab() {
                 </svg>
               </div>
             </div>
+          </div>
+          </div>
           </div>
           <p className="mt-4 text-center text-[0.72rem] text-mist">
             Live pages, not screenshots — rendered at a real {vp.w}px viewport. Use the arrow keys on the divider, or drag.
