@@ -1,65 +1,79 @@
 # Visual-quality & performance report
 
-Date: 2026-10-28 · Build: production (`vite build` + `vite preview`) unless noted.
+Date: 2026-10-28 · Build: production Node server (`npm run build && npm start`, Nitro) unless noted.
 
 ## Test environment — read this first
 
-All measurements come from a **headless Chromium in a cloud container with no GPU**. WebGL runs through SwiftShader (software rasterisation on the CPU). That has two consequences:
+All measurements come from **headless Chromium 1.63 (Playwright) in a cloud container with no GPU**. WebGL runs through SwiftShader (software rendering on the CPU).
 
-1. **Load metrics (LCP, CLS) are meaningful** as lab numbers.
-2. **Frame rate and interaction latency in the 3D tiers are not meaningful here.** Software WebGL saturates the main thread, so any interaction measured while the canvas renders reports multi-second delays that a real GPU would not produce. Those runs are listed below for completeness and must be re-measured on real devices.
+1. **Load metrics (LCP, CLS) and interaction latency in the poster tier are meaningful** as lab numbers.
+2. **Anything involving the WebGL tiers' frame rate or interaction latency is not meaningful here.** Software WebGL saturates the CPU; real GPUs do not behave this way. Those runs are reported but must be re-measured on real devices (`docs/TESTING.md` → Staging checklist).
+3. **No real-hardware testing has been done.** No field (RUM/CrUX) data exists.
 
-No field (CrUX/RUM) data exists yet. Targets (LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1) are treated as goals to verify, not claims.
+Targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 — treated as goals to verify, not claims.
 
-## Measured results
+## Measured results (after hardening)
 
-| Run | LCP | LCP element | CLS | Worst scripted interaction* |
+`scripts/qa-vitals.mjs`: loads `/`, waits 4 s, scrolls the whole page, runs the Intelligence demo, changes business, operates the Lab slider by keyboard and switches the Lab to Mobile. "Worst interaction" = longest Event Timing entry with an `interactionId` (clicks, taps, keys — the events INP uses). Three runs each.
+
+| Profile | Tier | LCP | CLS | Worst interaction |
 |---|---|---|---|---|
-| Desktop 1440×900, no throttling, `poster` tier | 440 ms | Hero headline | 0 | 296 ms (pointerout over Lab stage while both concept iframes were loading; 3 ms input delay, 0 ms handler — presentation delay) |
-| Desktop 1440×900, no throttling, `full` tier (auto-detected) | 632 ms | Hero headline | 0.103 → fixed, see below | not meaningful (software WebGL) |
-| Desktop 1440×900, `lite` tier | 380 ms | Hero headline | 0.184 → fixed, see below | not meaningful (software WebGL) |
-| Mobile 390×844 @3×, Fast-4G-like network + 4× CPU slowdown | 1,572 ms | Nav wordmark / headline | 0 | 1,456 ms (pointerover; runs while the WebGL tier and the Lab iframes boot) |
+| Desktop 1440×900, unthrottled | poster | **312 – 368 ms** | **0** | **88 – 152 ms** |
+| Desktop 1440×900, unthrottled | full (auto) | 296 – 356 ms | **0** | 168 ms – 6.2 s (software WebGL presentation delay — not meaningful) |
+| Mobile 390×844 @3×, Fast-4G-like network, 4× CPU slowdown | lite (auto) | **920 – 952 ms** | **0** | **128 – 152 ms** |
+| Mobile, same throttling | poster | 952 – 964 ms | 0 | 112 – 240 ms (one of two runs above 200 ms) |
 
-\* `scripts/qa-vitals.mjs` scrolls the page, runs the Intelligence demo, operates the Lab slider by keyboard and switches the Lab to Mobile, recording Event Timing entries ≥ 16 ms. This is an INP **proxy**, not INP.
+### What changed to get there (all measured before and after)
 
-**CLS fix.** The shifts above had a single source: switching the Lab from Desktop to Mobile changed the stage height. They followed a click, but in the CPU-starved container the re-layout landed outside the 500 ms input window. The stage now reserves one fixed height for both devices; re-measured, the content below the Lab moves by **0 px** when switching (top of the next section measured at 7027.06 px before and after the switch).
-
-**Mobile interaction note.** The 1.46 s mobile figure is dominated by booting the 3D tier and two full concept-site iframes under 4× CPU throttling in software WebGL. On real phones the GPU takes the rendering load. Mitigations already in place: iframes mount only when the Lab nears the viewport; the canvas pauses when off-screen; adaptive DPR and tier step-down. Recommended follow-up: measure on a mid-range Android device; if needed, start phones on the `poster` tier with a "View in 3D" control.
-
-## Bundle
-
-| Chunk | Size (min) | gzip | Loaded |
+| Problem found | Cause | Fix | Before → after |
 |---|---|---|---|
-| App shell (React, router, Start) | 317 kB | 103 kB | Always |
+| Desktop LCP 2.86 s | The hero copy faded in only after JavaScript hydrated (a React state flag), with a 1.1 s delay. The dark poster image does not count for LCP (Chrome excludes low-detail images). | Hero intro moved to **CSS keyframes** that start at first paint; same timings (0.3 s / 0.35 s + word stagger / 1.1 s). Also makes the headline appear even if JavaScript fails. | 2.86 s → 0.31–0.37 s |
+| CLS 0.12 (intermittent) | Intelligence stage cards were inserted one by one on timers, pushing later sections outside the input grace window. | All six cards are laid out when Run is pressed and revealed in place. | 0.12 → 0 (new regression test) |
+| CLS 0.10–0.18 | Lab stage changed height when switching Desktop ↔ Mobile. | Fixed-height stage. | → 0 px movement (regression test) |
+| Mobile "1.46 s interaction" | Measurement error: hover events were counted. | Proxy now counts only real interactions. | — |
+| Long tasks while scrolling past the Lab | Two live concept sites hydrate on the same main thread. | Mount when within 300 px (was 900 px) and in an idle callback. | — |
+
+### Camera continuity
+
+`scripts/qa-continuity.mjs` rendered the live scene at 41 evenly spaced scroll positions (384×216, `lite` tier) and measured mean per-pixel change between neighbours.
+
+- **No discontinuities**: no step changes more than 2× both neighbours (0 spikes / 40).
+- Change rises smoothly from Δ≈2.8 at arrival to a peak of **Δ≈47 (5.1× the median of 9.3) between 40 % and 57 %** of the track — the close pass through the telescoping frames — then falls to Δ≈4 once through the gate.
+- **Interpretation:** continuity is intact, but the crossing is the fastest-moving stretch per unit of scroll. If real-device review finds it rushed, widen the 0.46 → 0.56 keyframe gap in `choreography.ts` (a creative decision — not changed here).
+
+## Automated test suite (`npm test`)
+
+Two consecutive full runs on the production server (CI mode, 1 retry allowed): **59 passed, 0 failed, 0 flaky, 1 skipped** each time (the skip is the mobile-menu test in the desktop project, by design). Unit tests: 12 of the 59. Coverage in `docs/TESTING.md`. Highlights:
+
+- Threshold chapters appear in order with scroll; WebGL tier boots and fades in; reduced motion → no WebGL; no-WebGL2 → stills; failed 3D chunk → poster, page still works; headline visible with JavaScript disabled.
+- Lab: both fictional sites load and are labelled; keyboard slider; no layout shift on device switch; synced section jumps; preview dialog focus handling.
+- Intelligence: preset and custom journeys; no layout shift while running.
+- Consultation `mailto:` content and encoding; copy address; tier preselection.
+- axe-core WCAG 2.x A/AA: **0 violations** on all three pages at 1440, 834 and 412 px (one mobile-only contrast issue found and fixed during this pass).
+- No horizontal overflow; no console/CSP errors while scrolling the whole page.
+- Headers, `/studio` 404, endpoints off by default, robots/sitemap/canonical/OG/JSON-LD.
+
+## Bundle (production build)
+
+| Chunk | Min | Gzip | Loaded |
+|---|---|---|---|
+| App shell (React, router, Start) | 321 kB | 103 kB | Always |
 | Home route | 81 kB | 25 kB | Always |
-| CSS | 73 kB | 13 kB | Always |
-| GSAP + ScrollTrigger | 113 kB | 45 kB | After hydration, dynamic import |
-| three / R3F / Drei / postprocessing | 1,227 kB | 368 kB | Only when a WebGL tier is chosen |
+| CSS | 76 kB | 13 kB | Always |
+| GSAP + ScrollTrigger | 113 kB | 45 kB | After hydration |
+| three / R3F / Drei / postprocessing | 1,227 kB | 366 kB | Only when a WebGL tier is chosen |
 | Threshold scene | 35 kB | 13 kB | With the above |
-| Atelier North (after / before) | 24 / 7 kB | 8 / 2 kB | Only inside the Lab iframes |
 
-The initial HTML preloads only the shell, route and motion chunks; three.js is never on the critical path. The hero poster (AVIF) and headline are server-rendered and preloaded with `fetchpriority=high`.
+## Accessibility notes
 
-## Accessibility
+Automated: axe-core (above) plus behaviour tests (skip link, slider semantics, dialog focus return, live-region announcements, mobile menu Escape). **Not done:** a real screen-reader pass (VoiceOver/NVDA), 200 % zoom, Windows High Contrast.
 
-- **axe-core** (WCAG 2.0/2.1/2.2 A + AA rule sets), `scripts/qa-axe.mjs`: **0 violations** on `/`, `/concepts/atelier-north` and `/concepts/atelier-north/before`, after fixing 10 contrast issues, one accessible-name mismatch and an invalid `aria-label` on `<p>`. Elements that are invisible at audit time (Threshold chapters B–E) were checked by design review, not by axe.
-- **Behaviour**, `scripts/qa-a11y-behaviour.mjs`: first Tab reaches "Skip to content"; the Lab divider is a keyboard slider (arrows, Shift+arrows, Home/End) with `aria-valuetext`; the preview dialog opens from the keyboard, closes on Escape and returns focus; the Intelligence demo announces each stage through a polite live region.
-- **Reduced motion:** no WebGL canvas, no camera flight, no parallax; Threshold chapters still cross-fade with scroll (opacity only), and every reveal starts in its final state.
-- Manual checks still required: VoiceOver/NVDA pass, 200 % zoom, Windows High Contrast.
+## Visual features verified unchanged
 
-## Visual review (screenshots in the session, regenerated with the QA scripts)
-
-| Viewport | Reviewed |
-|---|---|
-| Desktop 1440×900 | Hero (poster + live `lite`), Threshold at 45 % and 80 %, Lab (desktop + mobile stage), Intelligence (idle, run, custom, passive), Standard, Offerings, Consultation, Footer |
-| Phone 390×844 | All sections; Lab defaults to the phone stage on phones |
-| Live 3D | Arrival, approach, crossing, network and resolve frames rendered from the live scene at 960–3840 px |
-
-Issues found and fixed during review: beige-lit floor (environment over-contribution), woven-looking stone texture, lavender soffits, visible skylight bar in portrait, network lines rendering black before reveal, hard horizon seam, overlay text over bright metal (scrim added), 3D labels colliding with overlay copy on narrow screens (labels limited to ≥ 1200 px), mobile nav overflow, Lab stage alignment.
+The Threshold scene, materials, lighting, camera keys, chapter timing, overlays, poster crossfade, Lab, Atelier North sites, Intelligence UI, offerings, consultation and footer render as before. The hero intro keeps its original delays and durations; it is now driven by CSS instead of JavaScript.
 
 ## Known gaps
 
-- Imagery is real-time render quality, not path-traced photorealism — see `ASSET_INVENTORY.md` and `ASSET_PRODUCTION_SPEC.md`.
-- No real-device GPU measurements yet (frame rate, INP, thermal behaviour on phones).
-- Tablet (834–1024 px) was reviewed only through the preview dialog's tablet width, not a dedicated pass.
-- The production server target is the default TanStack Start/Vite output; a hosting adapter (Netlify, Vercel, Node, etc.) still has to be chosen. Nothing has been deployed and no DNS was touched.
+- No real-GPU or real-phone measurements (frame rate, INP under real rendering, thermals, Safari/WebKit).
+- Imagery is real-time render quality, not path-traced photorealism (`docs/CINEMATIC_ROADMAP.md`).
+- Only Chromium was tested.
