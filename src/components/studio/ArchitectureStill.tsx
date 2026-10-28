@@ -510,7 +510,7 @@ function ShotScene({ shot, onDone }: { shot: ShotDef; onDone: () => void }) {
     scene.fog = new THREE.FogExp2(shot.fog[0], shot.fog[1])
   }, [camera, gl, scene, shot])
   useFrame(() => {
-    if (++frames.current === 12) onDone()
+    if (++frames.current === 3) onDone()
   })
   return (
     <>

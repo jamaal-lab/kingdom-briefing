@@ -1,0 +1,40 @@
+// QA: reduced motion + keyboard behaviour. node scripts/qa-a11y-behaviour.mjs <outdir>
+import { createRequire } from 'node:module'
+const { chromium } = createRequire(import.meta.url)('playwright')
+const out = process.argv[2] ?? '.'
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' })
+const page = await ctx.newPage()
+page.on('pageerror', (e) => console.log('[pageerror]', e.message))
+await page.goto(`http://localhost:${process.env.PORT ?? 3000}/`, { waitUntil: 'networkidle' })
+await page.waitForTimeout(1500)
+console.log('reduced motion → canvas present:', await page.locator('#threshold canvas').count() > 0)
+await page.evaluate(() => { const el = document.querySelector('#threshold'); window.scrollTo(0, el.offsetTop + 0.3 * (el.offsetHeight - innerHeight)) })
+await page.waitForTimeout(800)
+const op = await page.evaluate(() => [...document.querySelectorAll('[data-overlay]')].map((o) => `${o.dataset.overlay}:${o.style.opacity}`).join(' '))
+console.log('overlay opacities at 30% (no damping lag expected):', op)
+await page.screenshot({ path: `${out}/reduced-30.png` })
+// Keyboard: skip link, then tab into nav
+await page.evaluate(() => window.scrollTo(0, 0))
+await page.keyboard.press('Tab')
+console.log('first tab stop:', await page.evaluate(() => document.activeElement?.textContent?.trim()))
+// Lab slider via keyboard
+await page.locator('#lab').scrollIntoViewIfNeeded()
+const slider = page.getByRole('slider', { name: 'Compare before and after' })
+await slider.focus()
+for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowLeft')
+console.log('slider after 5×ArrowLeft:', await slider.getAttribute('aria-valuenow'))
+await page.keyboard.press('End')
+console.log('slider after End:', await slider.getAttribute('aria-valuenow'))
+// Preview dialog: open with keyboard, Escape closes and returns
+await page.getByRole('button', { name: 'Enter full preview' }).focus()
+await page.keyboard.press('Enter')
+await page.waitForTimeout(800)
+console.log('dialog open:', await page.evaluate(() => document.querySelector('dialog[open]') !== null))
+await page.keyboard.press('Escape')
+await page.waitForTimeout(400)
+console.log('dialog closed after Escape:', await page.evaluate(() => document.querySelector('dialog[open]') === null), '| focus returned to:', await page.evaluate(() => document.activeElement?.textContent?.trim()))
+// Consultation mailto
+const href = await page.getByRole('link', { name: 'Open in your email app' }).getAttribute('href')
+console.log('mailto:', href.slice(0, 90) + '…')
+await browser.close()
