@@ -111,7 +111,7 @@ export function runJourney(business: Business, message: string, answers: Partial
   const facts: Fact[] = [...fromMessage]
   for (const key of FIELD_ORDER) {
     const a = answers[key]
-    if (!a || known.has(key)) continue
+    if (!a || a === 'Skipped' || known.has(key)) continue
     asked.push({ key, question: business.questions[key].ask, answer: a })
     facts.push({ key, value: a, source: 'asked' })
   }

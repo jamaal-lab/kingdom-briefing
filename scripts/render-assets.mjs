@@ -33,11 +33,14 @@ const SHOTS = [
   { out: 'atelier/interior', query: 'scene=architecture&shot=interior&w=3840&h=2160', widths: LANDSCAPE },
 ]
 
-const filter = process.argv[2]
+const args = process.argv.slice(2)
+const resume = args.includes('--resume')
+const filter = args.find((a) => !a.startsWith('--'))
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] })
 
 for (const shot of SHOTS) {
   if (filter && !shot.out.includes(filter)) continue
+  if (resume && existsSync(join('media-masters', `${shot.out}.png`)) && existsSync(join('public', 'media', `${shot.out}-${shot.widths.at(-1)}.webp`))) continue
   const q = new URLSearchParams(shot.query)
   const w = +q.get('w')
   const h = +q.get('h')
