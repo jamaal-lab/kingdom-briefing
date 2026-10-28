@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Scan all components even when a build is rooted elsewhere (vite.preview.config.ts). */
+@source "..";
 
 /* ───────────────────────── Typography ───────────────────────── */
 @font-face {

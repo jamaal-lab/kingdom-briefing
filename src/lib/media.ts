@@ -12,21 +12,24 @@ export type MediaAsset = {
   alt: string
 }
 
+/** Public files resolve against the build's base, so static previews can live in a subfolder. */
+const M = `${import.meta.env.BASE_URL}media`
+
 const LANDSCAPE = [640, 960, 1600, 2560, 3840] as const
 const PORTRAIT = [540, 828, 1080, 1440] as const
 
 export const MEDIA = {
-  thresholdArrival: { base: '/media/threshold/arrival', widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
-  thresholdArrivalPortrait: { base: '/media/threshold/arrival-portrait', widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
-  thresholdApproach: { base: '/media/threshold/approach', widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
-  thresholdApproachPortrait: { base: '/media/threshold/approach-portrait', widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
-  thresholdIntelligence: { base: '/media/threshold/intelligence', widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
-  thresholdIntelligencePortrait: { base: '/media/threshold/intelligence-portrait', widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
-  halden: { base: '/media/atelier/halden', widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Halden House: a board-formed concrete residence cantilevered over a still lake at blue hour, its long glazed upper floor lit warm from within.' },
-  kestrel: { base: '/media/atelier/kestrel', widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Kestrel Gallery: a long, low stone gallery with a single slot window, lit by low dusk sun beside a reflecting pool.' },
-  morrow: { base: '/media/atelier/morrow', widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Morrow Pavilion: a thin timber roof plane on slender black columns over a glazed room, in a meadow at golden hour.' },
-  nocturne: { base: '/media/atelier/nocturne', widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Morrow Pavilion at blue hour, glowing from within beneath its deep timber roof.' },
-  interior: { base: '/media/atelier/interior', widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Interior of Wren House: timber floor, concrete walls and a full-height window framing hills and water at dusk.' },
+  thresholdArrival: { base: `${M}/threshold/arrival`, widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
+  thresholdArrivalPortrait: { base: `${M}/threshold/arrival-portrait`, widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
+  thresholdApproach: { base: `${M}/threshold/approach`, widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
+  thresholdApproachPortrait: { base: `${M}/threshold/approach-portrait`, widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
+  thresholdIntelligence: { base: `${M}/threshold/intelligence`, widths: LANDSCAPE, width: 3840, height: 2160, alt: '' },
+  thresholdIntelligencePortrait: { base: `${M}/threshold/intelligence-portrait`, widths: PORTRAIT, width: 2160, height: 3840, alt: '' },
+  halden: { base: `${M}/atelier/halden`, widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Halden House: a board-formed concrete residence cantilevered over a still lake at blue hour, its long glazed upper floor lit warm from within.' },
+  kestrel: { base: `${M}/atelier/kestrel`, widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Kestrel Gallery: a long, low stone gallery with a single slot window, lit by low dusk sun beside a reflecting pool.' },
+  morrow: { base: `${M}/atelier/morrow`, widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Morrow Pavilion: a thin timber roof plane on slender black columns over a glazed room, in a meadow at golden hour.' },
+  nocturne: { base: `${M}/atelier/nocturne`, widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Morrow Pavilion at blue hour, glowing from within beneath its deep timber roof.' },
+  interior: { base: `${M}/atelier/interior`, widths: LANDSCAPE, width: 3840, height: 2160, alt: 'Interior of Wren House: timber floor, concrete walls and a full-height window framing hills and water at dusk.' },
 } as const satisfies Record<string, MediaAsset>
 
 export function srcSet(asset: MediaAsset, ext: 'avif' | 'webp') {

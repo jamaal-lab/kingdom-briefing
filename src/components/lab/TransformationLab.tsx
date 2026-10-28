@@ -3,10 +3,11 @@ import { SectionHeader } from '~/components/site/SectionHeader'
 import { Button } from '~/components/site/Button'
 import { Reveal, useInView } from '~/motion'
 import { track } from '~/lib/analytics'
+import { CONCEPT_URLS } from '~/lib/site'
 import { PreviewDialog } from './PreviewDialog'
 
-const AFTER = '/concepts/atelier-north'
-const BEFORE = '/concepts/atelier-north/before'
+const AFTER = CONCEPT_URLS.after
+const BEFORE = CONCEPT_URLS.before
 
 type Device = 'desktop' | 'mobile'
 const VIEWPORT: Record<Device, { w: number; h: number }> = {

@@ -15,3 +15,8 @@ export function mailto(subject: string, body = '') {
   // URLSearchParams encodes spaces as "+", which mail clients show literally.
   return `mailto:${SITE.email}?${params.toString().replace(/\+/g, '%20')}`
 }
+
+/** Live concept pages; the static preview build serves them as plain HTML files. */
+export const CONCEPT_URLS = import.meta.env.VITE_STATIC_PREVIEW
+  ? { after: './atelier-north.html', before: './atelier-north-before.html' }
+  : { after: '/concepts/atelier-north', before: '/concepts/atelier-north/before' }
