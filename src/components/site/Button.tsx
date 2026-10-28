@@ -9,7 +9,7 @@ const base =
 const variants: Record<Variant, string> = {
   gold: 'min-h-12 px-7 bg-gold text-midnight hover:bg-champagne shadow-[0_0_0_1px_rgba(231,210,160,0.35),0_18px_50px_-20px_rgba(201,162,39,0.7)]',
   ghost: 'min-h-12 px-7 text-ivory border border-champagne/30 hover:border-champagne/70 hover:bg-champagne/5',
-  text: 'min-h-11 px-1 text-champagne hover:text-ivory',
+  text: 'min-h-11 px-1 text-champagne hover:text-ivory !whitespace-normal text-left',
 }
 
 function Arrow() {

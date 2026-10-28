@@ -23,7 +23,6 @@ export function SplitText({ as: Tag = 'h2', lines, className, lineClassName, del
   let i = 0
   return (
     <Tag ref={ref} id={id} className={className} data-inview={play ?? inView}>
-      <span className="sr-only">{lines.join(' ')}</span>
       {lines.map((line, li) => (
         <span key={li} className={`block ${lineClassName ?? ''}`} aria-hidden="true">
           {line.split(' ').map((word, wi) => {
@@ -37,6 +36,8 @@ export function SplitText({ as: Tag = 'h2', lines, className, lineClassName, del
           })}
         </span>
       ))}
+      {/* Last child, so per-line :nth-child styling still counts lines from 1. */}
+      <span className="sr-only">{lines.join(' ')}</span>
     </Tag>
   )
 }
