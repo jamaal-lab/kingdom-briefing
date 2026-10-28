@@ -1,6 +1,5 @@
 // QA: screenshot each homepage section. node scripts/sections.mjs <width> <height> <outdir> [query]
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const [, , w = '1440', h = '900', out = 'shots', query = 'tier=poster'] = process.argv
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] })
 const page = await browser.newPage({ viewport: { width: +w, height: +h } })

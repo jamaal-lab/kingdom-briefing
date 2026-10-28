@@ -264,7 +264,7 @@ export function TransformationLab() {
                 <button type="button" onClick={() => jump(c.section)} disabled={!ready} className="group grid w-full gap-2 py-6 text-left md:grid-cols-12 md:gap-6">
                   <span className="display text-2xl text-ivory md:col-span-2">{c.area}</span>
                   <span className="text-[0.95rem] leading-relaxed text-mist md:col-span-4">
-                    <span className="mr-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/40 md:hidden">Before</span>
+                    <span className="mr-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/60 md:hidden">Before</span>
                     {c.before}
                   </span>
                   <span className="text-[0.95rem] leading-relaxed text-ivory/90 md:col-span-5">

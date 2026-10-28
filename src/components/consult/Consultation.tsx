@@ -3,6 +3,7 @@ import { SITE, mailto } from '~/lib/site'
 import { track } from '~/lib/analytics'
 import { ButtonLink, Button } from '~/components/site/Button'
 import { Reveal, SplitText } from '~/motion'
+import { InquiryForm } from './InquiryForm'
 
 const PROJECT = ['A new website', 'Redesigning an existing site', 'An immersive / 3D experience', 'Intelligent inquiry & follow-up', 'Not sure yet'] as const
 const TIER = ['Essential', 'Signature', 'Immersive Intelligence', 'Help me decide'] as const
@@ -154,6 +155,7 @@ export function Consultation() {
                   {copied ? 'Address copied' : 'Copy email address'}
                 </Button>
               </div>
+              {import.meta.env.VITE_INQUIRY_FORM === '1' && <InquiryForm project={project} tier={tier} timing={timing} note={note} />}
               <p className="mt-6 text-[0.85rem] text-mist">
                 Or write directly to{' '}
                 <a href={`mailto:${SITE.email}`} className="text-champagne underline decoration-champagne/40 underline-offset-4 hover:decoration-champagne">

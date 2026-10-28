@@ -9,3 +9,6 @@ dist
 /scratch
 /media-masters
 /preview-dist
+playwright-report
+test-results
+.output

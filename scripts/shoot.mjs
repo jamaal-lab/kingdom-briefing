@@ -1,6 +1,5 @@
 // Page screenshots for QA: node scripts/shoot.mjs <path> <out.png> [width] [height] [scrollY|#id] [waitMs]
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const [, , path = '/', out = 'shot.png', w = '1440', h = '900', scroll = '0', wait = '2500'] = process.argv
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] })
 const page = await browser.newPage({ viewport: { width: +w, height: +h }, deviceScaleFactor: 1 })

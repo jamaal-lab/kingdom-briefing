@@ -1,6 +1,5 @@
 // QA: reduced motion + keyboard behaviour. node scripts/qa-a11y-behaviour.mjs <outdir>
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const out = process.argv[2] ?? '.'
 const browser = await chromium.launch()
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' })

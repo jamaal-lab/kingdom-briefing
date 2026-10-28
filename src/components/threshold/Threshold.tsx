@@ -5,6 +5,7 @@ import { MEDIA } from '~/lib/media'
 import { SITE } from '~/lib/site'
 import { track } from '~/lib/analytics'
 import { Picture } from '~/components/site/Picture'
+import { ErrorBoundary } from '~/components/site/ErrorBoundary'
 import { ButtonLink } from '~/components/site/Button'
 import { SplitText, window4, range } from '~/motion'
 import type { ProgressStore } from './scene/context'
@@ -184,9 +185,12 @@ export function Threshold() {
 
         {live && (
           <div className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[var(--ease-settle)] ${ready ? 'opacity-100' : 'opacity-0'}`}>
-            <Suspense fallback={null}>
-              <ThresholdCanvas tier={tier} progress={progress} pointer={pointer} active={active} onReady={() => setReady(true)} onDegrade={degrade} />
-            </Suspense>
+            {/* A failed chunk load or WebGL error leaves the poster in place and drops to the poster tier. */}
+            <ErrorBoundary area="threshold-canvas" fallback={null} onError={() => (setReady(false), setTier('poster'))}>
+              <Suspense fallback={null}>
+                <ThresholdCanvas tier={tier} progress={progress} pointer={pointer} active={active} onReady={() => setReady(true)} onDegrade={degrade} />
+              </Suspense>
+            </ErrorBoundary>
           </div>
         )}
 

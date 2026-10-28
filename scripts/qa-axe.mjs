@@ -2,7 +2,7 @@
 import { createRequire } from 'node:module'
 import { readFileSync } from 'node:fs'
 const require = createRequire(import.meta.url)
-const { chromium } = require('playwright')
+const { chromium } = require('@playwright/test')
 const axeSource = readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8')
 const paths = process.argv.slice(2).length ? process.argv.slice(2) : ['/?tier=poster', '/concepts/atelier-north', '/concepts/atelier-north/before']
 const browser = await chromium.launch()

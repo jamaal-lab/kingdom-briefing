@@ -11,9 +11,9 @@
     "noUnusedParameters": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "baseUrl": ".",
     "paths": { "~/*": ["./src/*"] }
   },
-  "include": ["src", "vite.config.ts", "scripts"]
+  "include": ["src", "tests", "vite.config.ts", "vite.preview.config.ts", "playwright.config.ts"]
 }

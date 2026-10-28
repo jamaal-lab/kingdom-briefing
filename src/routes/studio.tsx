@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, notFound } from '@tanstack/react-router'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 
 /**
@@ -18,6 +18,10 @@ declare global {
 
 export const Route = createFileRoute('/studio')({
   head: () => ({ meta: [{ name: 'robots', content: 'noindex' }] }),
+  // Render tooling only: production builds answer 404.
+  beforeLoad: () => {
+    if (!import.meta.env.DEV) throw notFound()
+  },
   validateSearch: (s: Record<string, unknown>) => ({
     scene: String(s.scene ?? 'threshold'),
     p: Number(s.p ?? 0),
@@ -36,7 +40,6 @@ function Studio() {
   const [finished, setFinished] = useState(false)
   useEffect(() => setMounted(true), [])
   const progress = useRef({ target: p, current: p }).current
-  if (!import.meta.env.DEV) return <p style={{ padding: 40 }}>Studio is available in development only.</p>
   if (!mounted) return null
   const done = () => {
     setFinished(true)

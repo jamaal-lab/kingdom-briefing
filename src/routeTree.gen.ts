@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as ApiClientErrorsRouteImport } from './routes/api/client-errors'
+import { Route as ApiInquiryRouteImport } from './routes/api/inquiry'
 import { Route as ConceptsAtelierNorthIndexRouteImport } from './routes/concepts/atelier-north/index'
 import { Route as ConceptsAtelierNorthBeforeRouteImport } from './routes/concepts/atelier-north/before'
 
@@ -19,9 +23,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiClientErrorsRoute = ApiClientErrorsRouteImport.update({
+  id: '/api/client-errors',
+  path: '/api/client-errors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInquiryRoute = ApiInquiryRouteImport.update({
+  id: '/api/inquiry',
+  path: '/api/inquiry',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConceptsAtelierNorthIndexRoute =
@@ -39,20 +63,32 @@ const ConceptsAtelierNorthBeforeRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/client-errors': typeof ApiClientErrorsRoute
+  '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
   '/concepts/atelier-north/': typeof ConceptsAtelierNorthIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/client-errors': typeof ApiClientErrorsRoute
+  '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
   '/concepts/atelier-north': typeof ConceptsAtelierNorthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/client-errors': typeof ApiClientErrorsRoute
+  '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
   '/concepts/atelier-north/': typeof ConceptsAtelierNorthIndexRoute
 }
@@ -60,26 +96,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/studio'
+    | '/api/client-errors'
+    | '/api/inquiry'
     | '/concepts/atelier-north/before'
     | '/concepts/atelier-north/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/studio'
+    | '/api/client-errors'
+    | '/api/inquiry'
     | '/concepts/atelier-north/before'
     | '/concepts/atelier-north'
   id:
     | '__root__'
     | '/'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/studio'
+    | '/api/client-errors'
+    | '/api/inquiry'
     | '/concepts/atelier-north/before'
     | '/concepts/atelier-north/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
+  ApiClientErrorsRoute: typeof ApiClientErrorsRoute
+  ApiInquiryRoute: typeof ApiInquiryRoute
   ConceptsAtelierNorthBeforeRoute: typeof ConceptsAtelierNorthBeforeRoute
   ConceptsAtelierNorthIndexRoute: typeof ConceptsAtelierNorthIndexRoute
 }
@@ -93,11 +145,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/studio': {
       id: '/studio'
       path: '/studio'
       fullPath: '/studio'
       preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/client-errors': {
+      id: '/api/client-errors'
+      path: '/api/client-errors'
+      fullPath: '/api/client-errors'
+      preLoaderRoute: typeof ApiClientErrorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/inquiry': {
+      id: '/api/inquiry'
+      path: '/api/inquiry'
+      fullPath: '/api/inquiry'
+      preLoaderRoute: typeof ApiInquiryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/concepts/atelier-north/': {
@@ -119,7 +199,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
+  ApiClientErrorsRoute: ApiClientErrorsRoute,
+  ApiInquiryRoute: ApiInquiryRoute,
   ConceptsAtelierNorthBeforeRoute: ConceptsAtelierNorthBeforeRoute,
   ConceptsAtelierNorthIndexRoute: ConceptsAtelierNorthIndexRoute,
 }

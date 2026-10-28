@@ -5,8 +5,7 @@
  * from a headless, GPU-less container — not field data.
  *   node scripts/qa-vitals.mjs [mobile|desktop] [throttle]
  */
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const [, , profile = 'desktop', throttle] = process.argv
 const PORT = process.env.PORT ?? 4173
 const vp = profile === 'mobile' ? { width: 390, height: 844, deviceScaleFactor: 3, isMobile: true, hasTouch: true } : { width: 1440, height: 900, deviceScaleFactor: 1 }

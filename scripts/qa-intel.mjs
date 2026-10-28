@@ -1,6 +1,5 @@
 // QA: drive the Intelligence Experience. node scripts/qa-intel.mjs <outdir>
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const out = process.argv[2] ?? '.'
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })

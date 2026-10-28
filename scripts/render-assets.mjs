@@ -14,7 +14,7 @@ import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import sharp from 'sharp'
 
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const PORT = process.env.PORT ?? 3000
 const LANDSCAPE = [640, 960, 1600, 2560, 3840]
 const PORTRAIT = [540, 828, 1080, 1440]

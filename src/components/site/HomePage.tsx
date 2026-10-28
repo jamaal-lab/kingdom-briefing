@@ -7,7 +7,11 @@ import { Standard } from '~/components/offerings/Standard'
 import { Offerings } from '~/components/offerings/Offerings'
 import { Consultation } from '~/components/consult/Consultation'
 
+import { useEffect } from 'react'
+import { installGlobalErrorHandlers } from '~/lib/monitoring'
+
 export function HomePage() {
+  useEffect(() => installGlobalErrorHandlers(), [])
   return (
     <div id="top">
       <Nav />

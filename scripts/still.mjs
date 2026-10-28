@@ -1,6 +1,5 @@
 // Quick single still for development: node scripts/still.mjs "<studio query>" out.png
-import { createRequire } from 'node:module'
-const { chromium } = createRequire(import.meta.url)('playwright')
+import { chromium } from '@playwright/test'
 const [, , query, out] = process.argv
 const params = new URLSearchParams(query)
 const w = Number(params.get('w') ?? 1600)
