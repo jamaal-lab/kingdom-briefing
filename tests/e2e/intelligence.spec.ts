@@ -35,3 +35,18 @@ test.describe('Intelligence Experience', () => {
     await expect(section).toContainText('New contact form submission')
   })
 })
+
+test('running a journey does not shift the page layout', async ({ page }) => {
+  await page.goto('/?tier=poster')
+  const section = page.locator('#intelligence')
+  await section.scrollIntoViewIfNeeded()
+  await page.evaluate(() => {
+    ;(window as unknown as { __cls: number }).__cls = 0
+    new PerformanceObserver((l) => {
+      for (const e of l.getEntries() as unknown as { hadRecentInput: boolean; value: number }[]) if (!e.hadRecentInput) (window as unknown as { __cls: number }).__cls += e.value
+    }).observe({ type: 'layout-shift' })
+  })
+  await section.getByRole('button', { name: 'Run the journey' }).click()
+  await expect(section.locator('p[aria-live="polite"]')).toHaveText(/Stage 6 of 6/, { timeout: 15_000 })
+  expect(await page.evaluate(() => (window as unknown as { __cls: number }).__cls)).toBeLessThan(0.01)
+})

@@ -11,6 +11,8 @@ type Props = {
   delay?: number
   /** Controlled mode: reveal when true instead of on scroll. */
   play?: boolean
+  /** Page-load intro: animates with CSS keyframes from first paint, independent of JavaScript. */
+  intro?: boolean
   id?: string
 }
 
@@ -18,11 +20,11 @@ type Props = {
  * Masked word-by-word headline reveal. Screen readers get the full sentence
  * once from a visually hidden copy; the animated fragments are hidden from them.
  */
-export function SplitText({ as: Tag = 'h2', lines, className, lineClassName, delay = 0, play, id }: Props) {
+export function SplitText({ as: Tag = 'h2', lines, className, lineClassName, delay = 0, play, intro, id }: Props) {
   const [ref, inView] = useInView<HTMLElement>()
   let i = 0
   return (
-    <Tag ref={ref} id={id} className={className} data-inview={play ?? inView}>
+    <Tag ref={ref} id={id} className={`${intro ? 'split-intro ' : ''}${className ?? ''}`} data-inview={intro ? undefined : (play ?? inView)}>
       {lines.map((line, li) => (
         <span key={li} className={`block ${lineClassName ?? ''}`} aria-hidden="true">
           {line.split(' ').map((word, wi) => {

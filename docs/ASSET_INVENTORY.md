@@ -51,8 +51,18 @@ All Atelier North projects, places and copy are fictional and labelled as such o
 
 | Asset | Status | Source | Licence |
 |---|---|---|---|
-| Instrument Serif (display), Hanken Grotesk (UI), JetBrains Mono (labels), Cormorant Garamond (Atelier North) | **Complete** | Self-hosted WOFF2 subsets from the Fontsource distributions | SIL Open Font License 1.1 |
+| Instrument Serif (display), Hanken Grotesk (UI), JetBrains Mono (labels), Cormorant Garamond (Atelier North) | **Complete** | Self-hosted Latin WOFF2 subsets from Fontsource 5.3.0 packages | SIL Open Font License 1.1 — full texts in `licenses/fonts/` |
 | Bridge Web nested-portal mark, favicon | **Complete** (proposal) | Drawn in SVG for this project (`src/components/site/Logo.tsx`, `public/favicon.svg`) | Original — confirm against any existing brand guidelines |
+
+| Social sharing image `public/og-image.jpg` (1200×630) | **Complete** | Composed from the arrival poster + site fonts by `scripts/render-og.mjs` | Original |
+
+## Software licences (production dependencies)
+
+Audit run with `license-checker-rseidelsohn --production` on 2026-10-28: 175 packages — MIT 145 (+1 marked MIT*), ISC 10, Apache-2.0 7, BSD-3-Clause 4, MPL-2.0 3, Zlib 1, CC-BY-4.0 1, Unlicense 1, Python-2.0 1, and **GSAP's "Standard no-charge licence"**.
+
+- **GSAP** is free for commercial use, including client work, under its own licence (https://gsap.com/standard-license). The notable restriction is that it may not be used to build a product that competes with Webflow's visual animation tooling. Bridge Web's client sites are fine; re-check if Bridge Web ever ships a no-code animation builder.
+- MPL-2.0 packages are used unmodified (file-level copyleft only applies if their files are modified).
+- No GPL/AGPL code ships to the browser or server.
 
 ## Delivery formats
 

@@ -213,6 +213,45 @@
 
 /* Emerges from darkness without starting at opacity 0, so the poster still
    counts as an early Largest Contentful Paint. Mirrors arrival() in choreography.ts. */
+/* Page-load intro (no JavaScript dependency). --d = delay, --dur = duration. */
+@keyframes word-rise {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.split-intro .split-word > span {
+  transform: none;
+  transition: none;
+  animation: word-rise 1200ms var(--ease-cinema) var(--d, 0ms) both;
+}
+.intro-rise {
+  animation: fade-rise var(--dur, 1000ms) var(--ease-cinema) var(--d, 0ms) both;
+}
+.intro-fade {
+  animation: fade-in var(--dur, 1000ms) ease var(--d, 0ms) both;
+}
+
 @keyframes arrival {
   from {
     transform: scale(1.06);

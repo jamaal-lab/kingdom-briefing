@@ -84,3 +84,30 @@ test.describe('The Threshold', () => {
     await expect(page.locator('#threshold canvas')).toHaveCount(0)
   })
 })
+
+test.describe('Threshold resilience', () => {
+  test('headline and copy appear without JavaScript (CSS-only intro) @mobile', async ({ browser }) => {
+    const ctx = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1280, height: 800 } })
+    const page = await ctx.newPage()
+    await page.goto('/')
+    await page.waitForTimeout(3000) // longest intro: 1.1 s delay + 1.4 s
+    const visible = await page.evaluate(() => {
+      const words = [...document.querySelectorAll<HTMLElement>('.split-intro .split-word > span')]
+      const copy = document.querySelector<HTMLElement>('.intro-rise')!
+      return { words: words.length, risen: words.every((w) => ['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(getComputedStyle(w).transform)), copy: Number(getComputedStyle(copy).opacity) }
+    })
+    expect(visible.words).toBeGreaterThan(4)
+    expect(visible.risen).toBe(true)
+    expect(visible.copy).toBe(1)
+    await ctx.close()
+  })
+
+  test('a failed 3D chunk leaves the poster and the page working', async ({ page }) => {
+    await page.route(/ThresholdCanvas-.*\.js$/, (r) => r.abort())
+    await page.goto('/?tier=lite')
+    await expect(page.getByText('Still frames · interactive 3D on capable devices')).toBeVisible({ timeout: 20_000 })
+    await expect(page.locator('#threshold canvas')).toHaveCount(0)
+    await page.locator('#intelligence').scrollIntoViewIfNeeded()
+    await expect(page.locator('#intelligence').getByRole('button', { name: 'Run the journey' })).toBeEnabled()
+  })
+})

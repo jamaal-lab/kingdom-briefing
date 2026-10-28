@@ -241,7 +241,7 @@ export function IntelligenceExperience() {
                             ))}
                           </ul>
                         )}
-                        {awaiting && pendingQuestions[0] && (
+                        {pendingQuestions[0] && (
                           <div className="mb-5 border border-gold/40 bg-gold/[0.05] p-4">
                             <p className="text-[0.92rem] text-ivory">
                               <span className="mr-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-gold">Site asks</span>
@@ -362,10 +362,16 @@ function Rail({ stage, awaiting }: { stage: number; awaiting: boolean }) {
   )
 }
 
+/**
+ * Every card is laid out as soon as a journey starts and revealed in place, so
+ * the stages appearing on their timers never push the page (no layout shift).
+ */
 function StageCard({ n, title, shown, highlight, children }: { n: number; title: string; shown: boolean; highlight?: boolean; children: React.ReactNode }) {
-  if (!shown) return null
   return (
-    <article className={`motion-safe:animate-[stage-in_700ms_var(--ease-cinema)_both] border p-5 sm:p-6 ${highlight ? 'border-gold/60 bg-gradient-to-br from-gold/[0.08] to-transparent' : 'border-line bg-white/[0.015]'}`}>
+    <article
+      aria-hidden={!shown}
+      className={`border p-5 sm:p-6 ${shown ? 'motion-safe:animate-[stage-in_700ms_var(--ease-cinema)_both]' : 'invisible'} ${highlight ? 'border-gold/60 bg-gradient-to-br from-gold/[0.08] to-transparent' : 'border-line bg-white/[0.015]'}`}
+    >
       <h3 className="mb-4 flex items-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-champagne/80">
         <span className="font-mono text-gold">0{n}</span>
         {title}

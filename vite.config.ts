@@ -52,6 +52,8 @@ export default defineConfig({
         // Stable filenames, replaced only by re-rendering: cache for a week, revalidate in the background.
         '/media/**': { headers: { ...SECURITY_HEADERS, 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400' } },
         '/fonts/**': { headers: { ...SECURITY_HEADERS, 'cache-control': 'public, max-age=2592000, immutable' } },
+        // Fictional project imagery must not surface in image search without its "concept" context.
+        '/media/atelier/**': { headers: { ...SECURITY_HEADERS, 'cache-control': 'public, max-age=604800, stale-while-revalidate=86400', 'x-robots-tag': 'noindex' } },
         // Fictional concept pages and the dev-only studio are never indexed.
         '/concepts/**': { headers: { ...SECURITY_HEADERS, 'x-robots-tag': 'noindex, nofollow' } },
       },

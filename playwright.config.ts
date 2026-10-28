@@ -10,6 +10,9 @@ import { defineConfig, devices } from '@playwright/test'
  * frame rate.
  */
 const PORT = Number(process.env.E2E_PORT ?? 4400)
+/** Point the suite at a deployed staging URL instead of a local server. */
+const BASE_URL = process.env.E2E_BASE_URL
+const [user, pass] = (process.env.STAGING_BASIC_AUTH ?? '').split(':')
 
 export default defineConfig({
   testDir: './tests',
@@ -20,18 +23,21 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: BASE_URL ?? `http://localhost:${PORT}`,
+    httpCredentials: user ? { username: user, password: pass ?? '' } : undefined,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     launchOptions: { args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] },
   },
-  webServer: {
+  webServer: BASE_URL
+    ? undefined
+    : {
     command: process.env.E2E_SKIP_BUILD ? 'npm start' : 'npm run build && npm start',
     url: `http://localhost:${PORT}/`,
     env: { PORT: String(PORT) },
     timeout: 180_000,
     reuseExistingServer: !process.env.CI,
-  },
+      },
   projects: [
     { name: 'unit', testDir: './tests/unit' },
     { name: 'desktop', testDir: './tests/e2e', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },

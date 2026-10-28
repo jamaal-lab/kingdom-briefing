@@ -1,7 +1,8 @@
 /**
  * Lab Web Vitals against a running production server (npm run build && npx vite preview).
- * Measures LCP, CLS and the longest event-processing duration for scripted
- * interactions (an INP proxy). Optional throttling via CDP. These are lab numbers
+ * Measures LCP, CLS and the longest duration among real interactions
+ * (Event Timing entries with an interactionId: clicks, taps, key presses —
+ * the events INP is built from). Hover events are excluded, as in INP. Optional throttling via CDP. These are lab numbers
  * from a headless, GPU-less container — not field data.
  *   node scripts/qa-vitals.mjs [mobile|desktop] [throttle]
  */
@@ -23,7 +24,7 @@ await page.addInitScript(() => {
   window.__v = { lcp: 0, lcpEl: '', cls: 0, events: [] }
   new PerformanceObserver((l) => { for (const e of l.getEntries()) { window.__v.lcp = e.startTime; window.__v.lcpEl = (e.element?.tagName ?? '') + ' ' + (e.url || e.element?.textContent?.slice(0, 40) || '') } }).observe({ type: 'largest-contentful-paint', buffered: true })
   new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) { window.__v.cls += e.value; window.__v.shifts = (window.__v.shifts ?? []).concat({ v: +e.value.toFixed(4), t: Math.round(e.startTime), src: e.sources.map((x) => (x.node?.nodeName ?? '') + '.' + (x.node?.className?.toString?.().slice(0, 50) ?? '')) }) } }).observe({ type: 'layout-shift', buffered: true })
-  new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__v.events.push({ name: e.name, d: e.duration, target: (e.target?.nodeName ?? '') + '.' + (e.target?.className?.toString?.().slice(0, 40) ?? ''), input: Math.round(e.processingStart - e.startTime), proc: Math.round(e.processingEnd - e.processingStart) }) }).observe({ type: 'event', durationThreshold: 16, buffered: true })
+  new PerformanceObserver((l) => { for (const e of l.getEntries()) if (e.interactionId) window.__v.events.push({ name: e.name, d: e.duration, target: (e.target?.nodeName ?? '') + '.' + (e.target?.className?.toString?.().slice(0, 40) ?? ''), at: Math.round(e.startTime), input: Math.round(e.processingStart - e.startTime), proc: Math.round(e.processingEnd - e.processingStart) }) }).observe({ type: 'event', durationThreshold: 16, buffered: true })
 })
 const t0 = Date.now()
 await page.goto(`http://localhost:${PORT}/${process.env.Q ?? ''}`, { waitUntil: 'load' })
@@ -43,5 +44,5 @@ await page.getByRole('radio', { name: /Mobile/ }).click()
 await page.waitForTimeout(1500)
 const v = await page.evaluate(() => window.__v)
 const worst = v.events.sort((a, b) => b.d - a.d)[0]
-console.log(JSON.stringify({ profile, throttle: !!throttle, LCP_ms: Math.round(lcp.lcp), LCP_element: lcp.lcpEl.trim(), CLS: +v.cls.toFixed(4), worstInteraction_ms: worst ? Math.round(worst.d) : '<16', worstInteraction: worst ? `${worst.name} on ${worst.target} (input delay ${worst.input}ms, processing ${worst.proc}ms)` : '-', shifts: process.env.VERBOSE ? v.shifts : undefined, loadedIn_ms: Date.now() - t0 }, null, 1))
+console.log(JSON.stringify({ profile, throttle: !!throttle, LCP_ms: Math.round(lcp.lcp), LCP_element: lcp.lcpEl.trim(), CLS: +v.cls.toFixed(4), worstInteraction_ms: worst ? Math.round(worst.d) : '<16', worstInteraction: worst ? `${worst.name} on ${worst.target} at ${worst.at}ms (input delay ${worst.input}ms, processing ${worst.proc}ms)` : '-', shifts: process.env.VERBOSE ? v.shifts : undefined, loadedIn_ms: Date.now() - t0 }, null, 1))
 await browser.close()

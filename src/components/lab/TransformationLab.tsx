@@ -57,7 +57,17 @@ export function TransformationLab() {
   const [loaded, setLoaded] = useState(0)
   const [section, setSection] = useState<string>('arrival')
   const [preview, setPreview] = useState(false)
-  const [near, nearInView] = useInView<HTMLDivElement>({ rootMargin: '900px 0px', threshold: 0 })
+  const [near, nearStage] = useInView<HTMLDivElement>({ rootMargin: '300px 0px', threshold: 0 })
+  // The two live sites hydrate on this page's main thread; start them in an idle moment
+  // once the stage is close, so scrolling past the Lab stays responsive.
+  const [nearInView, setMount] = useState(false)
+  useEffect(() => {
+    if (!nearStage) return
+    const ric = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 120))
+    const cancel = window.cancelIdleCallback ?? window.clearTimeout
+    const id = ric(() => setMount(true), { timeout: 800 })
+    return () => cancel(id)
+  }, [nearStage])
   const viewport = useRef<HTMLDivElement>(null)
   const frames = useRef<(HTMLIFrameElement | null)[]>([])
   const dragging = useRef(false)

@@ -77,6 +77,8 @@ test.describe('Production server', () => {
     expect(concept.headers()['x-robots-tag']).toContain('noindex')
     const img = await request.get('/media/threshold/arrival-640.avif')
     expect(img.headers()['cache-control']).toContain('max-age=604800')
+    const fictional = await request.get('/media/atelier/halden-640.webp')
+    expect(fictional.headers()['x-robots-tag']).toBe('noindex')
   })
 
   test('inquiry and error endpoints stay off until enabled', async ({ request }) => {

@@ -37,12 +37,9 @@ export function Threshold() {
   const [ready, setReady] = useState(false)
   const [active, setActive] = useState(true)
   const [chapter, setChapter] = useState(0)
-  const [introPlayed, setIntroPlayed] = useState(false)
 
   useEffect(() => {
     setTier(detectTier())
-    const id = requestAnimationFrame(() => setIntroPlayed(true))
-    return () => cancelAnimationFrame(id)
   }, [])
 
   // Progress: ScrollTrigger measures, a single ticker damps and paints overlays.
@@ -204,19 +201,20 @@ export function Threshold() {
         {/* A — Arrival */}
         <div data-overlay="arrival" className="absolute inset-x-0 bottom-0 px-5 pb-[max(6svh,2.5rem)] sm:px-8 lg:px-12">
           <div className="mx-auto max-w-[1440px]">
-            <p className={`eyebrow flex items-center gap-4 text-champagne/80 transition-opacity delay-300 duration-[1600ms] ${introPlayed ? 'opacity-100' : 'opacity-0'}`}>
+            {/* Arrival intro is pure CSS (keyframes from first paint), so it never waits for hydration. */}
+            <p className="intro-fade eyebrow flex items-center gap-4 text-champagne/80" style={{ ['--d' as string]: '300ms', ['--dur' as string]: '1600ms' }}>
               <span className="h-px w-10 bg-gold" />
               Bridge Web — Black Label
             </p>
             <SplitText
               as="h1"
-              play={introPlayed}
+              intro
               delay={350}
               lines={[SITE.statement[0], SITE.statement[1]]}
               className="display mt-6 text-[clamp(3rem,10.5vw,9.5rem)] text-ivory"
               lineClassName="[&:nth-child(2)]:italic [&:nth-child(2)]:text-champagne"
             />
-            <div className={`mt-8 grid gap-8 transition-[opacity,transform] delay-[1100ms] duration-[1400ms] ease-[var(--ease-cinema)] md:grid-cols-12 ${introPlayed ? 'opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <div className="intro-rise mt-8 grid gap-8 md:grid-cols-12" style={{ ['--d' as string]: '1100ms', ['--dur' as string]: '1400ms' }}>
               <p className="max-w-md text-base leading-relaxed text-ivory/75 md:col-span-5 md:text-[1.05rem]">{SITE.positioning}</p>
               <div className="flex flex-wrap items-center gap-4 md:col-span-7 md:justify-end">
                 <ButtonLink href="#consult" magnetic onClick={() => track('cta_click', { location: 'hero' })}>
