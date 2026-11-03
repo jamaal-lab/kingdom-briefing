@@ -71,6 +71,9 @@
   --color-ink: #0c1626;
   --color-line: rgb(231 210 160 / 0.16);
   --color-mist: #a9b1c0;
+  /* Studio edition (v2): text-safe gold for light grounds, and a warm ivory surface. */
+  --color-gold-deep: #7a5c0e;
+  --color-ivory-deep: #ebe4d4;
 
   --font-display: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
   --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -318,5 +321,52 @@
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+  }
+}
+
+/* ───────────────────────── Studio edition (v2) ─────────────────────────
+   Bold grotesk statements with a serif-italic gold accent word, inspired by
+   a confident, boutique-studio voice. Scoped so the flagship is unaffected. */
+.v2-head {
+  font-family: var(--font-sans);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.v2-accent {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-right: 0.04em;
+  background: linear-gradient(100deg, #b98f1e 0%, #e7d2a0 45%, #c9a227 75%, #f0dfae 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.v2-light .v2-accent {
+  background: linear-gradient(100deg, #7a5c0e 0%, #9c7a1c 55%, #6e520b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@keyframes v2-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.v2-marquee-track {
+  animation: v2-marquee 38s linear infinite;
+}
+.v2-marquee:hover .v2-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes v2-sweep {
+  0% { transform: translateX(-60%) skewX(-18deg); opacity: 0; }
+  30% { opacity: 0.9; }
+  100% { transform: translateX(260%) skewX(-18deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-marquee-track {
+    animation: none !important;
   }
 }

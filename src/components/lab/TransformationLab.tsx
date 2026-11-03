@@ -50,7 +50,8 @@ function DeviceFrame({ src, device, scale, title, frameRef, onLoad }: { src: str
   )
 }
 
-export function TransformationLab() {
+/** `index` lets another page edition label the section; the flagship uses the default. */
+export function TransformationLab({ index = '02' }: { index?: string } = {}) {
   const [device, setDevice] = useState<Device>('desktop')
   const [pos, setPos] = useState(50)
   const [scale, setScale] = useState(0.5)
@@ -120,7 +121,7 @@ export function TransformationLab() {
   return (
     <section id="lab" aria-labelledby="lab-title" className="relative bg-midnight px-5 py-28 sm:px-8 md:py-40 lg:px-12">
       <div className="mx-auto max-w-[1440px]">
-        <SectionHeader id="lab-title" index="02" eyebrow="Transformation Lab" title={['Same business.', 'Different experience.']}>
+        <SectionHeader id="lab-title" index={index} eyebrow="Transformation Lab" title={['Same business.', 'Different experience.']}>
           <p>
             <strong className="font-semibold text-ivory">Atelier North</strong> is a fictional architecture practice we created to show what changes when a website is
             designed as an experience. Same photographs, same services. Drag the divider to compare.

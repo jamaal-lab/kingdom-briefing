@@ -18,7 +18,12 @@ import { FIELD_LABEL, questionsFor, runJourney, type Journey } from './engine'
 const STAGE_MS = 1050
 type Mode = 'intelligent' | 'passive'
 
-export function IntelligenceExperience() {
+/**
+ * `index` labels the section for another page edition. A `bridge:business`
+ * window event (detail = business id) preselects a business, so other
+ * sections can deep-link into the demo. Defaults leave the flagship unchanged.
+ */
+export function IntelligenceExperience({ index = '03' }: { index?: string } = {}) {
   const reduce = useReducedMotion()
   const [bizId, setBizId] = useState(BUSINESSES[0].id)
   const biz = BUSINESSES.find((b) => b.id === bizId)!
@@ -48,6 +53,19 @@ export function IntelligenceExperience() {
     setCustomAnswers({})
   }
   useEffect(() => clear, [])
+
+  useEffect(() => {
+    const onBusiness = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail
+      const b = BUSINESSES.find((x) => x.id === id)
+      if (!b) return
+      setBizId(b.id)
+      setPresetId(b.presets[0].id)
+      reset()
+    }
+    window.addEventListener('bridge:business', onBusiness)
+    return () => window.removeEventListener('bridge:business', onBusiness)
+  }, [])
 
   // Auto-advance through the stages; pause at "context" if the visitor must answer.
   useEffect(() => {
@@ -91,7 +109,7 @@ export function IntelligenceExperience() {
     <section id="intelligence" aria-labelledby="intel-title" className="relative overflow-hidden bg-ink px-5 py-28 sm:px-8 md:py-40 lg:px-12">
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-20 h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(31,56,100,0.55),transparent_65%)]" />
       <div className="relative mx-auto max-w-[1440px]">
-        <SectionHeader id="intel-title" index="03" eyebrow="The Intelligence Experience" title={['A website that', 'understands the request.']}>
+        <SectionHeader id="intel-title" index={index} eyebrow="The Intelligence Experience" title={['A website that', 'understands the request.']}>
           <p>
             A passive website collects a message and waits. An intelligent one gathers context, understands intent and prepares the next step — before anyone on your
             team opens their inbox. Try it.

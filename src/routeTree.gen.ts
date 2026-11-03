@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as V2RouteImport } from './routes/v2'
 import { Route as ApiClientErrorsRouteImport } from './routes/api/client-errors'
 import { Route as ApiInquiryRouteImport } from './routes/api/inquiry'
 import { Route as ConceptsAtelierNorthIndexRouteImport } from './routes/concepts/atelier-north/index'
@@ -36,6 +37,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V2Route = V2RouteImport.update({
+  id: '/v2',
+  path: '/v2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiClientErrorsRoute = ApiClientErrorsRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/v2': typeof V2Route
   '/api/client-errors': typeof ApiClientErrorsRoute
   '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/v2': typeof V2Route
   '/api/client-errors': typeof ApiClientErrorsRoute
   '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/v2': typeof V2Route
   '/api/client-errors': typeof ApiClientErrorsRoute
   '/api/inquiry': typeof ApiInquiryRoute
   '/concepts/atelier-north/before': typeof ConceptsAtelierNorthBeforeRoute
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/v2'
     | '/api/client-errors'
     | '/api/inquiry'
     | '/concepts/atelier-north/before'
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/v2'
     | '/api/client-errors'
     | '/api/inquiry'
     | '/concepts/atelier-north/before'
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/v2'
     | '/api/client-errors'
     | '/api/inquiry'
     | '/concepts/atelier-north/before'
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
+  V2Route: typeof V2Route
   ApiClientErrorsRoute: typeof ApiClientErrorsRoute
   ApiInquiryRoute: typeof ApiInquiryRoute
   ConceptsAtelierNorthBeforeRoute: typeof ConceptsAtelierNorthBeforeRoute
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       path: '/studio'
       fullPath: '/studio'
       preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v2': {
+      id: '/v2'
+      path: '/v2'
+      fullPath: '/v2'
+      preLoaderRoute: typeof V2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/client-errors': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
+  V2Route: V2Route,
   ApiClientErrorsRoute: ApiClientErrorsRoute,
   ApiInquiryRoute: ApiInquiryRoute,
   ConceptsAtelierNorthBeforeRoute: ConceptsAtelierNorthBeforeRoute,
@@ -212,10 +233,11 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }

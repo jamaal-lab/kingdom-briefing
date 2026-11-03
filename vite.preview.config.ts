@@ -1,6 +1,6 @@
 /**
  * Static preview build: the same components as the TanStack Start app,
- * rendered client-side into three plain HTML pages with relative asset
+ * rendered client-side into plain HTML pages (flagship, Studio Edition, concepts) with relative asset
  * paths, so the site can be hosted from any folder (e.g. a shared preview).
  *   npx vite build --config vite.preview.config.ts   →   preview-dist/
  */
@@ -23,6 +23,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'preview/index.html'),
+        v2: resolve(__dirname, 'preview/v2.html'),
         'atelier-north': resolve(__dirname, 'preview/atelier-north.html'),
         'atelier-north-before': resolve(__dirname, 'preview/atelier-north-before.html'),
       },

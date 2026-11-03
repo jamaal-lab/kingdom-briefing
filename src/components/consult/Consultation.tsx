@@ -29,7 +29,11 @@ function Chips<T extends string>({ legend, options, value, onChange }: { legend:
  * Consultation. The composer only shapes a draft email; it opens the
  * visitor's own mail client via mailto: — nothing is stored or submitted.
  */
-export function Consultation() {
+/**
+ * `index` labels the section for another page edition. A `bridge:consult`
+ * window event ({ project?, note? }) prefills the composer.
+ */
+export function Consultation({ index = '06' }: { index?: string } = {}) {
   const [project, setProject] = useState<(typeof PROJECT)[number] | null>(null)
   const [tier, setTier] = useState<(typeof TIER)[number] | null>(null)
   const [timing, setTiming] = useState<(typeof TIMING)[number] | null>(null)
@@ -41,8 +45,17 @@ export function Consultation() {
       const name = (e as CustomEvent<string>).detail
       if ((TIER as readonly string[]).includes(name)) setTier(name as (typeof TIER)[number])
     }
+    const onConsult = (e: Event) => {
+      const d = (e as CustomEvent<{ project?: string; note?: string }>).detail ?? {}
+      if (d.project && (PROJECT as readonly string[]).includes(d.project)) setProject(d.project as (typeof PROJECT)[number])
+      if (d.note) setNote((n) => (n.trim() ? n : d.note!))
+    }
     window.addEventListener('bridge:tier', onTier)
-    return () => window.removeEventListener('bridge:tier', onTier)
+    window.addEventListener('bridge:consult', onConsult)
+    return () => {
+      window.removeEventListener('bridge:tier', onTier)
+      window.removeEventListener('bridge:consult', onConsult)
+    }
   }, [])
 
   const { subject, body } = useMemo(() => {
@@ -84,7 +97,7 @@ export function Consultation() {
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal className="flex items-center gap-4 text-champagne/70" variant="fade">
-              <span className="font-mono text-[0.7rem] text-gold">06</span>
+              <span className="font-mono text-[0.7rem] text-gold">{index}</span>
               <span className="h-px w-12 bg-champagne/30" />
               <span className="eyebrow">Consultation</span>
             </Reveal>
