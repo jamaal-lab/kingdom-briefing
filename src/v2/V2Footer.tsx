@@ -6,7 +6,8 @@ const LINKS = [
   ['#solutions', 'Digital Solutions'],
   ['#lab', 'Transformation Lab'],
   ['#intelligence', 'Intelligence demo'],
-  ['#investment', 'Investment'],
+  ['#investment', 'Investment & process'],
+  ['#studio', 'Behind the studio'],
   ['#faq', 'FAQ'],
 ]
 

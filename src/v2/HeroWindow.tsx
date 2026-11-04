@@ -13,7 +13,7 @@ const ThresholdCanvas = lazy(() => import('~/components/threshold/ThresholdCanva
  * (a 26 s loop). Same tiers and fallbacks as the flagship: stills for
  * reduced motion, no WebGL, or when the 3D chunk fails.
  */
-export function HeroWindow() {
+export function HeroWindow({ fullBleed = false }: { fullBleed?: boolean }) {
   const progress = useRef<ProgressStore>({ target: 0, current: 0 }).current
   const pointer = useRef({ x: 0, y: 0 }).current
   const box = useRef<HTMLDivElement>(null)
@@ -57,8 +57,11 @@ export function HeroWindow() {
 
   const live = tier === 'full' || tier === 'lite'
   return (
-    <div ref={box} className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-champagne/20 bg-midnight shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)]">
-      <Picture asset={MEDIA.thresholdArrival} priority sizes="(min-width: 1024px) 58vw, 100vw" className="absolute inset-0 block h-full w-full" imgClassName="h-full w-full object-cover motion-safe:animate-[drift_26s_ease-in-out_infinite_alternate]" />
+    <div
+      ref={box}
+      className={fullBleed ? 'absolute inset-0 overflow-hidden bg-midnight' : 'relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-champagne/20 bg-midnight shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)]'}
+    >
+      <Picture asset={MEDIA.thresholdArrival} portrait={fullBleed ? MEDIA.thresholdArrivalPortrait : undefined} priority sizes={fullBleed ? '100vw' : '(min-width: 1024px) 58vw, 100vw'} className="absolute inset-0 block h-full w-full" imgClassName="h-full w-full object-cover motion-safe:animate-[drift_26s_ease-in-out_infinite_alternate]" />
       {live && (
         <div className={`absolute inset-0 transition-opacity duration-[1400ms] ${ready ? 'opacity-100' : 'opacity-0'}`}>
           <ErrorBoundary area="v2-hero-canvas" fallback={null} onError={() => (setReady(false), setTier('poster'))}>
@@ -68,10 +71,15 @@ export function HeroWindow() {
           </ErrorBoundary>
         </div>
       )}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/70 via-transparent to-midnight/20" />
-      <p className="pointer-events-none absolute bottom-4 left-5 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-champagne/80">
-        {live ? 'Live · The Threshold, rendered in your browser' : 'The Threshold'}
-      </p>
+      {!fullBleed && (
+        <>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/70 via-transparent to-midnight/20" />
+          <p className="pointer-events-none absolute bottom-4 left-5 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-champagne/80">
+            {live ? 'Live · The Threshold, rendered in your browser' : 'The Threshold'}
+          </p>
+        </>
+      )}
+      {fullBleed && live && <span className="sr-only">Live 3D scene rendered in your browser</span>}
     </div>
   )
 }

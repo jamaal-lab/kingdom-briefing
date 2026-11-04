@@ -11,10 +11,11 @@ type Props = {
   className?: string
   imgClassName?: string
   style?: CSSProperties
+  imgStyle?: CSSProperties
 } & Pick<ImgHTMLAttributes<HTMLImageElement>, 'onLoad'>
 
 /** AVIF → WebP responsive picture with explicit dimensions (no layout shift). */
-export function Picture({ asset, portrait, sizes = '100vw', alt, priority, className, imgClassName, style, onLoad }: Props) {
+export function Picture({ asset, portrait, sizes = '100vw', alt, priority, className, imgClassName, style, imgStyle, onLoad }: Props) {
   return (
     <picture className={className} style={style}>
       {portrait && <source type="image/avif" media="(max-aspect-ratio: 1/1)" srcSet={srcSet(portrait, 'avif')} sizes={sizes} />}
@@ -30,6 +31,7 @@ export function Picture({ asset, portrait, sizes = '100vw', alt, priority, class
         decoding={priority ? 'sync' : 'async'}
         fetchPriority={priority ? 'high' : 'auto'}
         className={imgClassName}
+        style={imgStyle}
         onLoad={onLoad}
       />
     </picture>

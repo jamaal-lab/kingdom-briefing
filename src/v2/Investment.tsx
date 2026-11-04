@@ -2,6 +2,13 @@ import { Reveal } from '~/motion'
 import { openConsult } from './events'
 import { track } from '~/lib/analytics'
 
+const STEPS = [
+  ['Start a conversation', 'Your business, your customers, and what the site must change.'],
+  ['Agree the direction', 'A written scope, an art direction and the investment.'],
+  ['Review as it’s built', 'The real site on a private staging link, in stages.'],
+  ['Launch and evolve', 'Verified on real devices, and supported as you grow.'],
+] as const
+
 const TIERS = [
   {
     name: 'Essential',
@@ -90,6 +97,21 @@ export function Investment() {
             </Reveal>
           ))}
         </ul>
+        {/* How an engagement runs — the process, once, where it matters: next to the investment. */}
+        <div id="process" className="mt-16 rounded-[18px] border border-ink/10 bg-ivory-deep p-6 md:p-8">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-ink">How every engagement runs</p>
+          <ol className="mt-6 grid gap-6 md:grid-cols-4 md:gap-4">
+            {STEPS.map(([t, b], i) => (
+              <li key={t} className="flex gap-4 md:flex-col md:gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-midnight text-[0.9rem] font-semibold text-champagne">{i + 1}</span>
+                <span>
+                  <span className="block text-[1rem] font-semibold">{t}</span>
+                  <span className="mt-1 block text-[0.88rem] leading-relaxed text-ink/70">{b}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
         <div className="mt-8 grid gap-3 text-[0.85rem] leading-relaxed text-ink/70 md:grid-cols-2">
           <p>Original film production, custom 3D assets and complex integrations require separate scoping and may increase pricing.</p>
           <p>Hosting and ongoing care are discussed and quoted with each project, so you only pay for what your site actually needs.</p>

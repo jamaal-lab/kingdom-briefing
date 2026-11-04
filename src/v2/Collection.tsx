@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { Picture } from '~/components/site/Picture'
 import { PreviewDialog } from '~/components/lab/PreviewDialog'
 import { MEDIA } from '~/lib/media'
 import { CONCEPT_URLS } from '~/lib/site'
 import { track } from '~/lib/analytics'
-import { Reveal } from '~/motion'
+import { Reveal, ImmersiveImage } from '~/motion'
 import { openConsult, openIntelligence } from './events'
 
 /**
@@ -62,16 +61,6 @@ const DIRECTIONS: Direction[] = [
 ]
 
 function Cover({ d }: { d: Direction }) {
-  if (d.cover === 'image')
-    return (
-      <div className="relative h-full w-full">
-        <Picture asset={MEDIA.halden} sizes="(min-width: 1024px) 30vw, 90vw" className="block h-full w-full" imgClassName="h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-cinema)] group-hover:scale-[1.05]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <p className="absolute bottom-4 left-4 right-4 font-atelier text-[1.5rem] leading-tight text-[#F6F1E8]">
-          Shaped by light, <em>land, and the way you live.</em>
-        </p>
-      </div>
-    )
   const t = d.type!
   return (
     <div className="relative flex h-full w-full flex-col justify-between p-5 transition-transform duration-[1400ms] ease-[var(--ease-cinema)] group-hover:scale-[1.03]" style={{ background: t.bg, color: t.fg }}>
@@ -95,9 +84,11 @@ function Cover({ d }: { d: Direction }) {
 
 export function Collection() {
   const [preview, setPreview] = useState(false)
+  const featured = DIRECTIONS[0]
+  const rest = DIRECTIONS.slice(1)
   return (
-    <section id="collection" aria-labelledby="collection-title" className="v2-light bg-ivory px-5 py-24 text-ink sm:px-8 md:py-32 lg:px-12">
-      <div className="mx-auto max-w-[1440px]">
+    <section id="collection" aria-labelledby="collection-title" className="v2-light bg-ivory text-ink">
+      <div className="mx-auto max-w-[1440px] px-5 pt-24 sm:px-8 md:pt-32 lg:px-12">
         <div className="flex flex-col justify-between gap-6 border-b border-ink/15 pb-6 md:flex-row md:items-end">
           <p className="flex items-center gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-ink">
             <span className="h-px w-10 bg-gold-deep" /> The Concept Collection
@@ -118,9 +109,48 @@ export function Collection() {
             never a template dropped in.
           </Reveal>
         </div>
+      </div>
 
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {DIRECTIONS.map((d, i) => (
+      {/* Featured concept: full-bleed, entered like a scene. */}
+      <article aria-labelledby="featured-title" className="mt-14">
+        <ImmersiveImage asset={MEDIA.halden} alt={MEDIA.halden.alt} objectPosition="58% 50%" className="h-[88svh] min-h-[560px] bg-[#1B1A17]">
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,13,11,0.85)_0%,rgba(15,13,11,0.35)_45%,transparent_75%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+          <div className="relative mx-auto flex h-full max-w-[1440px] flex-col justify-end px-5 pb-14 text-[#F6F1E8] sm:px-8 md:pb-20 lg:px-12">
+            <div className="flex flex-wrap items-center gap-3 text-[0.66rem] font-semibold uppercase tracking-[0.22em]">
+              <span>{featured.industry}</span>
+              <span aria-hidden="true" className="h-3 w-px bg-white/40" />
+              <span className="rounded-full border border-white/40 px-2.5 py-0.5">Fictional concept · live site</span>
+            </div>
+            <h3 id="featured-title" className="mt-6 font-atelier text-[clamp(3rem,7.2vw,6.6rem)] font-light leading-[0.95]">Atelier North</h3>
+            <p className="mt-3 max-w-2xl font-atelier text-[clamp(1.4rem,2.6vw,2.2rem)] italic leading-tight text-white/90">Shaped by light, land, and the way you live.</p>
+            <p className="mt-5 max-w-lg text-[1rem] leading-relaxed text-white/80">{featured.line} Open it and use it — it is a working website, not a mock-up.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  track('v2_collection_view', { concept: featured.id })
+                  setPreview(true)
+                }}
+                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#F6F1E8] px-7 text-[0.85rem] font-semibold text-[#1B1A17] transition-transform hover:-translate-y-0.5"
+              >
+                Step inside the concept <span aria-hidden="true">→</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => openConsult({ project: 'A new website', note: `I like the ${featured.industry} direction (${featured.name}).` })}
+                className="inline-flex min-h-12 items-center rounded-full border border-white/50 px-7 text-[0.85rem] font-semibold transition-colors hover:bg-white/10"
+              >
+                Make it yours
+              </button>
+            </div>
+          </div>
+        </ImmersiveImage>
+      </article>
+
+      <div className="mx-auto max-w-[1440px] px-5 pb-24 pt-10 sm:px-8 md:pb-32 lg:px-12">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {rest.map((d, i) => (
             <Reveal as="li" key={d.id} delay={i * 80} className="group flex flex-col rounded-[16px] border border-ink/10 bg-white p-3 shadow-[0_20px_50px_-35px_rgba(8,17,31,0.45)] transition-shadow hover:shadow-[0_30px_70px_-35px_rgba(8,17,31,0.6)]">
               <div className="flex items-center justify-between px-1 pb-3 pt-1">
                 <h3 className="text-[1.02rem] font-semibold tracking-tight">{d.industry}</h3>
@@ -132,22 +162,16 @@ export function Collection() {
               <div className="flex flex-1 flex-col px-1 pt-4">
                 <p className="text-[0.9rem] font-semibold">{d.name}</p>
                 <p className="mt-1.5 flex-1 text-[0.85rem] leading-relaxed text-ink/70">{d.line}</p>
-                <div className="mt-3 flex gap-1.5" aria-hidden="true">
-                  {d.palette.map((c) => (
-                    <span key={c} className="h-3.5 w-3.5 rounded-full border border-ink/10" style={{ background: c }} />
-                  ))}
-                </div>
                 <div className="mt-5 grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => {
                       track('v2_collection_view', { concept: d.id })
-                      if (d.live === 'site') setPreview(true)
-                      else openIntelligence(d.businessId!)
+                      openIntelligence(d.businessId!)
                     }}
                     className="min-h-11 rounded-full border border-ink/25 px-3 text-[0.75rem] font-semibold transition-colors hover:border-ink"
                   >
-                    {d.live === 'site' ? 'View concept' : 'See it think'}
+                    See it think
                   </button>
                   <button
                     type="button"
@@ -163,19 +187,19 @@ export function Collection() {
               </div>
             </Reveal>
           ))}
-          <Reveal as="li" delay={DIRECTIONS.length * 80} className="relative flex flex-col justify-between overflow-hidden rounded-[16px] bg-midnight p-8 text-ivory sm:col-span-2 lg:col-span-2 lg:flex-row lg:items-end lg:gap-10">
+          <Reveal as="li" delay={rest.length * 80} className="relative flex flex-col justify-between overflow-hidden rounded-[16px] bg-midnight p-7 text-ivory">
             <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(201,162,39,0.35),transparent_70%)]" />
-            <div className="relative max-w-lg">
-              <h3 className="v2-head text-[clamp(2rem,3.4vw,3rem)]">
+            <div className="relative">
+              <h3 className="v2-head text-[2rem]">
                 Don’t see <span className="v2-accent">your world?</span>
               </h3>
               <p className="mt-4 text-[0.92rem] font-semibold">Need something entirely your own?</p>
-              <p className="mt-2 text-[0.88rem] leading-relaxed text-ivory/75">We design custom experiences around your brand, audience and goals — including immersive 3D and intelligent journeys.</p>
+              <p className="mt-2 text-[0.88rem] leading-relaxed text-ivory/75">Custom experiences around your brand, audience and goals — including immersive 3D and intelligent journeys.</p>
             </div>
             <button
               type="button"
               onClick={() => openConsult({ project: 'An immersive / 3D experience' })}
-              className="relative mt-8 inline-flex min-h-12 w-max shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-gold to-champagne px-6 text-[0.82rem] font-semibold text-midnight lg:mt-0"
+              className="relative mt-8 inline-flex min-h-12 w-max items-center gap-2 rounded-full bg-gradient-to-r from-gold to-champagne px-6 text-[0.82rem] font-semibold text-midnight"
             >
               Start a custom project <span aria-hidden="true">→</span>
             </button>

@@ -5,8 +5,9 @@ import { track } from '~/lib/analytics'
 const LINKS = [
   { href: '#collection', label: 'The Collection' },
   { href: '#solutions', label: 'Solutions' },
-  { href: '#process', label: 'Process' },
+  { href: '#lab', label: 'The Lab' },
   { href: '#investment', label: 'Investment' },
+  { href: '#studio', label: 'Studio' },
   { href: '#faq', label: 'FAQ' },
 ]
 

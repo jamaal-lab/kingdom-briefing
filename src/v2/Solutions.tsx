@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Reveal } from '~/motion'
+import { Reveal, ImmersiveImage } from '~/motion'
+import { MEDIA } from '~/lib/media'
 
 const STAGES = [
   {
@@ -65,8 +66,13 @@ export function Solutions() {
 
   return (
     <section id="solutions" aria-labelledby="solutions-title" className="relative overflow-hidden bg-midnight px-5 py-24 sm:px-8 md:py-32 lg:px-12">
+      {/* The journey network from the Threshold, drifting behind the stages. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-45">
+        <ImmersiveImage asset={MEDIA.thresholdIntelligence} portrait={MEDIA.thresholdIntelligencePortrait} zoom={1.25} drift={14} className="h-full w-full" />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-b from-midnight via-midnight/70 to-midnight" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      <div className="mx-auto max-w-[1440px]">
+      <div className="relative mx-auto max-w-[1440px]">
         <p className="flex items-center gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-champagne/80">
           <span className="h-px w-10 bg-gold" /> Digital solutions
         </p>
@@ -101,7 +107,7 @@ export function Solutions() {
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 tabIndex={0}
-                className={`h-full rounded-[16px] border p-6 transition-colors duration-500 ${active === i ? 'border-gold/60 bg-gradient-to-b from-navy/40 to-transparent' : 'border-line bg-white/[0.02]'}`}
+                className={`h-full rounded-[16px] border p-6 transition-colors duration-500 ${active === i ? 'border-gold/60 bg-midnight/80 backdrop-blur-sm' : 'border-line bg-midnight/60 backdrop-blur-sm'}`}
               >
                 <div className="flex items-start justify-between">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-champagne/30 text-champagne">

@@ -7,6 +7,8 @@ test.describe('Studio Edition (/v2)', () => {
     await page.goto('/v2?tier=poster')
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Beyond the website.')
     for (const id of ['collection', 'solutions', 'process', 'lab', 'intelligence', 'investment', 'studio', 'faq', 'consult']) await expect(page.locator(`#${id}`)).toHaveCount(1)
+    // One ending: the consultation, not a second call-to-action band before it.
+    await expect(page.getByText('Let’s create something')).toHaveCount(0)
     await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute('content', /noindex/)
     for (let i = 0; i < 30; i++) {
       await page.mouse.wheel(0, 800)
@@ -19,8 +21,9 @@ test.describe('Studio Edition (/v2)', () => {
   test('every collection concept is labelled fictional', async ({ page }) => {
     await page.goto('/v2?tier=poster')
     const cards = page.locator('#collection li').filter({ has: page.getByRole('button', { name: 'Make it yours' }) })
-    await expect(cards).toHaveCount(4)
+    await expect(cards).toHaveCount(3)
     for (const card of await cards.all()) await expect(card.getByText('Fictional', { exact: true })).toBeVisible()
+    await expect(page.locator('#collection article').getByText('Fictional concept · live site')).toBeVisible()
   })
 
   test('"Make it yours" prefills the consultation; "See it think" opens that business in the demo', async ({ page }) => {
@@ -37,7 +40,7 @@ test.describe('Studio Edition (/v2)', () => {
 
   test('Atelier North concept opens in the full preview', async ({ page }) => {
     await page.goto('/v2?tier=poster')
-    await page.locator('#collection li', { hasText: 'Atelier North' }).getByRole('button', { name: 'View concept' }).click()
+    await page.locator('#collection article').getByRole('button', { name: 'Step inside the concept' }).click()
     const dialog = page.getByRole('dialog', { name: /full preview/ })
     await expect(dialog).toBeVisible()
     await page.keyboard.press('Escape')
@@ -64,10 +67,15 @@ test.describe('Studio Edition (/v2)', () => {
     expect(await axe(page)).toEqual([])
   })
 
-  test('the hero window boots the live 3D scene', async ({ page }) => {
+  test('the full-bleed hero boots the live 3D scene', async ({ page }) => {
     test.slow()
     await page.goto('/v2?tier=lite')
-    await expect(page.locator('main canvas')).toHaveCount(1, { timeout: 30_000 })
-    await expect(page.getByText('Live · The Threshold, rendered in your browser')).toBeVisible()
+    await expect(page.locator('main section').first().locator('canvas')).toHaveCount(1, { timeout: 30_000 })
+  })
+
+  test('founder section falls back to the studio voice until details are supplied', async ({ page }) => {
+    await page.goto('/v2?tier=poster')
+    await expect(page.locator('#studio h2')).toContainText('care how it feels')
+    await expect(page.locator('#studio')).toContainText('Scope you can trust')
   })
 })
