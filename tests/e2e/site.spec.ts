@@ -28,15 +28,15 @@ test.describe('Navigation, offerings and consultation', () => {
     await consult.getByText('An immersive / 3D experience').click()
     await consult.getByText('Within 1–3 months').click()
     const href = await consult.getByRole('link', { name: 'Open in your email app' }).getAttribute('href')
-    expect(href).toMatch(/^mailto:CEO@Bridge2BetterSolutions\.com\?subject=/)
+    expect(href).toMatch(/^mailto:jamaal@bridge2bettersolutions\.com\?subject=/)
     const decoded = decodeURIComponent(href!)
     expect(decoded).toContain('Consultation request — An immersive / 3D experience (Signature)')
     expect(decoded).toContain('Timing: Within 1–3 months')
     expect(decoded).not.toContain('+')
-    await expect(consult.getByRole('link', { name: 'CEO@Bridge2BetterSolutions.com' })).toBeVisible()
+    await expect(consult.getByRole('link', { name: 'jamaal@bridge2bettersolutions.com' })).toBeVisible()
     await consult.getByRole('button', { name: 'Copy email address' }).click()
     await expect(consult.getByRole('button', { name: 'Address copied' })).toBeVisible()
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('CEO@Bridge2BetterSolutions.com')
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('jamaal@bridge2bettersolutions.com')
   })
 
   test('no horizontal overflow on any page @responsive', async ({ page }) => {

@@ -5,7 +5,7 @@ export const SITE = {
   promise: 'Intelligent by Design. Extraordinary by Experience.',
   positioning:
     'We create cinematic digital experiences and intelligent customer journeys that help ambitious businesses stand apart.',
-  email: 'CEO@Bridge2BetterSolutions.com',
+  email: 'jamaal@bridge2bettersolutions.com',
 } as const
 
 export function mailto(subject: string, body = '') {

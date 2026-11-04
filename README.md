@@ -11,7 +11,7 @@ Flagship site for Bridge Web, a service of Bridge to Better Solutions, LLC.
 | **Transformation Lab** | Before/after slider over two *live* sites for the fictional practice Atelier North, at true desktop (1440) and phone (390) viewports, plus a full-screen interactive preview. | `src/components/lab/`, `src/concepts/atelier-north/` |
 | **Intelligence Experience** | In-browser demo of an intelligent inquiry journey: request → context → classification → next step → drafted follow-up → operator brief, compared with a passive form. | `src/components/intelligence/` |
 | **The Standard / Offerings** | What the page demonstrates; Essential, Signature and Immersive Intelligence tiers. | `src/components/offerings/` |
-| **Consultation** | Composer that builds a draft email and opens the visitor's mail client (`mailto:` to CEO@Bridge2BetterSolutions.com). Nothing is stored or submitted. | `src/components/consult/` |
+| **Consultation** | Composer that builds a draft email and opens the visitor's mail client (`mailto:` to jamaal@bridge2bettersolutions.com). Nothing is stored or submitted. | `src/components/consult/` |
 
 ## Stack
 

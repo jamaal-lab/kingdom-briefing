@@ -6,7 +6,7 @@
 
 ```
 Consultation composer (browser)
-  ├─ "Open in your email app"  → mailto:CEO@Bridge2BetterSolutions.com   (always on)
+  ├─ "Open in your email app"  → mailto:jamaal@bridge2bettersolutions.com   (always on)
   └─ InquiryForm (only if built with VITE_INQUIRY_FORM=1)
         POST /api/inquiry  JSON
           1. INQUIRY_ENABLED=1?                     else 404
@@ -34,7 +34,7 @@ On any failure the form tells the visitor to use email, so no inquiry is silentl
 
 Add an adapter to `ADAPTERS` in `src/server/inquiry.ts` and select it with `INQUIRY_DELIVERY`. Recommended options, simplest first:
 
-1. **Transactional email** (Postmark, Resend, Amazon SES): send the inquiry to CEO@Bridge2BetterSolutions.com with `reply-to` = the visitor. API key in the host's secret store (`INQUIRY_EMAIL_API_KEY`), read inside the adapter only. Add the API host to nothing on the client — it is server-to-server.
+1. **Transactional email** (Postmark, Resend, Amazon SES): send the inquiry to jamaal@bridge2bettersolutions.com with `reply-to` = the visitor. API key in the host's secret store (`INQUIRY_EMAIL_API_KEY`), read inside the adapter only. Add the API host to nothing on the client — it is server-to-server.
 2. **CRM** (HubSpot, Pipedrive, etc.): create a contact + deal via the vendor API. Requires a data-processing review and a privacy-policy update.
 
 Before enabling in production:
