@@ -384,9 +384,6 @@ export function Founder() {
       <div className={`${W} grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20`}>
         <Reveal className="relative mx-auto w-full max-w-[460px]">
           <Picture asset={PORTRAIT} sizes="(min-width: 1024px) 460px, 90vw" className="block overflow-hidden rounded-[26px]" imgClassName="aspect-[4/5] w-full object-cover" />
-          <div aria-hidden="true" className="absolute -bottom-6 -right-6 hidden rounded-full border-4 border-navy sm:block">
-            <BtbsLogo size={96} withName={false} />
-          </div>
         </Reveal>
         <Reveal>
           <Eyebrow index="—">Behind the work</Eyebrow>
