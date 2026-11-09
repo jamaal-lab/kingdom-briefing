@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MEDIA, fallbackSrc } from '~/lib/media'
-import { ConceptBadge } from './AfterSite'
+import { ConceptBadge, type ConceptBrand } from './AfterSite'
 
 /**
  * ATELIER NORTH — "before". A deliberately ordinary template site for the
@@ -9,12 +9,12 @@ import { ConceptBadge } from './AfterSite'
  * path forward. Section ids match the "after" site so the Lab can compare
  * them section by section.
  */
-export function BeforeSite() {
+export function BeforeSite({ brand = 'bridgeweb' }: { brand?: ConceptBrand } = {}) {
   const [note, setNote] = useState(false)
   const box = { fontFamily: 'Arial, Helvetica, sans-serif' }
   return (
     <div style={box} className="min-h-screen bg-white text-[15px] text-[#333]">
-      <ConceptBadge tone="plain" />
+      <ConceptBadge tone="plain" brand={brand} />
       <div className="bg-[#2b4c7e] px-4 py-1.5 text-right text-[12px] text-white">Call us today! (555) 010-0000 | info@example.com</div>
       <header className="border-b border-[#ddd] bg-white">
         <div className="mx-auto flex max-w-[1000px] flex-wrap items-center justify-between gap-3 px-4 py-4">

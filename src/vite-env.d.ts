@@ -9,3 +9,6 @@ interface ImportMetaEnv {
   readonly VITE_ANALYTICS_PROVIDER?: string
   readonly VITE_ERROR_REPORTING?: string
 }
+interface ImportMetaEnv {
+  readonly VITE_SITE_TARGET?: string
+}

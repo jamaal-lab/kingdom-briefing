@@ -20,7 +20,7 @@ const stagingGate = createMiddleware().server(async ({ next, request }) => {
   if (!timingSafeEqual(supplied, expected)) {
     throw new Response('Authentication required.', {
       status: 401,
-      headers: { 'www-authenticate': 'Basic realm="Bridge Web staging", charset="UTF-8"', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' },
+      headers: { 'www-authenticate': import.meta.env.VITE_SITE_TARGET === 'websites' ? 'Basic realm="Bridge to Better Solutions staging", charset="UTF-8"' : 'Basic realm="Bridge Web staging", charset="UTF-8"', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' },
     })
   }
   return next()

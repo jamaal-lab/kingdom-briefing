@@ -7,6 +7,7 @@
  *    line. Swap in Sentry or similar later by replacing `send` only.
  */
 import { track } from './analytics'
+import { asset } from './target'
 
 type Context = { area: string; detail?: string }
 
@@ -18,8 +19,8 @@ function send(payload: Record<string, unknown>) {
   sent++
   const body = JSON.stringify(payload)
   try {
-    if (!navigator.sendBeacon?.('/api/client-errors', new Blob([body], { type: 'application/json' }))) {
-      void fetch('/api/client-errors', { method: 'POST', body, headers: { 'content-type': 'application/json' }, keepalive: true }).catch(() => {})
+    if (!navigator.sendBeacon?.(asset('api/client-errors'), new Blob([body], { type: 'application/json' }))) {
+      void fetch(asset('api/client-errors'), { method: 'POST', body, headers: { 'content-type': 'application/json' }, keepalive: true }).catch(() => {})
     }
   } catch {
     /* reporting must never throw */

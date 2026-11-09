@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { track } from '~/lib/analytics'
+import { asset } from '~/lib/target'
 import { SITE } from '~/lib/site'
 
 type Status = { kind: 'idle' | 'sending' | 'sent' | 'error'; text?: string }
@@ -20,7 +21,7 @@ export function InquiryForm({ project, tier, timing, note }: { project: string |
     setStatus({ kind: 'sending' })
     setErrors({})
     try {
-      const res = await fetch('/api/inquiry', {
+      const res = await fetch(asset('api/inquiry'), {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({

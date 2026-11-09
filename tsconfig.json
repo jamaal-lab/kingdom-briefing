@@ -15,5 +15,6 @@
     "baseUrl": ".",
     "paths": { "~/*": ["./src/*"] }
   },
+  "exclude": ["src/routeTree.websites.gen.ts"],
   "include": ["src", "tests", "vite.config.ts", "vite.preview.config.ts", "playwright.config.ts"]
 }

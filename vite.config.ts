@@ -3,6 +3,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
+import { fileURLToPath } from 'node:url'
 
 /**
  * Content Security Policy. Everything is first-party: no third-party scripts,
@@ -39,12 +40,45 @@ const SECURITY_HEADERS = {
  * cloudflare_module, etc. at build time to target a platform instead.
  * Route rules become platform headers on those presets. See docs/DEPLOYMENT.md.
  */
+/**
+ * Build targets. Default: the full project (flagship at /, editions, concepts).
+ * SITE_TARGET=websites: the Bridge to Better Solutions "Web Design & Digital
+ * Experiences" page, built to live under /websites on the parent domain —
+ * every route, asset, image, font and API sits beneath that path.
+ */
+const TARGET = process.env.SITE_TARGET === 'websites' ? 'websites' : 'project'
+const BASE = TARGET === 'websites' ? '/websites/' : '/'
+
 export default defineConfig({
-  resolve: { tsconfigPaths: true },
+  base: BASE,
+  define: { 'import.meta.env.VITE_SITE_TARGET': JSON.stringify(TARGET) },
+  resolve: {
+    tsconfigPaths: true,
+    // The websites build has its own route tree (project-only pages left out entirely).
+    alias:
+      TARGET === 'websites'
+        ? [
+            { find: /^\.\/routeTree\.gen$/, replacement: fileURLToPath(new URL('./src/routeTree.websites.gen.ts', import.meta.url)) },
+            { find: /^~\/components\/site\/HomePage$/, replacement: fileURLToPath(new URL('./src/websites/no-flagship.ts', import.meta.url)) },
+          ]
+        : [],
+  },
   plugins: [
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart(
+      TARGET === 'websites'
+        ? {
+            router: {
+              generatedRouteTree: 'routeTree.websites.gen.ts',
+              // Flagship-only routes (Studio Edition, render studio, the in-project preview) are not part of /websites.
+              routeFileIgnorePattern: '^(v2|studio|websites)\\.tsx$',
+            },
+          }
+        : undefined,
+    ),
     nitro({
+      baseURL: BASE,
+      output: TARGET === 'websites' ? { dir: '.output-websites' } : undefined,
       routeRules: {
         '/**': { headers: SECURITY_HEADERS },
         // Content-hashed build output: cache forever.

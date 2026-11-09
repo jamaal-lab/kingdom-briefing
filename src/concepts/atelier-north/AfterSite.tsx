@@ -18,10 +18,30 @@ const NAV = [
   { href: '#process', label: 'Process' },
 ]
 
-export function AfterSite() {
+/** Who the concept is credited to. 'btbs' on the /websites page; the locked flagship keeps 'bridgeweb'. */
+export type ConceptBrand = 'bridgeweb' | 'btbs'
+
+const BTBS_CREDIT = {
+  badge: 'Illustrative design transformation by Bridge to Better Solutions — not a real firm',
+  footer: 'A fictional practice created by Bridge to Better Solutions, LLC as an illustrative design transformation. Projects and imagery are illustrative renders.',
+}
+
+// The /websites build never ships the retired studio name, not even in its scripts.
+export const CONCEPT_CREDIT: Record<ConceptBrand, { badge: string; footer: string }> = {
+  bridgeweb:
+    import.meta.env.VITE_SITE_TARGET === 'websites'
+      ? BTBS_CREDIT
+      : {
+          badge: 'Fictional design concept by Bridge Web — not a real firm',
+          footer: 'A fictional practice created by Bridge Web as a design concept. Projects and imagery are illustrative renders.',
+        },
+  btbs: BTBS_CREDIT,
+}
+
+export function AfterSite({ brand = 'bridgeweb' }: { brand?: ConceptBrand } = {}) {
   return (
     <div className="atelier min-h-screen bg-[#EEE9E1] font-sans text-[#1B1A17] antialiased">
-      <ConceptBadge />
+      <ConceptBadge brand={brand} />
       <Header />
       <main>
         <Hero />
@@ -31,12 +51,12 @@ export function AfterSite() {
         <Process />
         <Inquiry />
       </main>
-      <Footer />
+      <Footer brand={brand} />
     </div>
   )
 }
 
-export function ConceptBadge({ tone = 'light' }: { tone?: 'light' | 'plain' }) {
+export function ConceptBadge({ tone = 'light', brand = 'bridgeweb' }: { tone?: 'light' | 'plain'; brand?: ConceptBrand }) {
   return (
     <div
       role="note"
@@ -44,7 +64,7 @@ export function ConceptBadge({ tone = 'light' }: { tone?: 'light' | 'plain' }) {
         tone === 'light' ? 'bg-[#1B1A17]/85 text-[#EEE9E1] backdrop-blur' : 'bg-yellow-200 text-black'
       }`}
     >
-      Fictional design concept by Bridge Web — not a real firm
+      {CONCEPT_CREDIT[brand].badge}
     </div>
   )
 }
@@ -467,14 +487,14 @@ function Inquiry() {
   )
 }
 
-function Footer() {
+function Footer({ brand }: { brand: ConceptBrand }) {
   return (
     <footer className="bg-[#141311] px-5 py-12 text-[13px] text-white/55 md:px-10">
       <div className="mx-auto flex max-w-[1320px] flex-col justify-between gap-4 md:flex-row">
         <p className="font-atelier text-xl text-white/85">
           Atelier <span className="italic">North</span>
         </p>
-        <p>A fictional practice created by Bridge Web as a design concept. Projects and imagery are illustrative renders.</p>
+        <p>{CONCEPT_CREDIT[brand].footer}</p>
       </div>
     </footer>
   )

@@ -370,3 +370,43 @@
     animation: none !important;
   }
 }
+
+/* ───────────────────────── Bridge to Better Solutions (/websites) ─────────────────────────
+   Parent-company palette, scoped to the page wrapper so the same components
+   recolour without forking: deep matte navy, warm signature gold, off-white. */
+.btbs {
+  --color-midnight: #0b1a2b; /* deeper navy for depth */
+  --color-ink: #0e2033;
+  --color-navy: #10243a; /* deep matte navy */
+  --color-charcoal: #13283f;
+  --color-gold: #c9a24a; /* warm signature gold */
+  --color-champagne: #e3cc93;
+  --color-ivory: #f5f1e8; /* off-white */
+  --color-mist: #aab4c2;
+  --color-line: rgb(227 204 147 / 0.16);
+  --color-gold-deep: #7d6122; /* text-safe gold on off-white */
+  --color-ivory-deep: #ebe5d6;
+  background: var(--color-navy);
+}
+.btbs-head {
+  font-family: var(--font-sans);
+  font-weight: 760;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.btbs-serif {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--color-gold);
+}
+.btbs-light .btbs-serif {
+  color: var(--color-gold-deep);
+}
+@keyframes btbs-nudge {
+  0%, 100% { transform: translateX(-50%); }
+  30% { transform: translateX(calc(-50% - 22px)); }
+  60% { transform: translateX(calc(-50% + 22px)); }
+}
