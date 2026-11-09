@@ -36,7 +36,7 @@ export function ImmersiveImage({ asset, portrait, alt = '', zoom = 1.18, drift =
   useScrollProgress(box, onProgress)
   return (
     <div ref={box} className={`relative overflow-hidden ${className ?? ''}`}>
-      <div ref={layer} className="absolute -inset-y-[8%] inset-x-0 will-change-transform" style={{ transform: `scale(${zoom})` }}>
+      <div ref={layer} data-motion-layer className="absolute -inset-y-[8%] inset-x-0 will-change-transform" style={{ transform: `scale(${zoom})` }}>
         <Picture asset={asset} portrait={portrait} alt={alt} sizes="100vw" className="block h-full w-full" imgClassName="h-full w-full object-cover" imgStyle={{ objectPosition }} />
       </div>
       {children}

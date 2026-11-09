@@ -13,7 +13,7 @@ const ThresholdCanvas = lazy(() => import('~/components/threshold/ThresholdCanva
  * (a 26 s loop). Same tiers and fallbacks as the flagship: stills for
  * reduced motion, no WebGL, or when the 3D chunk fails.
  */
-export function HeroWindow({ fullBleed = false }: { fullBleed?: boolean }) {
+export function HeroWindow({ fullBleed = false, still = false }: { fullBleed?: boolean; /** Show the still only (visitor switched motion off). */ still?: boolean }) {
   const progress = useRef<ProgressStore>({ target: 0, current: 0 }).current
   const pointer = useRef({ x: 0, y: 0 }).current
   const box = useRef<HTMLDivElement>(null)
@@ -24,7 +24,7 @@ export function HeroWindow({ fullBleed = false }: { fullBleed?: boolean }) {
   useEffect(() => setTier(detectTier()), [])
 
   useEffect(() => {
-    if (tier !== 'full' && tier !== 'lite') return
+    if (still || (tier !== 'full' && tier !== 'lite')) return
     let raf = 0
     const t0 = performance.now()
     const loop = (now: number) => {
@@ -35,7 +35,7 @@ export function HeroWindow({ fullBleed = false }: { fullBleed?: boolean }) {
     }
     raf = requestAnimationFrame(loop)
     return () => cancelAnimationFrame(raf)
-  }, [tier, progress])
+  }, [tier, progress, still])
 
   useEffect(() => {
     const el = box.current
@@ -55,7 +55,7 @@ export function HeroWindow({ fullBleed = false }: { fullBleed?: boolean }) {
     }
   }, [pointer])
 
-  const live = tier === 'full' || tier === 'lite'
+  const live = !still && (tier === 'full' || tier === 'lite')
   return (
     <div
       ref={box}

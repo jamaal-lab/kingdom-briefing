@@ -27,7 +27,7 @@ export function PrivacyPage() {
         </div>
       </header>
       <main id="main" className="mx-auto max-w-3xl px-5 py-16 sm:px-8 md:py-24">
-        <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-champagne">Privacy</p>
+        <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-mist">Privacy</p>
         <h1 className="btbs-head mt-5 text-[clamp(2.2rem,5vw,3.4rem)] leading-tight">Project intake privacy notice</h1>
         <p className="mt-6 leading-relaxed text-ivory/80">This notice explains how {COMPANY.legalName} handles the information you send through the project intake on our Web Design & Digital Experiences page.</p>
         <div className="mt-12 space-y-10">

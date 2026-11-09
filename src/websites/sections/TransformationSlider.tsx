@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Picture } from '~/components/site/Picture'
-import { useInView, useReducedMotion } from '~/motion'
+import { useInView } from '~/motion'
+import { useMotionOff } from '../motion'
 import { track } from '~/lib/analytics'
 import { WEBSITES_PAGES } from '~/lib/target'
 import type { MediaAsset } from '~/lib/media'
@@ -36,7 +37,7 @@ export function TransformationSlider() {
   const stage = useRef<HTMLDivElement>(null)
   const handle = useRef<HTMLDivElement>(null)
   const interacted = useRef(false)
-  const reduced = useReducedMotion()
+  const reduced = useMotionOff()
   const [viewRef, inView] = useInView<HTMLDivElement>()
 
   // Phones open on the phone comparison: it's the one people can read at that size.
@@ -122,7 +123,7 @@ export function TransformationSlider() {
       <div className={`relative mx-auto ${mobile ? 'max-w-[380px]' : 'max-w-none'}`}>
         <div
           ref={stage}
-          className={`relative select-none overflow-hidden bg-midnight shadow-[0_60px_140px_-50px_rgba(0,0,0,0.95)] ${mobile ? 'aspect-[1170/2532] rounded-[42px] border-[10px] border-[#0a1522]' : 'aspect-[16/10] rounded-[20px] border border-champagne/20'}`}
+          className={`relative select-none overflow-hidden bg-midnight shadow-[0_60px_140px_-50px_rgba(0,0,0,0.95)] ${mobile ? 'aspect-[1170/2532] rounded-[42px] border-[10px] border-[#0a1522]' : 'aspect-[16/10] rounded-[20px] border border-ivory/15'}`}
           style={{ touchAction: live ? 'auto' : 'pan-y' }}
           onPointerDown={(e) => {
             if (live || e.button !== 0) return
@@ -144,7 +145,7 @@ export function TransformationSlider() {
           <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-[#0b1a2b]/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ivory backdrop-blur" style={{ opacity: pos > 12 ? 1 : 0, transition: 'opacity .3s' }}>
             Before
           </span>
-          <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-gold px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-navy" style={{ opacity: pos < 88 ? 1 : 0, transition: 'opacity .3s' }}>
+          <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-ivory px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-navy" style={{ opacity: pos < 88 ? 1 : 0, transition: 'opacity .3s' }}>
             After
           </span>
 

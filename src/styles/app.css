@@ -383,7 +383,7 @@
   --color-champagne: #e3cc93;
   --color-ivory: #f5f1e8; /* off-white */
   --color-mist: #aab4c2;
-  --color-line: rgb(227 204 147 / 0.16);
+  --color-line: rgb(245 241 232 / 0.1); /* neutral hairlines: gold is kept for actions */
   --color-gold-deep: #7d6122; /* text-safe gold on off-white */
   --color-ivory-deep: #ebe5d6;
   background: var(--color-navy);
@@ -400,10 +400,24 @@
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.01em;
-  color: var(--color-gold);
+  /* Emphasis by typeface, not colour: gold is reserved for what can be clicked. */
+  color: inherit;
 }
-.btbs-light .btbs-serif {
-  color: var(--color-gold-deep);
+/* Visitor motion switch (src/websites/motion.ts): html[data-motion="off"]. */
+html[data-motion="off"] [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  transition: none !important;
+}
+html[data-motion="off"] .btbs *,
+html[data-motion="off"] .btbs *::before,
+html[data-motion="off"] .btbs *::after {
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
+html[data-motion="off"] [data-motion-layer] {
+  transform: none !important;
 }
 @keyframes btbs-nudge {
   0%, 100% { transform: translateX(-50%); }

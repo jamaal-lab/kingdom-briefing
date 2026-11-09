@@ -1,6 +1,7 @@
 import { MEDIA, srcSet } from '~/lib/media'
 import { INDEXABLE } from '~/lib/env'
 import { COMPANY } from './config'
+import { MOTION_BOOT_SCRIPT } from './motion'
 
 export const WEBSITES_TITLE = `${COMPANY.service} | ${COMPANY.legalName}`
 export const WEBSITES_DESCRIPTION =
@@ -70,6 +71,6 @@ export function websitesHead({ preview = false } = {}) {
       { rel: 'preload', as: 'image', type: 'image/avif', imageSrcSet: srcSet(MEDIA.thresholdArrival, 'avif'), imageSizes: '100vw', media: '(min-aspect-ratio: 1/1)', fetchPriority: 'high' as const },
       { rel: 'preload', as: 'image', type: 'image/avif', imageSrcSet: srcSet(MEDIA.thresholdArrivalPortrait, 'avif'), imageSizes: '100vw', media: '(max-aspect-ratio: 1/1)', fetchPriority: 'high' as const },
     ],
-    scripts: [{ type: 'application/ld+json', children: JSON_LD }],
+    scripts: [{ children: MOTION_BOOT_SCRIPT }, { type: 'application/ld+json', children: JSON_LD }],
   }
 }

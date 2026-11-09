@@ -64,7 +64,7 @@ export function Intake() {
   // "Two ways we can help" pre-selects the project type.
   useEffect(() => {
     const onPick = (e: Event) => {
-      const preset = (e as CustomEvent<Record<string, string>>).detail ?? {}
+      const preset = (e as CustomEvent<Record<string, string | string[]>>).detail ?? {}
       // Fill only answers the visitor hasn't given yet.
       setAnswers((a) => ({ ...Object.fromEntries(Object.entries(preset).filter(([k]) => !a[k])), ...a }))
     }
@@ -194,7 +194,7 @@ export function Intake() {
           Thank you. Your project details have been received.
         </h3>
         <p className="mt-5 max-w-xl leading-relaxed text-ivory/80">
-          Your reference is <strong className="font-mono text-champagne">{reference}</strong>. {COMPANY.founder.name.split(' ')[0]} reviews every submission personally and will reply by your preferred contact method to arrange a short discovery conversation.
+          Your reference is <strong className="font-mono text-ivory">{reference}</strong>. {COMPANY.founder.name.split(' ')[0]} reviews every submission personally and will reply by your preferred contact method to arrange a short discovery conversation.
         </p>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-mist">
           Nothing is decided yet: scope, timeline and investment are agreed together in a written proposal after that conversation. If anything changes before then, email{' '}
@@ -219,7 +219,7 @@ export function Intake() {
           <a href={mailtoHref(answers)} onClick={() => track('intake_mailto', {})} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-gold px-7 text-[0.85rem] font-semibold text-navy">
             Email my answers <span aria-hidden="true">→</span>
           </a>
-          <button type="button" onClick={copySummary} className="inline-flex min-h-12 items-center rounded-full border border-champagne/50 px-7 text-[0.85rem] font-semibold text-ivory hover:border-champagne">
+          <button type="button" onClick={copySummary} className="inline-flex min-h-12 items-center rounded-full border border-ivory/30 px-7 text-[0.85rem] font-semibold text-ivory hover:border-ivory/70">
             {copied ? 'Copied ✓' : 'Copy my answers'}
           </button>
           <button type="button" onClick={() => setStatus('editing')} className="inline-flex min-h-12 items-center px-3 text-[0.85rem] font-semibold text-mist underline underline-offset-4 hover:text-ivory">
@@ -247,7 +247,7 @@ export function Intake() {
         }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-champagne">
+          <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-mist">
             Step {Math.min(stepIndex + 1, total)} of {total}
           </p>
           {Object.keys(answers).length > 0 && (
@@ -257,7 +257,7 @@ export function Intake() {
           )}
         </div>
         <div className="mt-3 h-[3px] w-full overflow-hidden rounded-full bg-ivory/10" role="progressbar" aria-label="Intake progress" aria-valuemin={1} aria-valuemax={total} aria-valuenow={stepIndex + 1} aria-valuetext={`Step ${stepIndex + 1} of ${total}`}>
-          <div className="h-full rounded-full bg-gold transition-[width] duration-500" style={{ width: `${((stepIndex + 1) / total) * 100}%` }} />
+          <div className="h-full rounded-full bg-ivory transition-[width] duration-500" style={{ width: `${((stepIndex + 1) / total) * 100}%` }} />
         </div>
         {restored && stepIndex === 0 && (
           <p className="mt-4 text-xs text-mist" role="status">
@@ -337,7 +337,7 @@ export function Intake() {
                   }}
                   aria-invalid={!!errors.consent}
                   aria-describedby="consent-note"
-                  className="mt-1 h-5 w-5 shrink-0 accent-[#c9a24a]"
+                  className="mt-1 h-5 w-5 shrink-0 accent-[#f5f1e8]"
                 />
                 <span>{CONSENT_TEXT}</span>
               </label>
@@ -385,11 +385,11 @@ export function Intake() {
 }
 
 function Panel({ children }: { children: React.ReactNode }) {
-  return <div className="relative rounded-[28px] border border-champagne/20 bg-ink/80 p-6 shadow-[0_60px_120px_-60px_rgba(0,0,0,0.9)] backdrop-blur-sm sm:p-10 lg:p-14">{children}</div>
+  return <div className="relative rounded-[28px] border border-ivory/12 bg-ink/85 p-6 shadow-[0_60px_120px_-60px_rgba(0,0,0,0.9)] backdrop-blur-sm sm:p-10 lg:p-14">{children}</div>
 }
 
 const inputCls =
-  'mt-2 block w-full rounded-xl border bg-midnight/60 px-4 py-3.5 text-[1rem] text-ivory placeholder:text-mist/60 transition-colors focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/30'
+  'mt-2 block w-full rounded-xl border bg-midnight/60 px-4 py-3.5 text-[1rem] text-ivory placeholder:text-mist/60 transition-colors focus:border-ivory/70 focus:outline-none focus:ring-2 focus:ring-ivory/20'
 
 function FieldControl({ field: f, value, error, required, onChange }: { field: Field; value: Answers[string]; error?: string; required: boolean; onChange: (v: string | string[]) => void }) {
   const id = `f-${f.id}`
@@ -400,7 +400,7 @@ function FieldControl({ field: f, value, error, required, onChange }: { field: F
   const labelEl = (
     <>
       {f.label}
-      {required ? <span className="text-champagne"> *</span> : <span className="ml-2 text-xs font-normal text-mist">Optional</span>}
+      {required ? <span className="text-ivory/60"> *</span> : <span className="ml-2 text-xs font-normal text-mist">Optional</span>}
     </>
   )
   const helpEl = f.help && (
@@ -423,14 +423,14 @@ function FieldControl({ field: f, value, error, required, onChange }: { field: F
           {f.options?.map((o) => {
             const checked = f.type === 'radio' ? str === o : list.includes(o)
             return (
-              <label key={o} className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm transition-colors ${checked ? 'border-champagne bg-gold/10 text-ivory' : 'border-ivory/15 text-ivory/80 hover:border-ivory/40'}`}>
+              <label key={o} className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm transition-colors ${checked ? 'border-ivory bg-ivory/[0.07] text-ivory' : 'border-ivory/15 text-ivory/80 hover:border-ivory/40'}`}>
                 <input
                   type={f.type === 'radio' ? 'radio' : 'checkbox'}
                   name={f.id}
                   value={o}
                   checked={checked}
                   onChange={() => onChange(f.type === 'radio' ? o : checked ? list.filter((x) => x !== o) : [...list, o])}
-                  className="h-4 w-4 shrink-0 accent-[#c9a24a]"
+                  className="h-4 w-4 shrink-0 accent-[#f5f1e8]"
                 />
                 {o}
               </label>

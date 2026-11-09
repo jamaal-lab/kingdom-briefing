@@ -278,3 +278,67 @@ test('privacy notice is reachable and branded', async ({ page }) => {
   await expect(page.locator('main')).toContainText('never ask for passwords')
   expect(await axe(page)).toEqual([])
 })
+
+test.describe('Premium patterns', () => {
+  test('hero words are readable instantly: no entrance animation on the hero text', async ({ page }) => {
+    await page.goto(HOME)
+    const anim = await page.locator('#top h1, #top h1 ~ div p').evaluateAll((els) => els.map((e) => getComputedStyle(e).animationName))
+    expect(anim.every((a) => a === 'none')).toBe(true)
+    await expect(page.locator('#top')).toContainText('For businesses, nonprofits, ministries & schools')
+    await expect(page.getByRole('link', { name: /See What’s Possible/ })).toHaveAttribute('href', '#transformation')
+  })
+
+  test('gold is reserved for actions: no gold text outside links and buttons', async ({ page }) => {
+    await page.goto(HOME)
+    const offenders = await page.evaluate(() => {
+      const gold = ['rgb(201, 162, 74)', 'rgb(227, 204, 147)', 'rgb(125, 97, 34)']
+      return [...document.querySelectorAll<HTMLElement>('main *')]
+        .filter((el) => !el.closest('a, button, [role="slider"]') && el.childNodes.length && [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent!.trim()))
+        .filter((el) => gold.includes(getComputedStyle(el).color))
+        .map((el) => el.textContent!.trim().slice(0, 40))
+    })
+    expect(offenders).toEqual([])
+  })
+
+  test('find your path: three taps, a recommendation, carried into the intake', async ({ page }) => {
+    await page.goto(HOME)
+    const finder = page.locator('#find-your-path')
+    await finder.getByRole('button', { name: 'It works, but something specific needs attention' }).click()
+    await finder.getByRole('button', { name: 'Fixing or updating one thing' }).click()
+    await finder.getByRole('button', { name: 'One page or feature' }).click()
+    await expect(finder.getByRole('heading', { name: 'A quick website job' })).toBeFocused()
+    await expect(finder).toContainText('not a quote')
+    await finder.getByRole('link', { name: /Continue with this path/ }).click()
+    const intake = page.locator('#intake')
+    await expect(intake.getByRole('radio', { name: 'A quick website fix or update' })).toBeChecked()
+    await expect(intake.getByRole('group', { name: /existing website/ }).getByRole('radio', { name: 'Yes' })).toBeChecked()
+
+    await page.reload()
+    await finder.getByRole('button', { name: 'We don’t have a website yet' }).click()
+    await finder.getByRole('button', { name: 'Less admin through connected systems' }).click()
+    await finder.getByRole('button', { name: 'Most or all of it' }).click()
+    await expect(finder.getByRole('heading', { name: 'A complete website buildout' })).toBeVisible()
+  })
+
+  test('visible motion switch stills the page and is remembered', async ({ page }) => {
+    await page.goto(HOME)
+    const toggle = page.getByRole('button', { name: 'Motion on' }).first()
+    await toggle.click()
+    await expect(page.locator('html')).toHaveAttribute('data-motion', 'off')
+    await expect(page.getByRole('button', { name: 'Motion off' }).first()).toHaveAttribute('aria-pressed', 'true')
+    await page.reload()
+    await expect(page.locator('html')).toHaveAttribute('data-motion', 'off')
+    await expect(page.locator('#top canvas')).toHaveCount(0)
+    await page.getByRole('button', { name: 'Motion off' }).first().click()
+    await expect(page.locator('html')).not.toHaveAttribute('data-motion', 'off')
+  })
+
+  test('device reduced-motion is respected and explained @responsive', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'reduce' })
+    const page = await ctx.newPage()
+    await page.goto(new URL(HOME, test.info().project.use.baseURL).toString())
+    await expect(page.locator('html')).toHaveAttribute('data-motion', 'off')
+    await expect(page.getByRole('button', { name: 'Motion reduced' }).first()).toBeDisabled()
+    await ctx.close()
+  })
+})

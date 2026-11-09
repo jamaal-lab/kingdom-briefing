@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { track } from '~/lib/analytics'
 import { asset, WEBSITES_PAGES } from '~/lib/target'
 import { COMPANY } from '../config'
+import { deviceReducesMotion, setMotionOff, useMotionOff } from '../motion'
 
 /**
  * The official Bridge to Better Solutions emblem, used exactly as published
@@ -20,7 +21,7 @@ export function BtbsLogo({ size = 44, withName = true, sub }: { size?: number; w
       {withName && (
         <span className="leading-tight">
           <span className="block text-[0.9rem] font-semibold tracking-tight text-ivory">{COMPANY.shortName}</span>
-          {sub && <span className="block text-[0.64rem] uppercase tracking-[0.18em] text-champagne/85">{sub}</span>}
+          {sub && <span className="block text-[0.64rem] uppercase tracking-[0.18em] text-mist">{sub}</span>}
         </span>
       )}
     </span>
@@ -35,7 +36,7 @@ export const NAV_LINKS = [
   { href: '#about', label: 'About' },
 ]
 
-export function startProject(location: string, preset?: Record<string, string>) {
+export function startProject(location: string, preset?: Record<string, string | string[]>) {
   track('cta_click', { location })
   if (preset) window.dispatchEvent(new CustomEvent('btbs:intake', { detail: preset }))
 }
@@ -89,6 +90,7 @@ export function WebsitesNav() {
             ))}
           </ul>
           <div className="flex items-center gap-2">
+            <MotionToggle className="hidden lg:inline-flex" />
             <a href="#intake" onClick={() => startProject('nav')} className="hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[0.78rem] font-semibold text-navy transition-transform hover:-translate-y-0.5 sm:inline-flex">
               Start Your Project <span aria-hidden="true">→</span>
             </a>
@@ -117,7 +119,8 @@ export function WebsitesNav() {
             </li>
           ))}
         </ul>
-        <p className="mt-10 text-sm text-mist">{COMPANY.tagline}</p>
+        <MotionToggle className="mt-8 inline-flex" />
+        <p className="mt-8 text-sm text-mist">{COMPANY.tagline}</p>
       </div>
     </>
   )
@@ -130,7 +133,7 @@ export function WebsitesFooter() {
         <div>
           <BtbsLogo size={64} withName={false} />
           <p className="mt-5 text-lg font-semibold text-ivory">{COMPANY.legalName}</p>
-          <p className="mt-1 text-champagne">{COMPANY.tagline}</p>
+          <p className="mt-1 text-ivory/75">{COMPANY.tagline}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist">{COMPANY.service} · {COMPANY.location}</p>
         </div>
         <nav aria-label="Footer">
@@ -163,6 +166,9 @@ export function WebsitesFooter() {
                 Intake privacy notice
               </a>
             </li>
+            <li>
+              <MotionToggle className="-ml-3 inline-flex" />
+            </li>
           </ul>
         </div>
       </div>
@@ -172,5 +178,32 @@ export function WebsitesFooter() {
         </p>
       </div>
     </footer>
+  )
+}
+
+/**
+ * Visible motion switch. Stills the live scene, scroll effects and reveals;
+ * when the device already asks for reduced motion it says so instead.
+ */
+export function MotionToggle({ className = '' }: { className?: string }) {
+  const off = useMotionOff()
+  const byDevice = off && deviceReducesMotion()
+  return (
+    <button
+      type="button"
+      aria-pressed={off}
+      disabled={byDevice}
+      title={byDevice ? 'Your device is set to reduce motion' : undefined}
+      onClick={() => {
+        setMotionOff(!off)
+        track('motion_toggle', { off: !off })
+      }}
+      className={`min-h-10 items-center gap-2 rounded-full px-3 text-[0.75rem] font-medium text-ivory/75 transition-colors hover:text-ivory disabled:cursor-default disabled:hover:text-ivory/75 ${className}`}
+    >
+      <span aria-hidden="true" className={`relative h-4 w-7 rounded-full border border-ivory/40 transition-colors ${off ? '' : 'bg-ivory/20'}`}>
+        <span className={`absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-ivory transition-[left] ${off ? 'left-0.5' : 'left-[0.85rem]'}`} />
+      </span>
+      {byDevice ? 'Motion reduced' : off ? 'Motion off' : 'Motion on'}
+    </button>
   )
 }
