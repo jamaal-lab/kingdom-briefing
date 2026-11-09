@@ -18,3 +18,4 @@ test-results
 .vercel
 .output-websites
 src/routeTree.websites.gen.ts
+/deliverables
