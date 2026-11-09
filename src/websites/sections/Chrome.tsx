@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { track } from '~/lib/analytics'
-import { asset } from '~/lib/target'
+import { asset, WEBSITES_PAGES } from '~/lib/target'
 import { COMPANY } from '../config'
 
 /**
@@ -159,7 +159,7 @@ export function WebsitesFooter() {
               </a>
             </li>
             <li>
-              <a href={asset('privacy')} className="text-ivory/80 hover:text-champagne">
+              <a href={WEBSITES_PAGES.privacy} className="text-ivory/80 hover:text-champagne">
                 Intake privacy notice
               </a>
             </li>

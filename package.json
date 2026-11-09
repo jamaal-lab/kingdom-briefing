@@ -16,7 +16,8 @@
     "render:og": "node scripts/render-og.mjs",
     "build:websites": "SITE_TARGET=websites vite build",
     "start:websites": "node .output-websites/server/index.mjs",
-    "render:websites": "node scripts/render-websites-assets.mjs"
+    "render:websites": "node scripts/render-websites-assets.mjs",
+    "build:preview-websites": "vite build --config vite.preview-websites.config.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

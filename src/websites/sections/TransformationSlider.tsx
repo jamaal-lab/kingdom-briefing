@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Picture } from '~/components/site/Picture'
 import { useInView, useReducedMotion } from '~/motion'
 import { track } from '~/lib/analytics'
-import { asset } from '~/lib/target'
+import { WEBSITES_PAGES } from '~/lib/target'
 import type { MediaAsset } from '~/lib/media'
 
 const T = `${import.meta.env.BASE_URL}media/transformation`
@@ -21,7 +21,7 @@ export const FRAMES = {
 } satisfies Record<string, Record<'before' | 'after', MediaAsset>>
 
 type Device = 'desktop' | 'mobile'
-const LIVE = { before: asset('concepts/atelier-north/before?brand=btbs'), after: asset('concepts/atelier-north?brand=btbs') }
+const LIVE = { before: WEBSITES_PAGES.conceptBefore, after: WEBSITES_PAGES.conceptAfter }
 
 /**
  * Before/after comparison of one fictional business. Drag, swipe, click, or

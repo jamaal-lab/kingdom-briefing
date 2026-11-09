@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { track } from '~/lib/analytics'
-import { asset } from '~/lib/target'
+import { asset, STATIC_PREVIEW, WEBSITES_PAGES } from '~/lib/target'
 import { COMPANY } from '../config'
 import { CONSENT_TEXT, pathOf, resolve, stepErrors, summarize, visibleFields, visibleSteps, type Answers, type Field } from './schema'
 
@@ -122,8 +122,13 @@ export function Intake() {
       return
     }
     touched.current = true
-    setStatus('submitting')
     track('intake_submit', { path: pathOf(answers) })
+    // A static preview has no server: say so honestly, exactly as a switched-off endpoint would.
+    if (STATIC_PREVIEW) {
+      setStatus('offline')
+      return
+    }
+    setStatus('submitting')
     try {
       const res = await fetch(asset('api/intake'), {
         method: 'POST',
@@ -338,7 +343,7 @@ export function Intake() {
               </label>
               <p id="consent-note" className="mt-3 pl-8 text-xs leading-relaxed text-mist">
                 Read how we handle it in the{' '}
-                <a href={asset('privacy')} className="text-champagne underline underline-offset-4">
+                <a href={WEBSITES_PAGES.privacy} className="text-champagne underline underline-offset-4">
                   intake privacy notice
                 </a>
                 . Please don’t include passwords or login details anywhere in this form.

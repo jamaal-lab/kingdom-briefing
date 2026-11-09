@@ -4,7 +4,7 @@ import { Picture } from '~/components/site/Picture'
 import { Reveal } from '~/motion'
 import { ImmersiveImage } from '~/motion/ImmersiveImage'
 import { MEDIA, type MediaAsset } from '~/lib/media'
-import { asset } from '~/lib/target'
+import { WEBSITES_PAGES } from '~/lib/target'
 import { track } from '~/lib/analytics'
 import { COMPANY } from '../config'
 import { PROJECT_TYPES } from '../intake/schema'
@@ -279,7 +279,7 @@ export function Work() {
             <h3 className="btbs-head mt-4 text-[clamp(2.4rem,6vw,5.4rem)] leading-[0.95] text-ivory">Atelier North</h3>
             <p className="mt-4 max-w-lg leading-relaxed text-ivory/80">A complete, responsive website for a fictional architecture practice — explore it as a visitor would.</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={asset('concepts/atelier-north?brand=btbs')} target="_blank" rel="noopener" onClick={() => track('concept_open', { concept: 'atelier-north' })} className={goldBtn}>
+              <a href={WEBSITES_PAGES.conceptAfter} target="_blank" rel="noopener" onClick={() => track('concept_open', { concept: 'atelier-north' })} className={goldBtn}>
                 Explore the concept site <span aria-hidden="true">↗</span>
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
