@@ -24,7 +24,7 @@ h2 em,h1 em{font-style:italic;font-weight:400}
 p{margin:0}
 .wrap{width:100%;max-width:1600px;margin:0 auto;padding:0 18px}
 @media(min-width:900px){.wrap{padding:0 48px}}
-.band{padding:88px 0}@media(min-width:900px){.band{padding:128px 0}}
+.band{padding:72px 0}@media(min-width:900px){.band{padding:112px 0}}
 .dark{background:var(--navy);color:var(--ivory)}.dark a{color:var(--ivory)}
 .deep{background:var(--deep);color:var(--ivory)}.deep a{color:var(--ivory)}
 .cool{background:var(--cool)}
@@ -100,7 +100,7 @@ p{margin:0}
 .path h3{font-size:clamp(1.6rem,2.6vw,2.2rem);margin-top:22px}
 .path .lead{font-size:1.0625rem;margin-top:12px}
 .path ul{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:12px}
-@media(min-width:600px){.path ul{grid-template-columns:1fr 1fr}}
+
 .path li{display:flex;gap:12px;font-size:1rem}
 .path li svg{width:20px;height:20px;flex:none;margin-top:3px}
 .path .note{margin-top:28px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:1rem}
@@ -140,7 +140,17 @@ p{margin:0}
 .knob{position:absolute;top:50%;left:var(--p,50%);z-index:4;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;border:2px solid var(--gold);background:var(--deep);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:ew-resize;touch-action:none}
 .capt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:16px;color:rgba(245,241,232,.82)}
 /* outcomes */
-.oc{display:grid;gap:48px}@media(min-width:1000px){.oc{grid-template-columns:5fr 7fr;gap:96px}}
+.oc-grid{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:28px 24px}
+@media(min-width:1200px){.oc-grid{grid-template-columns:repeat(3,1fr)}}
+.oc-grid li{display:flex;flex-direction:column;gap:4px}.oc-grid .tile{margin-bottom:12px}
+.oc-grid b{font-family:var(--font-heading);font-size:1.15rem}.oc-grid span:last-child{color:var(--muted);font-size:1rem}
+.paths-note{margin-top:20px}
+/* process flow */
+.flow{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:32px 20px;counter-reset:f}
+@media(min-width:1100px){.flow{grid-template-columns:repeat(6,1fr);gap:24px;position:relative}.flow::before{content:"";position:absolute;left:26px;right:26px;top:26px;height:1px;background:var(--line)}}
+.flow li{position:relative}.flow .tile{position:relative;background:var(--white);border:1px solid var(--line)}
+.flow h3{font-size:1.3rem;margin-top:16px}.flow p{color:var(--muted);margin-top:4px;font-size:1rem}
+.oc{display:grid;gap:40px;align-items:center}@media(min-width:1000px){.oc{grid-template-columns:6fr 6fr;gap:88px}}
 .oc-aside{align-self:start}@media(min-width:1000px){.oc-aside{position:sticky;top:120px}}
 .frame{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 30px 60px -30px rgba(16,36,58,.45)}
 .frame img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
@@ -162,7 +172,7 @@ p{margin:0}
 .gal-i{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
 .gal img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
 .card .cap{padding:14px 16px 18px;display:flex;flex-direction:column;gap:2px;flex:1}
-.card .cap span{font-size:.875rem;color:var(--muted)}
+.card .cap span{font-size:.875rem;color:var(--muted)}.card .cap{padding:14px 16px}
 .card .cap b{font-family:var(--font-heading);font-size:1.15rem}
 .card .cap a{margin-top:auto;padding-top:10px;font-size:1rem;font-weight:700;min-height:44px;display:flex;align-items:center}
 .disc{margin-top:22px}
@@ -298,60 +308,48 @@ p{margin:0}
 <div class="rv-up">
 <h2 id="gap-h">Your work has grown. <em>Has your website?</em></h2>
 <p class="lead">From focused upgrades to extraordinary digital experiences, we help organizations look better, connect better, and operate smarter online.</p>
-<p class="lead">Most websites are not bad. They were built for a moment that has passed, and visitors notice before you do.</p>
 </div>
 <ul class="signs">
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg></span><div><h3>Built for an earlier chapter</h3><p>Your services, audience or ambitions moved on. The site did not.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-maze"/></svg></span><div><h3>Visitors work too hard</h3><p>The answers are somewhere on the site, just not where people look first.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><div><h3>It struggles on a phone</h3><p>Cramped menus and slow pages quietly turn first visits away.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span><div><h3>Inquiries arrive without context</h3><p>A bare contact form means extra back and forth before you can tell if it is a fit.</p></div></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg></span><div><h3>Built for an earlier chapter</h3><p>Your work moved on. The site did not.</p></div></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-maze"/></svg></span><div><h3>Visitors work too hard</h3><p>The answers are there, just not where people look.</p></div></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><div><h3>It struggles on a phone</h3><p>Cramped menus turn first visits away.</p></div></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span><div><h3>Inquiries arrive without context</h3><p>More back and forth before you know it is a fit.</p></div></li>
 </ul>
 </div>
 </section>
 
 <section class="band cool" id="services" aria-labelledby="paths-h">
 <div class="wrap">
-<div class="rv-up" style="max-width:900px">
-<h2 id="paths-h">A focused fix, or a <em>complete transformation.</em></h2>
-<p class="lead">Start wherever you are. Many relationships begin with one well done upgrade.</p>
-</div>
+<h2 id="paths-h" class="rv-up" style="max-width:900px">A focused fix, or a <em>complete transformation.</em></h2>
 <div class="paths">
 <article class="path path-a rv-up">
 <span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-fix"/></svg></span>
 <h3>Quick Website Jobs &amp; Upgrades</h3>
-<p class="lead">For a site that mostly works but needs specific, well defined improvements.</p>
+<p class="lead">Your site mostly works. A few things need to be better.</p>
 <ul>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Fix broken pages, links or forms</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Update content, photos and offers</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Improve the mobile experience</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Add booking or lead capture</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Speed, accessibility and search clean up</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>A focused landing page</li>
+<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Fix pages, links and forms</li>
+<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Refresh content and photos</li>
+<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Improve mobile, speed and search</li>
 </ul>
-<p class="note">Small jobs can often move quickly. We confirm scope, price and timing in writing once we have seen what is involved.</p>
 <div class="ctas"><a class="btn btn-gold" href="#intake" data-preset='{"project_type":"A quick website fix or update"}'>Request a quick job</a></div>
 </article>
 <article class="path path-b rv-up">
 <span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-build"/></svg></span>
 <h3>Complete Website Buildouts</h3>
-<p class="lead">For a new website, or a redesign that rethinks how your organization shows up online.</p>
+<p class="lead">A new website, or a redesign that rethinks how you show up.</p>
 <ul>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Strategy, messaging and page architecture</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Custom design built around your brand</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Responsive build and careful launch</li>
+<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Strategy and page architecture</li>
+<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Custom design and build</li>
 <li><svg aria-hidden="true"><use href="#i-dot"/></svg>Intake, booking and CRM connections</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Analytics, accessibility and search foundations</li>
-<li><svg aria-hidden="true"><use href="#i-dot"/></svg>Optional ongoing care</li>
 </ul>
-<p class="note">Every buildout begins with discovery and a written proposal. Timelines are agreed together, never assumed.</p>
-<div class="ctas"><a class="btn btn-gold" href="#intake" data-preset='{"project_type":"A completely new website","has_website":"No"}'>Plan a new website</a><a class="btn btn-line" href="#intake" data-preset='{"project_type":"A redesign of an existing site","has_website":"Yes"}'>Redesign my site</a></div>
+<div class="ctas"><a class="btn btn-gold" href="#intake">Plan a buildout</a></div>
 </article>
 </div>
+<p class="small paths-note rv-up">Every project starts with a written scope. Price and timing are agreed before work begins.</p>
 
 <div class="finder rv-up" id="finder" aria-labelledby="finder-h">
 <div>
 <h3 id="finder-h">Not sure which? Find your path in three taps.</h3>
-<p class="lead" style="font-size:1.0625rem">Three quick questions, an honest recommendation, and your answers carry straight into the project intake.</p>
 <div class="prog" aria-hidden="true"><i></i><i></i><i></i></div>
 </div>
 <div aria-live="polite" id="finder-body"></div>
@@ -363,39 +361,37 @@ p{margin:0}
 <div class="wrap">
 <div class="tf-head rv-up">
 <h2 id="tf-h">Same business. <em>A better digital experience.</em></h2>
-<p class="lead">Illustrative Design Transformation. Atelier North is a fictional architecture practice we created to show the difference between a typical template site and a website designed around the work.</p>
+<p class="lead">Illustrative Design Transformation: Atelier North, a fictional practice, before and after.</p>
 </div>
 <div class="tools">
 <div class="seg" role="group" aria-label="Device"><button type="button" data-dev="desktop" aria-pressed="true">Desktop</button><button type="button" data-dev="phone" aria-pressed="false">Phone</button></div>
-<a href="after.html" target="_blank" rel="noopener">Open the redesigned page</a>
+<a href="/after.html" target="_blank" rel="noopener">Open the redesigned page</a>
 </div>
 <div class="stage" id="stage">
-<iframe src="after.html" title="After: Atelier North redesigned, illustrative" loading="lazy" tabindex="-1"></iframe>
-<div class="before"><iframe src="before.html" title="Before: Atelier North template site, illustrative" loading="lazy" tabindex="-1"></iframe></div>
+<iframe src="/after.html" title="After: Atelier North redesigned, illustrative" tabindex="-1"></iframe>
+<div class="before"><iframe src="/before.html" title="Before: Atelier North template site, illustrative" tabindex="-1"></iframe></div>
 <span class="lbl l">Before</span><span class="lbl r">After</span>
 <span class="divider" aria-hidden="true"></span>
 <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Before and after comparison. Use the arrow keys to move the divider." aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 percent before"><svg class="ico" aria-hidden="true"><use href="#i-arrows"/></svg></div>
 </div>
 <div class="capt"><span>Same business. A better digital experience.</span><span>Drag to explore the transformation.</span></div>
-<p class="small disc">Atelier North is not a real firm or a client project. Its drawings are illustrative.</p>
 </div>
 </section>
 
 <section class="band" aria-labelledby="oc-h">
 <div class="wrap oc">
-<div class="oc-aside rv-up">
+<figure class="frame rv-up"><img src="/images/devices.jpg" width="1600" height="1008" alt="A laptop and a phone on a dark desk showing the same elegant dark website design, lit by a warm beam of light." loading="lazy"></figure>
+<div class="rv-up">
 <h2 id="oc-h">Websites designed around <em>outcomes.</em></h2>
-<p class="lead">Every capability earns its place by what it does for your visitors and your team.</p>
-<figure class="frame" style="margin:36px 0 0"><img src="/images/devices.jpg" width="1600" height="1008" alt="A laptop and a phone on a dark desk showing the same elegant dark website design, lit by a warm beam of light." loading="lazy"><figcaption>One design, built for every screen. Illustrative.</figcaption></figure>
-</div>
-<ul class="oc-list">
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg></span><div><h3>Clear structure</h3><p>Pages organised around what visitors actually come to find.</p><strong>Fewer “where do I find” moments</strong></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg></span><div><h3>Distinctive design</h3><p>A visual identity carried through every page with the care your work deserves.</p><strong>A first impression that earns trust</strong></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-devices"/></svg></span><div><h3>Built for every screen</h3><p>Designed for phones first, then refined for tablets and large displays.</p><strong>Reach people where they browse</strong></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg></span><div><h3>Purposeful journeys</h3><p>Calls to action, booking and inquiry paths placed where decisions happen.</p><strong>More meaningful conversations</strong></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-nodes"/></svg></span><div><h3>Connected systems</h3><p>Intake, scheduling, CRM and follow up connections where they genuinely help, scoped per project.</p><strong>Less manual admin</strong></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-base"/></svg></span><div><h3>Strong foundations</h3><p>Performance, accessibility, analytics and search basics built in from the start.</p><strong>Easier to find, use and grow</strong></div></li>
+<ul class="oc-grid">
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg></span><b>Clear structure</b><span>Easy to navigate</span></li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg></span><b>Distinctive design</b><span>Earns trust at first glance</span></li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-devices"/></svg></span><b>Every screen</b><span>Designed phone first</span></li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-route"/></svg></span><b>Purposeful journeys</b><span>Leads people to act</span></li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-nodes"/></svg></span><b>Connected systems</b><span>Less manual admin</span></li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-base"/></svg></span><b>Strong foundations</b><span>Fast, accessible, findable</span></li>
 </ul>
+</div>
 </div>
 </section>
 
@@ -403,20 +399,19 @@ p{margin:0}
 <div class="wrap">
 <div class="rv-up" style="max-width:900px">
 <h2 id="work-h">Built for many kinds of <em>meaningful work.</em></h2>
-<p class="lead">Design directions created to show range across industries. Each one is an illustrative concept, not a client project, and a starting point for a conversation.</p>
+<p class="lead">Illustrative concepts across industries. Not client projects.</p>
 </div>
 <div class="chips" role="group" aria-label="Filter concepts by industry" id="chips"></div>
 <ul class="gal" id="gal">
-<li data-cat="Beauty &amp; Wellness"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Serene Bloom concept"><img src="/images/concept-beauty.jpg" width="1280" height="800" alt="Serene Bloom concept: a soft, light skincare website with product photography." loading="lazy"></button><div class="cap"><span>Beauty &amp; Wellness, illustrative concept</span><b>Serene Bloom</b><a href="#intake" data-preset='{"inspired_concept":"Serene Bloom"}'>Start with this direction</a></div></div></li>
-<li data-cat="Home &amp; Property Services"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Summit Renovations concept"><img src="/images/concept-home.jpg" width="1280" height="800" alt="Summit Renovations concept: a bold home renovation website with a dusk photograph of a house." loading="lazy"></button><div class="cap"><span>Home &amp; Property Services, illustrative concept</span><b>Summit Renovations</b><a href="#intake" data-preset='{"inspired_concept":"Summit Renovations"}'>Start with this direction</a></div></div></li>
-<li data-cat="Professional Services"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Evergreen Counsel concept"><img src="/images/concept-professional.jpg" width="1280" height="800" alt="Evergreen Counsel concept: a calm law and strategy firm website in cream and forest green." loading="lazy"></button><div class="cap"><span>Professional Services, illustrative concept</span><b>Evergreen Counsel</b><a href="#intake" data-preset='{"inspired_concept":"Evergreen Counsel"}'>Start with this direction</a></div></div></li>
-<li data-cat="Nonprofits &amp; Community"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Riverside Community concept"><img src="/images/concept-nonprofit.jpg" width="1280" height="800" alt="Riverside Community concept: a warm nonprofit website with volunteers smiling outdoors." loading="lazy"></button><div class="cap"><span>Nonprofits &amp; Community, illustrative concept</span><b>Riverside Community</b><a href="#intake" data-preset='{"inspired_concept":"Riverside Community"}'>Start with this direction</a></div></div></li>
-<li data-cat="Faith &amp; Ministries"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Grace Hill concept"><img src="/images/concept-faith.jpg" width="1280" height="800" alt="Grace Hill concept: a church website with a candle lit worship photograph." loading="lazy"></button><div class="cap"><span>Faith &amp; Ministries, illustrative concept</span><b>Grace Hill</b><a href="#intake" data-preset='{"inspired_concept":"Grace Hill"}'>Start with this direction</a></div></div></li>
-<li data-cat="Education &amp; Youth"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Ignite Academy concept"><img src="/images/concept-education.jpg" width="1280" height="800" alt="Ignite Academy concept: a bright STEM academy website with students building a robot." loading="lazy"></button><div class="cap"><span>Education &amp; Youth, illustrative concept</span><b>Ignite Academy</b><a href="#intake" data-preset='{"inspired_concept":"Ignite Academy"}'>Start with this direction</a></div></div></li>
-<li data-cat="Events &amp; Creatives"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Lumen Studio concept"><img src="/images/concept-events.jpg" width="1280" height="800" alt="Lumen Studio concept: a dramatic black events and photography website with a spotlit performer." loading="lazy"></button><div class="cap"><span>Events &amp; Creatives, illustrative concept</span><b>Lumen Studio</b><a href="#intake" data-preset='{"inspired_concept":"Lumen Studio"}'>Start with this direction</a></div></div></li>
-<li data-cat="Luxury &amp; Product Launch"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Vérité concept"><img src="/images/concept-luxury.jpg" width="1280" height="800" alt="Vérité concept: a dark luxury fragrance launch website with a gold lit bottle." loading="lazy"></button><div class="cap"><span>Luxury &amp; Product Launch, illustrative concept</span><b>Vérité</b><a href="#intake" data-preset='{"inspired_concept":"Vérité"}'>Start with this direction</a></div></div></li>
+<li data-cat="Beauty &amp; Wellness"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Serene Bloom concept"><img src="/images/concept-beauty.jpg" width="1280" height="800" alt="Serene Bloom concept: a soft, light skincare website with product photography." loading="lazy"></button><div class="cap"><b>Serene Bloom</b><span>Beauty &amp; Wellness</span></div></div></li>
+<li data-cat="Home &amp; Property Services"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Summit Renovations concept"><img src="/images/concept-home.jpg" width="1280" height="800" alt="Summit Renovations concept: a bold home renovation website with a dusk photograph of a house." loading="lazy"></button><div class="cap"><b>Summit Renovations</b><span>Home &amp; Property Services</span></div></div></li>
+<li data-cat="Professional Services"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Evergreen Counsel concept"><img src="/images/concept-professional.jpg" width="1280" height="800" alt="Evergreen Counsel concept: a calm law and strategy firm website in cream and forest green." loading="lazy"></button><div class="cap"><b>Evergreen Counsel</b><span>Professional Services</span></div></div></li>
+<li data-cat="Nonprofits &amp; Community"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Riverside Community concept"><img src="/images/concept-nonprofit.jpg" width="1280" height="800" alt="Riverside Community concept: a warm nonprofit website with volunteers smiling outdoors." loading="lazy"></button><div class="cap"><b>Riverside Community</b><span>Nonprofits &amp; Community</span></div></div></li>
+<li data-cat="Faith &amp; Ministries"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Grace Hill concept"><img src="/images/concept-faith.jpg" width="1280" height="800" alt="Grace Hill concept: a church website with a candle lit worship photograph." loading="lazy"></button><div class="cap"><b>Grace Hill</b><span>Faith &amp; Ministries</span></div></div></li>
+<li data-cat="Education &amp; Youth"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Ignite Academy concept"><img src="/images/concept-education.jpg" width="1280" height="800" alt="Ignite Academy concept: a bright STEM academy website with students building a robot." loading="lazy"></button><div class="cap"><b>Ignite Academy</b><span>Education &amp; Youth</span></div></div></li>
+<li data-cat="Events &amp; Creatives"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Lumen Studio concept"><img src="/images/concept-events.jpg" width="1280" height="800" alt="Lumen Studio concept: a dramatic black events and photography website with a spotlit performer." loading="lazy"></button><div class="cap"><b>Lumen Studio</b><span>Events &amp; Creatives</span></div></div></li>
+<li data-cat="Luxury &amp; Product Launch"><div class="card"><button class="gal-i" type="button" aria-label="Open image: Vérité concept"><img src="/images/concept-luxury.jpg" width="1280" height="800" alt="Vérité concept: a dark luxury fragrance launch website with a gold lit bottle." loading="lazy"></button><div class="cap"><b>Vérité</b><span>Luxury &amp; Product Launch</span></div></div></li>
 </ul>
-<p class="small disc">All concepts on this page are illustrative and are not client projects.</p>
 </div>
 </section>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button class="x" type="button" aria-label="Close"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button class="pv" type="button" aria-label="Previous image"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><img alt="" width="1280" height="800"><button class="nx" type="button" aria-label="Next image"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p></p></div>
@@ -425,15 +420,15 @@ p{margin:0}
 <div class="wrap">
 <div class="rv-up" style="max-width:900px">
 <h2 id="pr-h">Six clear moves. <em>You are part of every one.</em></h2>
-<p class="lead">Every engagement starts with scope, a proposal and a written agreement. Timelines and review rounds are defined together, never assumed.</p>
+<p class="lead">Every engagement starts with a written agreement.</p>
 </div>
-<ol class="steps">
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></span><div><h3>Discover</h3><p>We learn your organization, audience, goals and what is not working today.</p><p class="role"><b>Your role:</b> share your story, priorities and any existing materials.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-compass"/></svg></span><div><h3>Architect</h3><p>We shape the message, page structure, journeys and the systems it should connect to.</p><p class="role"><b>Your role:</b> confirm priorities and review the plan.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg></span><div><h3>Design</h3><p>We create the visual direction and key pages, then refine them with you.</p><p class="role"><b>Your role:</b> give focused feedback within the agreed review rounds.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg></span><div><h3>Build</h3><p>We develop the responsive site, connect agreed tools and test across devices.</p><p class="role"><b>Your role:</b> supply final content and test the experience.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-launch"/></svg></span><div><h3>Launch</h3><p>We go live carefully, with redirects, analytics and checks in place.</p><p class="role"><b>Your role:</b> give final approval and spread the word.</p></div></li>
-<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-grow"/></svg></span><div><h3>Improve</h3><p>We review how the site is used and recommend what to refine next.</p><p class="role"><b>Your role:</b> tell us what you are hearing from visitors.</p></div></li>
+<ol class="flow">
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></span><h3>Discover</h3><p>Your goals, audience and story.</p></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-compass"/></svg></span><h3>Architect</h3><p>Message, structure and systems.</p></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg></span><h3>Design</h3><p>Direction and key pages, refined together.</p></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg></span><h3>Build</h3><p>Responsive, connected and tested.</p></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-launch"/></svg></span><h3>Launch</h3><p>Live, measured and checked.</p></li>
+<li class="rv-up"><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-grow"/></svg></span><h3>Improve</h3><p>Refined from real use.</p></li>
 </ol>
 </div>
 </section>
@@ -454,11 +449,11 @@ p{margin:0}
 <div class="wrap in-grid">
 <div class="in-aside">
 <h2 id="in-h">Tell us about <em>your project.</em></h2>
-<p class="lead">The questions adapt to what you need. A quick fix gets a short path, a full build gets the depth it deserves. You can go back at any point.</p>
+<p class="lead">Three questions to start. The rest adapts to you.</p>
 <ul class="assure">
-<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-person"/></svg></span>Reviewed personally, not by a sales team</li>
-<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>A reply to arrange a short discovery conversation</li>
-<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg></span>No obligation, and never a password requested</li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-person"/></svg></span>Reviewed personally</li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>A reply to set up a short call</li>
+<li><span class="tile"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg></span>No obligation, never a password</li>
 </ul>
 <p style="margin-top:28px">Prefer email? <a href="mailto:jamaal@bridge2bettersolutions.com">jamaal@bridge2bettersolutions.com</a></p>
 </div>
@@ -468,16 +463,11 @@ p{margin:0}
 <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
 
 <fieldset class="step" data-step="project">
-<legend>Let’s start with your project</legend>
-<p class="intro">A few basics so we know who we are talking with.</p>
+<legend>Let’s start</legend>
 <div class="fields">
 <div class="f"><label class="t" for="f-name">What is your name?</label><input id="f-name" name="name" type="text" autocomplete="name" maxlength="120" required><p class="err">Please fill this in.</p></div>
 <div class="f"><label class="t" for="f-org">What is your business or organization called?</label><input id="f-org" name="organization" type="text" autocomplete="organization" maxlength="160" required><p class="err">Please fill this in.</p></div>
 <div class="f"><label class="t" for="f-email">Best email address</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="254" required><p class="err">Please enter a valid email address.</p></div>
-<div class="f" role="radiogroup" aria-labelledby="l-cm"><span class="t" id="l-cm">How would you prefer we reach you?</span><div class="choices"><label class="choice"><input type="radio" name="contact_method" value="Email" required>Email</label><label class="choice"><input type="radio" name="contact_method" value="Phone call">Phone call</label><label class="choice"><input type="radio" name="contact_method" value="Text message">Text message</label></div><p class="err">Please choose an option.</p></div>
-<div class="f" data-if="contact_method:Phone call|Text message"><label class="t" for="f-phone">Phone number</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required><p class="err">Please enter a phone number.</p></div>
-<div class="f" role="radiogroup" aria-labelledby="l-hw"><span class="t" id="l-hw">Do you have an existing website?</span><div class="choices"><label class="choice"><input type="radio" name="has_website" value="Yes" required>Yes</label><label class="choice"><input type="radio" name="has_website" value="No">No</label></div><p class="err">Please choose an option.</p></div>
-<div class="f" data-if="has_website:Yes"><label class="t" for="f-url">Website address</label><input id="f-url" name="website_url" type="text" inputmode="url" placeholder="yourwebsite.com" maxlength="300" required><p class="err">Please enter your website address.</p></div>
 <div class="f" role="radiogroup" aria-labelledby="l-pt"><span class="t" id="l-pt">What type of project do you need?</span><div class="choices">
 <label class="choice"><input type="radio" name="project_type" value="A quick website fix or update" required>A quick website fix or update</label>
 <label class="choice"><input type="radio" name="project_type" value="A landing page or microsite">A landing page or microsite</label>
@@ -489,20 +479,21 @@ p{margin:0}
 </fieldset>
 
 <fieldset class="step" data-step="organization" hidden>
-<legend>Tell us about your organization</legend>
-<p class="intro">We like to understand the work before we talk about technology.</p>
+<legend>About you and your organization</legend>
 <div class="fields">
+<div class="f" role="radiogroup" aria-labelledby="l-cm"><span class="t" id="l-cm">How would you prefer we reach you?</span><div class="choices"><label class="choice"><input type="radio" name="contact_method" value="Email" required>Email</label><label class="choice"><input type="radio" name="contact_method" value="Phone call">Phone call</label><label class="choice"><input type="radio" name="contact_method" value="Text message">Text message</label></div><p class="err">Please choose an option.</p></div>
+<div class="f" data-if="contact_method:Phone call|Text message"><label class="t" for="f-phone">Phone number</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required><p class="err">Please enter a phone number.</p></div>
+<div class="f" role="radiogroup" aria-labelledby="l-hw"><span class="t" id="l-hw">Do you have an existing website?</span><div class="choices"><label class="choice"><input type="radio" name="has_website" value="Yes" required>Yes</label><label class="choice"><input type="radio" name="has_website" value="No">No</label></div><p class="err">Please choose an option.</p></div>
+<div class="f" data-if="has_website:Yes"><label class="t" for="f-url">Website address</label><input id="f-url" name="website_url" type="text" inputmode="url" placeholder="yourwebsite.com" maxlength="300" required><p class="err">Please enter your website address.</p></div>
 <div class="f"><label class="t" for="f-ind">Which best describes your organization?</label><select id="f-ind" name="industry" required><option value="">Choose one</option><option>Beauty &amp; Wellness</option><option>Home &amp; Property Services</option><option>Professional Services</option><option>Nonprofits &amp; Community</option><option>Faith &amp; Ministries</option><option>Education &amp; Youth</option><option>Events &amp; Creatives</option><option>Retail &amp; Products</option><option>Other</option></select><p class="err">Please choose an option.</p></div>
 <div class="f"><label class="t" for="f-do">What does your organization do?</label><textarea id="f-do" name="what_you_do" maxlength="1200" required></textarea><p class="err">Please fill this in.</p></div>
 <div class="f"><label class="t" for="f-serve">Who do you serve?</label><textarea id="f-serve" name="who_you_serve" maxlength="800" required></textarea><p class="help">Your primary audience, the people the website is for.</p><p class="err">Please fill this in.</p></div>
-<div class="f"><label class="t" for="f-off">What are your primary services, products or programs?<span class="opt-l">Optional</span></label><textarea id="f-off" name="offerings" maxlength="1200"></textarea></div>
-<div class="f"><label class="t" for="f-diff">What makes your organization different?<span class="opt-l">Optional</span></label><textarea id="f-diff" name="difference" maxlength="800"></textarea></div>
 </div>
 </fieldset>
 
 <fieldset class="step" data-step="change" hidden>
 <legend id="change-title">What needs to change?</legend>
-<p class="intro" id="change-intro">Honest answers here shape the work more than anything else.</p>
+<p class="intro" id="change-intro"></p>
 <div class="fields">
 <div class="f" data-path="quick"><label class="t" for="f-task">Describe the exact task</label><textarea id="f-task" name="task_description" maxlength="1500" required></textarea><p class="err">Please fill this in.</p></div>
 <div class="f" data-path="quick"><label class="t" for="f-area">Which page or feature is affected?</label><input id="f-area" name="affected_area" type="text" maxlength="300" required><p class="err">Please fill this in.</p></div>
@@ -520,9 +511,9 @@ p{margin:0}
 
 <fieldset class="step" data-step="vision" data-notquick hidden>
 <legend>Your vision</legend>
-<p class="intro">This is where a website stops being generic.</p>
 <div class="fields">
 <div class="f"><label class="t" for="f-feel">How should visitors feel when they experience your website?</label><textarea id="f-feel" name="visitor_feeling" maxlength="600" required></textarea><p class="err">Please fill this in.</p></div>
+<div class="f"><label class="t" for="f-diff">What makes your organization different?<span class="opt-l">Optional</span></label><textarea id="f-diff" name="difference" maxlength="800"></textarea></div>
 <div class="f"><label class="t" for="f-words">What three words should describe your brand online?<span class="opt-l">Optional</span></label><input id="f-words" name="brand_words" type="text" maxlength="120"></div>
 <div class="f"><label class="t" for="f-admire">Two or three websites you admire, and what appeals to you<span class="opt-l">Optional</span></label><textarea id="f-admire" name="admired_sites" maxlength="1000"></textarea></div>
 <div class="f"><span class="t">What do you already have?<span class="opt-l">Optional</span></span><div class="choices" data-group="assets_available"><label class="choice"><input type="checkbox" value="Brand guidelines">Brand guidelines</label><label class="choice"><input type="checkbox" value="Logo files">Logo files</label><label class="choice"><input type="checkbox" value="Professional photos">Professional photos</label><label class="choice"><input type="checkbox" value="Video">Video</label><label class="choice"><input type="checkbox" value="Written content">Written content</label><label class="choice"><input type="checkbox" value="None of these yet">None of these yet</label></div><input type="hidden" name="assets_available"></div>
@@ -533,7 +524,6 @@ p{margin:0}
 
 <fieldset class="step" data-step="journey" data-notquick hidden>
 <legend>Your ideal customer journey</legend>
-<p class="intro">Websites succeed when they lead people somewhere specific.</p>
 <div class="fields">
 <div class="f"><label class="t" for="f-act">What is the single most important action visitors should take?</label><input id="f-act" name="primary_action" type="text" maxlength="200" placeholder="For example: book a consultation, donate, request an estimate" required><p class="err">Please fill this in.</p></div>
 <div class="f"><label class="t" for="f-qs">What questions must the website answer before someone acts?<span class="opt-l">Optional</span></label><textarea id="f-qs" name="visitor_questions" maxlength="1000"></textarea></div>
@@ -544,7 +534,7 @@ p{margin:0}
 
 <fieldset class="step" data-step="features" hidden>
 <legend>Features, systems and intelligence</legend>
-<p class="intro" id="feat-intro">Choose anything that may be part of the project. Nothing here is a commitment.</p>
+<p class="intro" id="feat-intro"></p>
 <div class="fields">
 <div class="f"><span class="t">Which of these may be needed?<span class="opt-l">Optional</span></span><div class="choices" data-group="features">
 <label class="choice"><input type="checkbox" value="Appointment scheduling">Appointment scheduling</label><label class="choice"><input type="checkbox" value="Contact forms or lead capture">Contact forms or lead capture</label><label class="choice"><input type="checkbox" value="Online payments or e-commerce">Online payments or e-commerce</label><label class="choice"><input type="checkbox" value="Customer portal">Customer portal</label><label class="choice"><input type="checkbox" value="Email marketing">Email marketing</label><label class="choice"><input type="checkbox" value="CRM integration">CRM integration</label><label class="choice"><input type="checkbox" value="Automated follow-up">Automated follow-up</label><label class="choice"><input type="checkbox" value="AI-assisted visitor support">AI-assisted visitor support</label><label class="choice"><input type="checkbox" value="Custom calculators or interactive features">Custom calculators or interactive features</label><label class="choice"><input type="checkbox" value="Analytics and reporting">Analytics and reporting</label><label class="choice"><input type="checkbox" value="Memberships or gated content">Memberships or gated content</label><label class="choice"><input type="checkbox" value="Other requirements">Other requirements</label></div><input type="hidden" name="features"></div>
@@ -555,7 +545,6 @@ p{margin:0}
 
 <fieldset class="step" data-step="scope" hidden>
 <legend>Scope, timeline and readiness</legend>
-<p class="intro">Timelines and investment are agreed together in a written proposal. This simply helps us prepare.</p>
 <div class="fields">
 <div class="f" role="radiogroup" aria-labelledby="l-tl"><span class="t" id="l-tl">When would you like to launch?</span><div class="choices"><label class="choice"><input type="radio" name="timeline" value="As soon as possible" required>As soon as possible</label><label class="choice"><input type="radio" name="timeline" value="Within 1 to 3 months">Within 1 to 3 months</label><label class="choice"><input type="radio" name="timeline" value="3 to 6 months">3 to 6 months</label><label class="choice"><input type="radio" name="timeline" value="6 months or more">6 months or more</label><label class="choice"><input type="radio" name="timeline" value="Flexible, exploring">Flexible, exploring</label></div><p class="err">Please choose an option.</p></div>
 <div class="f"><label class="t" for="f-date">Target date, if you have one<span class="opt-l">Optional</span></label><input id="f-date" name="launch_date" type="date"></div>
@@ -569,10 +558,9 @@ p{margin:0}
 
 <fieldset class="step" data-step="review" hidden>
 <legend>Review and submit</legend>
-<p class="intro">Check everything reads the way you intended. Edit any section before sending.</p>
 <div class="review" id="review"></div>
 <div class="f" id="f-consent"><label class="consent"><input type="checkbox" name="consent" value="Yes" required>I agree that Bridge to Better Solutions, LLC may store the information above and contact me about this inquiry. It will not be sold or shared for marketing.</label><p class="err">Please confirm consent so we can reply.</p></div>
-<p class="small" style="margin-top:12px">Your answers go to Bridge to Better Solutions, LLC and are used only to reply to this inquiry. Email us any time to see or delete them. Please do not include passwords or login details.</p>
+<p class="small" style="margin-top:12px">Used only to reply to you. Email us any time to see or delete your answers.</p>
 </fieldset>
 
 <div class="hp" aria-hidden="true"><label>Company fax<input type="text" name="company_fax" tabindex="-1" autocomplete="off"></label></div>
@@ -581,7 +569,7 @@ p{margin:0}
 <button type="button" class="btn btn-line" id="back" hidden>Back</button>
 <button type="button" class="btn btn-gold" id="next">Continue</button>
 <button type="submit" class="btn btn-gold" id="submit" hidden>Submit project details</button>
-<span class="small">Your answers stay in this browser tab until you submit.</span>
+<span class="small">Saved in this tab until you submit.</span>
 </div>
 <p data-dd-form-status></p>
 </form>
@@ -592,7 +580,7 @@ p{margin:0}
 <section class="final" aria-labelledby="fin-h">
 <div class="wrap">
 <h2 id="fin-h">Your work deserves a digital experience that <em>reflects its value.</em></h2>
-<div><p>Start with a short, guided intake. We reply personally to arrange a discovery conversation.</p><div class="ctas"><a class="btn btn-navy" href="#intake">Let’s Build Something Better</a></div></div>
+<div><p>A short, guided intake. A personal reply.</p><div class="ctas"><a class="btn btn-navy" href="#intake">Let’s Build Something Better</a></div></div>
 </div>
 </section>
 </main>
@@ -632,17 +620,17 @@ $$('a',panel).forEach(function(a){a.addEventListener('click',function(){menu(fal
 panel.addEventListener('click',function(e){if(e.target===panel)menu(false)});
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))menu(false)});
 /* slider */
-var stage=$('#stage'),knob=$('#knob'),pos=50,drag=false;
+var stage=$('#stage'),knob=$('#knob'),pos=50,drag=false,touched=false;
 function setPos(p){pos=Math.max(0,Math.min(100,p));stage.style.setProperty('--p',pos+'%');knob.setAttribute('aria-valuenow',Math.round(pos));knob.setAttribute('aria-valuetext',Math.round(pos)+' percent before, '+Math.round(100-pos)+' percent after')}
 function fromX(x){var r=stage.getBoundingClientRect();setPos((x-r.left)/r.width*100)}
-stage.addEventListener('pointerdown',function(e){drag=true;stage.setPointerCapture(e.pointerId);fromX(e.clientX)});
+stage.addEventListener('pointerdown',function(e){drag=true;touched=true;stage.setPointerCapture(e.pointerId);fromX(e.clientX)});
 stage.addEventListener('pointermove',function(e){if(drag)fromX(e.clientX)});
 ['pointerup','pointercancel'].forEach(function(t){stage.addEventListener(t,function(){drag=false})});
-knob.addEventListener('keydown',function(e){var s=e.shiftKey?10:2,m={ArrowLeft:-s,ArrowDown:-s,ArrowRight:s,ArrowUp:s,PageDown:-10,PageUp:10};if(e.key==='Home')setPos(0);else if(e.key==='End')setPos(100);else if(m[e.key]!==undefined)setPos(pos+m[e.key]);else return;e.preventDefault()});
+knob.addEventListener('keydown',function(e){touched=true;var s=e.shiftKey?10:2,m={ArrowLeft:-s,ArrowDown:-s,ArrowRight:s,ArrowUp:s,PageDown:-10,PageUp:10};if(e.key==='Home')setPos(0);else if(e.key==='End')setPos(100);else if(m[e.key]!==undefined)setPos(pos+m[e.key]);else return;e.preventDefault()});
 $$('[data-dev]').forEach(function(b){b.addEventListener('click',function(){$$('[data-dev]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});stage.classList.toggle('phone',b.dataset.dev==='phone')})});
 if(matchMedia('(max-width:639px)').matches)$('[data-dev="phone"]').click();
 setPos(50);
-if(!still&&'IntersectionObserver'in window){var nio=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;nio.disconnect();var t0=performance.now();(function run(n){if(drag)return;var t=(n-t0)/1600;if(t>=1)return setPos(50);setPos(50-Math.sin(t*Math.PI*2)*14*(1-t));requestAnimationFrame(run)})(t0)},{threshold:.5});nio.observe(stage)}
+if(!still&&'IntersectionObserver'in window){var nio=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;nio.disconnect();var t0=performance.now();(function run(n){if(drag||touched)return;var t=(n-t0)/1600;if(t>=1)return setPos(50);setPos(50-Math.sin(t*Math.PI*2)*14*(1-t));requestAnimationFrame(run)})(t0)},{threshold:.5});nio.observe(stage)}
 /* gallery filter + lightbox */
 var items=$$('#gal li'),chips=$('#chips'),cats=['All'].concat(items.map(function(li){return li.dataset.cat}));
 cats.forEach(function(c){var b=d.createElement('button');b.type='button';b.className='chip';b.textContent=c;b.setAttribute('aria-pressed',c==='All');b.addEventListener('click',function(){$$('.chip',chips).forEach(function(x){x.setAttribute('aria-pressed',x===b)});items.forEach(function(li){li.hidden=c!=='All'&&li.dataset.cat!==c})});chips.appendChild(b)});
@@ -665,9 +653,9 @@ function syncGroups(){$$('[data-group]',form).forEach(function(g){var v=$$('inpu
 function condOk(f){var c=f.dataset.if;if(c){var p=c.split(':'),opts=p[1].split('|'),n=p[0],v=n==='features'?form.elements.features.value.split(', '):[val(n)];if(!v.some(function(x){return opts.indexOf(x)>=0}))return false}if(f.dataset.path&&f.dataset.path!==path())return false;return true}
 function visSteps(){return steps.filter(function(s){return!(s.hasAttribute('data-notquick')&&path()==='quick')})}
 function refresh(){syncGroups();form.elements.project_path.value=path();$$('.f',form).forEach(function(f){var ok=condOk(f);f.hidden=!ok;$$('input,select,textarea',f).forEach(function(i){if(i.type!=='hidden'||!ok)i.disabled=!ok})});
-var p=path(),ct={quick:['What needs attention?','Describe the task as precisely as you can. It helps us scope it accurately.'],existing:['What needs to change?','Honest answers here shape the redesign more than anything else.'],'new':['What should the new website do?','Start with outcomes. Pages and features follow from them.']}[p];
+var p=path(),ct={quick:['What needs attention?','The more precise, the faster we can scope it.'],existing:['What needs to change?','Honest answers shape the redesign.'],'new':['What should the new website do?','Start with outcomes. Pages follow.']}[p];
 var vsx=visSteps();steps.forEach(function(st){if(vsx.indexOf(st)<0)$$('input,select,textarea',st).forEach(function(i){i.disabled=true})});
-$('#change-title').textContent=ct[0];$('#change-intro').textContent=ct[1];$('#feat-intro').textContent=p==='quick'?'Does the task touch any of these? Skip if not.':'Choose anything that may be part of the project. Nothing here is a commitment.'}
+$('#change-title').textContent=ct[0];$('#change-intro').textContent=ct[1];$('#feat-intro').textContent=p==='quick'?'Skip if none apply.':'Nothing here is a commitment.'}
 function render(){refresh();var vs=visSteps();if(idx>=vs.length)idx=vs.length-1;steps.forEach(function(s){s.hidden=s!==vs[idx]});$('#stepcount').textContent='Step '+(idx+1)+' of '+vs.length;$('#barfill').style.width=((idx+1)/vs.length*100)+'%';
 $('#back').hidden=idx===0;var last=vs[idx].dataset.step==='review';$('#next').hidden=last;$('#submit').hidden=!last;$('#next').textContent=idx===vs.length-2?'Review answers':'Continue';if(last)buildReview()}
 function check(s){var bad=null;$$('.f',s).forEach(function(f){if(f.hidden)return;var ins=$$('input,select,textarea',f).filter(function(i){return!i.disabled&&i.type!=='hidden'});var ok=ins.every(function(i){if(i.type==='radio'){return!i.required||$$('input[name="'+i.name+'"]',f).some(function(r){return r.checked})}return i.checkValidity()&&(!i.required||i.value.trim())});
@@ -698,7 +686,7 @@ if(picks[0]===o[2])return{p:'Path B',t:'A complete website buildout',w:'Starting
 if(picks[0]===o[3])return{p:'Path B',t:'A signature digital experience',w:'You want a site that sets you apart, with original direction and journeys designed around your audience.',i:['Creative direction shaped around your brand','Custom design and interactive moments where they earn their place','Connected intake, booking or CRM where it helps'],s:m({project_type:'An advanced interactive digital experience',has_website:'Yes'},base)};
 return{p:'Path B',t:picks[0]===o[1]?'A thoughtful redesign':'A redesign of key pages',w:'What exists is worth building on. The gains come from rethinking structure, design and the path to contact.',i:['A review of what works today and what must be kept','New structure and design for the pages that matter most','Clearer journeys from first visit to inquiry'],s:m({project_type:PT.redesign,has_website:'Yes'},base)}}
 function drawF(){bars.forEach(function(b,i){b.classList.toggle('on',i<picks.length)});fb.innerHTML='';if(picks.length<3){var q=Q[picks.length],fs=d.createElement('fieldset');fs.className='fq';var lg=d.createElement('legend');lg.className='q';lg.textContent=(picks.length+1)+' of 3: '+q[0];fs.appendChild(lg);var g=d.createElement('div');g.className='opts';q[1].forEach(function(o){var b=d.createElement('button');b.type='button';b.className='opt';b.textContent=o;b.addEventListener('click',function(){picks.push(o);drawF();if(picks.length===3){var hh=$('h4',fb);if(hh)hh.focus()}else{var nb=$('.opt',fb);if(nb)nb.focus()}});g.appendChild(b)});fs.appendChild(g);if(picks.length){var bk=d.createElement('button');bk.type='button';bk.className='linkbtn';bk.textContent='Back';bk.addEventListener('click',function(){picks.pop();drawF()});fs.appendChild(bk)}fb.appendChild(fs);return}
-var r=rec(),w=d.createElement('div');w.className='res';w.innerHTML='<p class="small"></p><h4 tabindex="-1"></h4><p></p><ul></ul><div class="ctas"><a class="btn btn-gold" href="#intake">Continue with this path</a><button type="button" class="linkbtn">Start over</button></div><p class="small" style="margin-top:12px">A starting point, not a quote. Scope, timing and investment are always agreed in writing.</p>';
+var r=rec(),w=d.createElement('div');w.className='res';w.innerHTML='<p class="small"></p><h4 tabindex="-1"></h4><p></p><ul></ul><div class="ctas"><a class="btn btn-gold" href="#intake">Continue with this path</a><button type="button" class="linkbtn">Start over</button></div><p class="small" style="margin-top:12px">A starting point, not a quote.</p>';
 $('p',w).textContent='Our recommendation: '+r.p;$('h4',w).textContent=r.t;$$('p',w)[1].textContent=r.w;r.i.forEach(function(x){var li=d.createElement('li');li.textContent=x;$('ul',w).appendChild(li)});$('a',w).addEventListener('click',function(){preset(r.s)});$('.linkbtn',w).addEventListener('click',function(){picks=[];drawF();$('.opt',fb).focus()});fb.appendChild(w)}
 drawF();
 })();
