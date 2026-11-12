@@ -73,3 +73,22 @@ dashed brass boxes labelled **"Placeholder · …"** so reviewers can see what's
 ## Design assumptions
 - Brass accent (#D6B26A) is an addition to the blue/white brand, kept to heritage cues and the live state.
 - Fonts: Big Shoulders (designed for Chicago), Instrument Serif, Inter, self-hosted via `next/font`.
+
+## DemoDrop build (https://fellowship-chicago.ddsites.co)
+Static port of this site for the agency's DemoDrop host (plain HTML/CSS/vanilla JS, 8 pages).
+Source: `demodrop/gen.py` + `demodrop/pages.py` (run `python3 demodrop/gen.py`, output in `demodrop/out/`).
+- Real assets pulled by DemoDrop from fellowshipchicago.com: white logo, logo mark, site icon (favicon),
+  Pastor Sharpe portrait, timeline photos 2 to 4. The blue logo URL returned 404.
+- NEEDS REAL PHOTOS: the homepage hero and the I'm New, Watch, Get Connected, Give and Care page headers use
+  DemoDrop STOCK PLACEHOLDER worship photos (not this church). Replace with the church's own photos.
+- Agency-rule changes vs the Next.js build: Adobe kit fonts (roc-grotesk-condensed, ivypresto-display,
+  proxima-nova) instead of Google fonts (Inter is banned); no eyebrow labels, section numbers or dashes;
+  forms use DemoDrop `data-dd-form` (Plan a Visit, Ministry Sign-Up, Prayer Request, Grief Support, Contact),
+  so submissions are saved and emailed to the site owner by the platform.
+- Kept from the approved direction despite the agency white-base default: the dark "Harbor at Night" theme
+  (one white band per page) and the brass heritage accent.
+- Sermon library on DemoDrop is the channel's uploads playlist embed (no series/scripture filter, since a static
+  page cannot read the YouTube feed). The Next.js build has the filterable library.
+- A sermon thumbnail shows the church's giving slide with what look like Zelle, text-to-give and PayPal details;
+  confirm them with the church and add to the Give page.
+- Refuel appears to be in season now (a Tuesday 7:00 PM Refuel video is the latest upload).
