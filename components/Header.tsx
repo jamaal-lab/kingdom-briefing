@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { giving } from "@/content/site";
 
 export const doors = [
   { href: "/im-new", label: "I'm New" },
@@ -76,12 +75,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={giving.primary.url}
+          <Link
+            href="/give"
             className="hidden min-h-11 items-center rounded-full bg-brand px-5 text-sm font-semibold text-foam transition hover:bg-brand-bright sm:inline-flex"
           >
             Give
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

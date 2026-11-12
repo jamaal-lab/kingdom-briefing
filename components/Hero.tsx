@@ -24,6 +24,8 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "18%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
 
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
   // Defer the third-party embed until after first paint; skip it for reduced motion.
   useEffect(() => {
     if (reduce) return;
@@ -31,9 +33,24 @@ export function Hero() {
     return () => clearTimeout(t);
   }, [reduce]);
 
+  // Only reveal the video once YouTube reports it is actually playing, so a
+  // blocked or failed embed never shows a grey error frame over the hero.
+  useEffect(() => {
+    if (!loadBg) return;
+    const onMsg = (e: MessageEvent) => {
+      if (!/youtube(-nocookie)?\.com$/.test(new URL(e.origin).hostname)) return;
+      try {
+        const d = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+        if (d?.info?.playerState === 1 || d?.info?.currentTime > 0) setBgReady(true);
+      } catch {}
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, [loadBg]);
+
   const ytSrc =
     `https://www.youtube-nocookie.com/embed/videoseries?list=${youtube.uploadsPlaylist}` +
-    `&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3`;
+    `&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&enablejsapi=1`;
 
   const line = {
     hidden: { y: reduce ? 0 : "110%", opacity: reduce ? 0 : 1 },
@@ -77,7 +94,10 @@ export function Hero() {
                 src={ytSrc}
                 tabIndex={-1}
                 allow="autoplay; encrypted-media; picture-in-picture"
-                onLoad={() => setTimeout(() => setBgReady(true), 1200)}
+                ref={frameRef}
+                onLoad={() =>
+                  frameRef.current?.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: "hero" }), "*")
+                }
                 className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
               />
             </div>
