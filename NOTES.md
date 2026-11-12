@@ -92,3 +92,19 @@ Source: `demodrop/gen.py` + `demodrop/pages.py` (run `python3 demodrop/gen.py`, 
 - A sermon thumbnail shows the church's giving slide with what look like Zelle, text-to-give and PayPal details;
   confirm them with the church and add to the Give page.
 - Refuel appears to be in season now (a Tuesday 7:00 PM Refuel video is the latest upload).
+
+## Content pass from the live church site (DemoDrop build)
+- Events read from the church's own flyers and sign-up forms (in `demodrop/pages.py` EVENTS; past ones hide
+  automatically by end date): Holiday Decorating Team Nov 16 to 24; Men's Prayer Breakfast Sat Nov 21, 10 AM to 12 PM;
+  Jump for Joy Double Dutch Sat Nov 21, 12 to 1:30 PM; 2027 Worship and Arts Workshop Jan 29 to 30, 2027, Hilton
+  Chicago/Oak Lawn. Plus the ongoing Faith and Wisdom Prayer Call.
+- Left out: Chocolate Santa premiere (its event page says ended or unpublished); Faith in Focus (page has no content);
+  the homepage hero form (closed to submissions). In The Midst grief support links to its Zoom registration; its
+  schedule is not public.
+- Staff headshots: 10 matched by card structure on /our-leadership/ (each photo sits directly before its name in the
+  same card) and checked visually. Brianna Sharpe is name only (her image is outside her card). Church to confirm.
+- Built to Last (76th anniversary, Sep 6, 13, 20, 2026) kept as a section on Our Story plus a 2026 timeline entry.
+- Real photos now in use: sanctuary (home hero), worship team (Watch), Fellowship On Da Block (home impact, Connect).
+  Stock placeholders remain on the I'm New, Give and Care headers.
+- Still unconfirmed: third service 1:00 vs 1:15; Kidz Zone ages 3 to 10 vs 3 to 11 (site says "from age 3");
+  parking, nursery, dress, service length (not on the current site). Ministry age and interest tags are my grouping.

@@ -63,7 +63,7 @@ CSS = r"""
 html{background:var(--ink);color-scheme:dark;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--ink);color:var(--foam);font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
+a{color:inherit}a[href^="mailto"]{overflow-wrap:anywhere}
 :focus-visible{outline:3px solid var(--brand-hi);outline-offset:3px;border-radius:6px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 18px}
 @media(min-width:700px){.wrap{padding:0 32px}}
@@ -343,6 +343,37 @@ body{padding-bottom:72px}@media(min-width:900px){body{padding-bottom:0}}
 .map{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
 .map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.9) hue-rotate(180deg)}
 
+
+/* events with sign-up */
+.ev .where{display:flex;gap:8px;align-items:center;color:var(--tide);font-size:1rem}
+.ev .where .ic{width:18px;height:18px}
+.ev .ecta{margin-top:auto;min-height:46px;padding:0 20px;align-self:flex-start;font-size:1rem;color:var(--ink)}
+.ev .muted{font-size:1rem}
+.ev li[hidden]{display:none}
+@media(min-width:700px){.evx .evp{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 28px}.evx .evp .ecta{margin:0 0 0 auto}}
+/* feature photo */
+.feat img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center 30%;max-height:560px}
+@media(max-width:699px){.feat img{aspect-ratio:4/3}}
+/* timeline inline archive photo */
+.tlimg{margin:18px 0 0;max-width:420px}
+.tlimg img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);filter:grayscale(1) contrast(1.05)}
+.tlimg figcaption{margin-top:8px;color:var(--tide);font-size:.95rem}
+/* built to last */
+.btl{display:grid;gap:36px}
+@media(min-width:1000px){.btl{grid-template-columns:.75fr 1.25fr;gap:72px;align-items:center}}
+.btl .frame img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;max-height:620px}
+.btl-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
+.btl-list li{display:grid;gap:4px;padding:16px 0;border-top:1px solid rgba(214,178,106,.4)}
+.btl-list strong{font-family:var(--font-heading);font-size:1.6rem;text-transform:uppercase;color:var(--brass)}
+/* staff with photos */
+.crewp{gap:28px 20px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:700px){.crewp{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1200px){.crewp{grid-template-columns:repeat(5,1fr)}}
+.crewp li{border-top:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.crewp img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 20%;border-radius:var(--r);margin-bottom:10px;background:var(--hull)}
+.crewp span{font-size:1rem;line-height:1.35}
+.crewp a{font-size:.9rem;color:var(--brand-hi);overflow-wrap:anywhere;margin-top:4px}
+
 /* reveals: visible by default, hidden only under .mo */
 .mo .rv{opacity:0;transform:translateY(20px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
 .mo .rv.in{opacity:1;transform:none}
@@ -418,6 +449,9 @@ if(hv&&!rm&&!navigator.webdriver){setTimeout(function(){var f=d.createElement('i
   f.src='https://www.youtube-nocookie.com/embed/videoseries?list=UUbc_LGxLxkKMdfzm54HMEGg&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3&enablejsapi=1';
   f.onload=function(){f.contentWindow.postMessage(JSON.stringify({event:'listening',id:'hero'}),'*')};hv.appendChild(f);
   addEventListener('message',function(e){if(!/youtube(-nocookie)?\.com$/.test((e.origin.split('//')[1]||'')))return;try{var x=typeof e.data==='string'?JSON.parse(e.data):e.data;if(x&&x.info&&(x.info.playerState===1||x.info.currentTime>0))hv.classList.add('on');}catch(_){}});},900);}
+/* event expiry */
+var today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago'}).format(new Date());
+d.querySelectorAll('[data-end]').forEach(function(li){if(li.dataset.end<today)li.hidden=true;});
 /* footer year */
 var yr=d.querySelector('[data-year]');if(yr)yr.textContent=new Date().getFullYear();
 })();
@@ -489,7 +523,7 @@ def minjs(j):
     return "\n".join(l.strip() for l in j.splitlines() if l.strip())
 
 
-KEEP = {"mo","in","on","solid","open","is-live","ldot","cd","n","m","dt","tm","rv","rvi","sr"}
+KEEP = {"mo","in","on","solid","open","is-live","ldot","cd","rv","rvi","sr"}
 
 
 def prune(css, html):
@@ -541,6 +575,7 @@ NEEDS = {
     "timeline active year": ('class="tl"',),
     "player buttons on watch page": ("data-play",),
     "hero video: reveal only once YouTube reports playback": ("hero-vid",),
+    "event expiry": ("data-end",),
 }
 
 

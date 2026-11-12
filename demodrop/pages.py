@@ -1,46 +1,104 @@
 # Page bodies. Executed inside gen.py (shares its helpers).
 
 TIMELINE = [
-    (1950, "Founded as Mount Carmel Missionary Baptist Church", "Rev. Dr. Clay Evans begins the church."),
-    (1952, "Renamed Fellowship. First radio broadcast", ""),
-    (1959, "Buys the site at 45th and Princeton", ""),
-    (1965, "First LP recording. Jesse Jackson Sr. ordained", ""),
-    (1973, "The current building opens", ""),
-    (1977, "Television broadcast and credit union launch", ""),
-    (2000, "Rev. Clay Evans retires", ""),
-    (2001, "Pastor Charles Jenkins inaugurated", ""),
-    (2007, "Live streaming begins", ""),
-    (2013, "Five Stellar Awards", ""),
-    (2018, "Sanctuary remodeled", ""),
-    (2019, "Rev. Reginald W. Sharpe Jr. named Pastor", "The third pastor in Fellowship's history."),
+    (1950, "Born in a funeral home", "September 10, 1950: Mount Carmel Missionary Baptist Church is born inside Winfred Harris Funeral Home at 49th and State. Founding members: Joseph Evans, Pharis Evans, Lou Della Evans-Reid, Robert Bond and Arthur Spraggins."),
+    (1952, "Renamed Fellowship. On the radio", "February 14, 1952, the name becomes Fellowship Missionary Baptist Church. In October the first service airs on WWCA in Gary, Indiana, premiering \"What A Fellowship.\""),
+    (1954, "A garage becomes a sanctuary", "Rev. Evans ordains Rev. Consuella York. Fellowship buys an old garage at 4621 S. State Street for $25,000, with no heat and a leaky roof, and transforms it."),
+    (1959, "45th and Princeton", "November 15, 1959: the church buys the site at 45th Place and Princeton Avenue for $110,000."),
+    (1965, "First LP. Jesse Jackson Sr. ordained", "The Fellowship Choir records its first LP. Rev. Evans ordains Rev. Jesse Jackson Sr., who later co-signs the mortgage for the current building."),
+    (1973, "A building politics could not stop", "April 8, 1973: the new $500,000 church opens. Its steel frame had stood bare for seven years because construction was halted by downtown politics."),
+    (1977, "On television. A credit union", "The What a Fellowship Hour airs on TV Channel 38, the choir tours U.S. cities, and Fellowship Credit Union is established."),
+    (2000, "Rev. Dr. Clay Evans retires", "After grooming Rev. Charles Jenkins as his successor since 1998, Dr. Evans retires on December 8, 2000."),
+    (2001, "Pastor Charles Jenkins", "January 14 to 21, 2001: the inauguration of Pastor Charles Jenkins."),
+    (2003, "Fellowship Manor", "Groundbreaking for Fellowship Manor, a senior citizens building at 5041 S. Princeton."),
+    (2007, "Live, worldwide", "Fellowship begins streaming services online."),
+    (2009, "Fellowship Bible Academy", "Christian education courses begin in the fall of 2009."),
+    (2013, "Five Stellar Awards", "Pastor Jenkins and Fellowship Chicago win five Stellar Awards for The Best of Both Worlds, including Song of the Year for \"Awesome.\""),
+    (2018, "Sanctuary remodeled", "The main sanctuary at 45th and Princeton is renewed."),
+    (2019, "Rev. Reginald W. Sharpe Jr.", "Named Associate Pastor, then Pastor, as Pastor Jenkins becomes Pastor Emeritus. #FollowingGod"),
+    (2026, "Built to Last: 76 years", "Fellowship celebrates its 76th anniversary. Rooted in purpose, growing in focus."),
 ]
+TL_PHOTOS = {1977: "/images/timeline-2.jpg", 2000: "/images/timeline-4.jpg"}
+# (name, role, photo or None, email, phone). Photos matched by card structure on /our-leadership/.
 LEADERS = [
-    ("Brianna Sharpe", "First Lady"), ("Frazlier L. Pope III", "Executive Pastor"),
-    ("Kesha Brown", "Chief Financial Officer"), ("Wendy Irby", "Director of Membership Services and Assimilation"),
-    ("Kevin Vasser", "Pastor of Worship and Arts"), ("Jillian Twiggs", "Youth Pastor"),
-    ("Damien Martin", "Director of Ministry Operations"), ("Debra Earl", "Executive Assistant to the Pastor"),
-    ("Rafael Evans", "Office Coordinator"), ("Roxanne Montgomery", "Accounts Payable Manager"),
-    ("Ashley Cheeks", "Digital Communications Strategist"),
+    ("Brianna Sharpe", "First Lady", None, "", ""),
+    ("Frazlier L. Pope III", "Executive Pastor", "/images/staff-frazlier-pope.jpg", "FPope@fellowshipchicago.com", "773-373-8535"),
+    ("Kesha Brown", "Chief Financial Officer", "/images/staff-kesha-brown.jpg", "LBrown@fellowshipchicago.com", "773-451-3805"),
+    ("Wendy Irby", "Director of Membership Services and Assimilation", "/images/staff-wendy-irby.jpg", "WIrby@fellowshipchicago.com", "773-373-8530"),
+    ("Kevin Vasser", "Pastor of Worship and Arts", "/images/staff-kevin-vasser.jpg", "KVasser@fellowshipchicago.com", ""),
+    ("Jillian Twiggs", "Youth Pastor", "/images/staff-jillian-twiggs.jpg", "JTwiggs@fellowshipchicago.com", ""),
+    ("Debra Earl", "Executive Assistant to the Pastor", "/images/staff-debra-earl.jpg", "DEarl@fellowshipchicago.com", "773-373-8555"),
+    ("Rafael Evans", "Office Coordinator", "/images/staff-rafael-evans.jpg", "REvans@fellowshipchicago.com", ""),
+    ("Roxanne Montgomery", "Accounts Payable Manager", "/images/staff-roxanne-montgomery.jpg", "RMontgomery@fellowshipchicago.com", ""),
+    ("Damien Martin", "Director of Ministry Operations", "/images/staff-damien-martin.jpg", "DMartin@fellowshipchicago.com", "773-451-3801"),
+    ("Ashley Cheeks", "Digital Communications Strategist", "/images/staff-ashley-cheeks.jpg", "ACheeks@fellowshipchicago.com", "773-451-3816"),
 ]
 MISSION = [("T", "Teaching"), ("H", "Hospitality"), ("E", "Engagement"), ("S", "Service"),
            ("H", "Holistic Ministry"), ("I", "Innovation"), ("P", "Praise and Worship")]
+A = "Young Adults|Adults|Seniors"
 MINISTRIES = [
-    ("Kidz Zone", "Children's ministry during the 10:45 AM Sunday service.", "Children", "Discipleship", "", "Sundays, 10:45 AM"),
-    ("Youth Ministry", "Students meet Sundays at 10:45 AM.", "Youth", "Discipleship|Fellowship", "Jillian Twiggs, Youth Pastor", "Sundays, 10:45 AM"),
-    ("Worship and Arts", "Music and creative arts in worship at The Ship.", "Youth|Young Adults|Adults|Seniors", "Worship and Arts", "Kevin Vasser, Pastor of Worship and Arts", ""),
-    ("Refuel", "The midweek service to recharge, in person and online.", "All Ages", "Discipleship|Worship and Arts", "", "Tuesdays, 7:00 PM (seasonal)"),
-    ("Community Table", "Shared meals and a seat at the table for our neighbors.", "All Ages", "Service and Outreach|Hospitality", "", ""),
-    ("Food Giveaway", "Groceries for families in our community.", "All Ages", "Service and Outreach", "", ""),
-    ("Social Justice", "Carrying forward Fellowship's civil rights legacy in our city today.", "Young Adults|Adults|Seniors", "Justice|Service and Outreach", "", ""),
-    ("Membership and Assimilation", "Joining Fellowship and finding your place on board.", "Young Adults|Adults|Seniors", "Hospitality|Fellowship", "Wendy Irby, Director of Membership Services and Assimilation", ""),
-    ("The Virtual Ship", "Worship online with us on YouTube and Facebook.", "All Ages", "Media and Tech", "", "Every Sunday service, streamed live"),
+    ("Kidz Zone Children's Ministry", "A setting for children from age 3 to worship, learn and grow as followers of Christ. Children must be potty-trained.", "Children", "Discipleship", "KidzZone@fellowshipchicago.com", "Sundays, 10:45 AM"),
+    ("Wave Youth Ministry", "Reaching middle and high school students, ages 12 to 18, to live out their Christian faith.", "Youth", "Discipleship|Fellowship", "Jillian Twiggs, Youth Pastor", ""),
+    ("Youth Student Ministries", "Middle and high school students, ages 12 to 18, growing in faith. Youth Recharge is their worship experience.", "Youth", "Discipleship|Fellowship", "StudentMinistry@fellowshipchicago.com", ""),
+    ("Girl Scouts", "Ages 5 to 18. Building girls of courage, confidence and character. September through June.", "Children|Youth", "Fellowship|Service and Outreach", "", "2nd and 4th Saturdays"),
+    ("The Crew Young Adult Ministry", "Edifying, empowering, encouraging and engaging adults 21 to 39 through events and experiences.", "Young Adults", "Fellowship|Discipleship", "", ""),
+    ("Kings and Priest Men's Ministry", "Building kingdom men of purpose, promise and power through teaching, fellowship and accountability.", A, "Discipleship|Fellowship", "", ""),
+    ("Sisters With Vision Women's Ministry", "Empowering women to walk in their royal status through teaching, fellowship and accountability.", A, "Discipleship|Fellowship", "", ""),
+    ("Soulmates Marriage Ministry", "Giving couples tools and examples for marriages that thrive.", A, "Fellowship|Care", "", ""),
+    ("Senior Care Ministry", "Resources and fellowship for Fellowship's seniors, in and outside the church.", "Seniors", "Care|Fellowship", "", ""),
+    ("Fellowship Bible Academy", "Fellowship's Christian education courses, offered in terms each year.", A, "Discipleship", "", "Fall, spring and summer terms"),
+    ("Intercessory Prayer Team", "Standing in the gap in prayer for members, the church and our leaders.", A, "Care|Discipleship", "", ""),
+    ("Music Ministry", "Band, Praise Team, Sanctuary Choir, Men's Choir, Voices of Genesis Young Adult Choir and Women's Choir.", "Youth|" + A, "Worship and Arts", "Kevin Vasser, Pastor of Worship and Arts", ""),
+    ("Movements of Praise Dance Ministry", "Worship through dance, creating an atmosphere of praise (Romans 12:1).", "Youth|" + A, "Worship and Arts", "", ""),
+    ("Media Ministry", "All of Fellowship's telecommunication: radio, television and internet.", "Youth|" + A, "Media and Tech", "", ""),
+    ("Media Sales", "The team responsible for product sales.", A, "Media and Tech", "", ""),
+    ("Ambassadors", "The welcoming arm of the church body.", A, "Hospitality", "", ""),
+    ("First Touch", "Our intake team that greets and welcomes new members.", A, "Hospitality", "", ""),
+    ("Peacekeepers Security Ministry", "Securing the building during worship services and events.", A, "Hospitality|Service and Outreach", "", ""),
+    ("Culinary Ministry", "Excellence in food service for programs, and care of the church kitchen.", A, "Hospitality|Service and Outreach", "", ""),
+    ("V.I.B.E.", "Volunteer to Impact, Build and Empower: turning good intentions into great actions.", "Youth|" + A, "Service and Outreach", "", ""),
+    ("Community Table", "Hot food for our community every Thursday.", "All Ages", "Service and Outreach|Hospitality", "", "Thursdays, 12 to 2 PM"),
+    ("Freely Give", "Fellowship's food and clothing giveaway.", "All Ages", "Service and Outreach", "", "Wednesdays 7 to 10 AM, 4th Saturdays 8 to 11 AM"),
+    ("Social Justice Ministry", "Meaningful change through advocacy, equity and systemic justice, grounded in the teachings of Christ.", A, "Justice|Service and Outreach", "", ""),
+    ("Violence Support Ministry", "Support for families who have lost loved ones to violent crime.", A, "Care|Justice", "", ""),
+    ("Congregational Care Ministry", "Regular visits, prayer and support for sick and immobile members.", A, "Care", "", ""),
+    ("Bereavement Ministry", "Helping families arrange funerals at Fellowship and honoring members who have passed.", A, "Care", "", ""),
+    ("Medical Ministry", "Health education and care from licensed team members, for members and community.", A, "Care|Service and Outreach", "", ""),
+    ("Recovery Ministry", "Breaking the chains of addiction through faith and salvation.", A, "Care", "", ""),
+    ("Membership and Assimilation", "Joining Fellowship and finding your place on board.", A, "Hospitality|Fellowship", "Wendy Irby, Director of Membership Services and Assimilation", ""),
+    ("Credit Union", "Fellowship's member-owned, not-for-profit financial cooperative: people helping people.", A, "Service and Outreach", "", "Saturdays, 10 AM to 12 PM"),
+    ("Refuel", "The midweek worship experience, in person and online.", "All Ages", "Discipleship|Worship and Arts", "", "Tuesdays, 7:00 PM (seasonal)"),
 ]
+# Dated events from the church's own flyers and sign-up forms. Past events hide automatically.
+EVENTS = [
+    ("2026-11-16", "2026-11-24", "Holiday Decorating Team", "Volunteer shifts to deck the halls at Fellowship. Sign up for one or more.", "Shifts Nov 16 to 24", "Fellowship Chicago", "https://docs.google.com/forms/d/e/1FAIpQLSctbexmdmpEQCIPJoguAZ4GjP8QwEFumAdXjFxErQ2l3Kwgwg/viewform", "Volunteer"),
+    ("2026-11-21", "2026-11-21", "Men's Prayer Breakfast", "Kings and Priests Men's Ministry: prayer, fellowship and brotherhood.", "10 AM to 12 PM", "Fellowship Chicago", "https://fellowshipchicago.shelbynextchms.com/external/form/29e12ac7-75d4-416e-8995-de14401a6857", "RSVP"),
+    ("2026-11-21", "2026-11-21", "Jump for Joy", "A Double Dutch class for beginners and pros. Ages 12 and up. Spots are limited.", "12 to 1:30 PM", "Fellowship Chicago", "https://fellowshipchicago.shelbynextchms.com/external/form/fdf47711-f71b-4c74-8d68-45c64d05b3d1", "Register"),
+    ("2027-01-29", "2027-01-30", "2027 Worship and Arts Workshop", "The Power of the Flow: two days for worship leaders, musicians, dancers, media teams and creatives.", "Fri 7 PM, Sat 7 AM to 3 PM", "Hilton Chicago/Oak Lawn", "https://fellowshipchicago.shelbynextchms.com/external/form/d2f52bd1-4d84-47c8-a568-a838be71218d", "Register"),
+]
+PRAYER_CALL = "Monday to Friday at 7 AM and Saturday at 12 PM Central. Dial 425-436-6200, access code 272251#."
+GRIEF_ZOOM = "https://fellowshipchicago.zoom.us/meeting/register/w9f5CCFjRvaf1g5nuOYgOQ"
+REFUEL_HANDOUT = "https://www.dropbox.com/scl/fo/si4fuvj5b4z21gdeng0uv/AGQ91SCoWG5gAgo3aN-PsJA?rlkey=y4jra60wu6cr6bb7ta87bdayl&st=y3o4dmga&dl=0"
+MUSIC = "https://FMBC.lnk.to/TheFlow"
+CU = "https://www.fellowshipchicagocu.com/"
+
+import datetime as _dt
+def _fmt(d):
+    x=_dt.date.fromisoformat(d); return x
+def event_cards():
+    out=[]
+    for st,en,title,blurb,time,where,url,cta in EVENTS:
+        a=_fmt(st); b=_fmt(en)
+        mon=a.strftime("%b"); day=str(a.day) if st==en else f"{a.day}-{b.day}" if a.month==b.month else str(a.day)
+        dow=a.strftime("%a") if st==en else (a.strftime("%a")+" to "+b.strftime("%a") if (b-a).days<=2 else "Multiple days")
+        out.append(f'<li class="rv" data-end="{en}"><div class="dt"><span class="n">{day}</span><span class="m">{mon} {a.year}<br>{dow}</span></div><h3>{title}</h3><span class="tm">{time}</span><p class="muted">{blurb}</p><p class="where">{ic("pin")}<span>{where}</span></p><a class="btn btn-light ecta" href="{url}">{cta}</a></li>')
+    return "".join(out)
 
 # ------------------------------------------------------------------ HOME
 home = f"""
 <section class="hero" aria-labelledby="h1">
  <div class="hero-media">
-  <img src="/images/stock-3.jpg" alt="A congregation with hands raised in worship before a lit stage and cross" width="1600" height="1067" loading="eager" fetchpriority="high">
+  <img src="/images/sanctuary-pastor.jpg" alt="Pastor Reginald W. Sharpe Jr. greeting members in the sanctuary beneath the stained glass" width="2560" height="1708" loading="eager" fetchpriority="high" style="object-position:65% 30%">
   <div class="hero-vid" aria-hidden="true"></div>
  </div>
  <div class="scrim"></div>
@@ -98,7 +156,7 @@ home = f"""
 <section class="band b-deep" id="mission" aria-labelledby="sh">
  <div class="wrap">
   <h2 id="sh" class="ship rv"><span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Our mission, T.H.E. S.H.I.P.</span><span aria-hidden="true">T.H.E. <b>S.H.I.P.</b></span></h2>
-  <p class="lede rv">Our vision: <span class="accent" style="font-size:1.35em">Share the Gospel through acts of love and generosity.</span></p>
+  <p class="lede rv">Our vision: <span class="accent" style="font-size:1.35em">Sharing and showing the gospel of Jesus Christ through acts of love and generosity.</span></p>
   <ol class="letters">{"".join(f'<li class="rv" data-i="{i}"><span class="L" aria-hidden="true">{l}</span><span class="W">{w}</span></li>' for i,(l,w) in enumerate(MISSION))}</ol>
  </div>
 </section>
@@ -106,11 +164,12 @@ home = f"""
 <section class="band b-ink" id="impact" aria-labelledby="ih">
  <div class="wrap">
   <h2 id="ih" class="rv">Gospel you can see</h2>
-  <p class="lede rv">Love in action across our South Side community.</p>
+  <p class="lede rv">Love in action across our South Side community, every week.</p>
+  <figure class="frame rvi feat" style="margin:40px 0 0"><div><img src="/images/on-da-block.jpg" alt="Smiling Fellowship members in Fellowship On Da Block shirts at an outdoor community event" width="2560" height="1911" loading="lazy"></div></figure>
   <ul class="rows">
-   <li class="rv"><span class="tile">{ic("bread")}</span><h3>Food Giveaway</h3><p>Groceries for families across our community.</p><a class="ulink" href="connect.html?m=Food+Giveaway#join">Serve with us</a></li>
-   <li class="rv" data-i="1"><span class="tile">{ic("table")}</span><h3>Community Table</h3><p>Shared meals and a seat at the table for our neighbors.</p><a class="ulink" href="connect.html?m=Community+Table#join">Serve with us</a></li>
-   <li class="rv" data-i="2"><span class="tile">{ic("scales")}</span><h3>Social Justice</h3><p>Carrying forward Fellowship's civil rights legacy in our city today.</p><a class="ulink" href="connect.html?m=Social+Justice#join">Serve with us</a></li>
+   <li class="rv"><span class="tile">{ic("bread")}</span><h3>Freely Give</h3><p>Food and clothing giveaway. Wednesdays 7 to 10 AM and 4th Saturdays 8 to 11 AM.</p><a class="ulink" href="connect.html?m=Freely+Give#join">Serve with us</a></li>
+   <li class="rv" data-i="1"><span class="tile">{ic("table")}</span><h3>Community Table</h3><p>Hot food for our neighbors every Thursday, 12 to 2 PM.</p><a class="ulink" href="connect.html?m=Community+Table#join">Serve with us</a></li>
+   <li class="rv" data-i="2"><span class="tile">{ic("scales")}</span><h3>Social Justice</h3><p>Advocacy, equity and systemic justice, grounded in the teachings of Christ.</p><a class="ulink" href="connect.html?m=Social+Justice+Ministry#join">Serve with us</a></li>
   </ul>
  </div>
 </section>
@@ -140,8 +199,8 @@ home = f"""
 
 <section class="band b-hull" id="events" aria-labelledby="eh">
  <div class="wrap">
-  <h2 id="eh" class="rv">This week at The Ship</h2>
-  <ul class="ev" data-events="4"><li><h3>Sunday Worship</h3><span class="tm">8:00 AM, 10:45 AM and 1:15 PM</span></li></ul>
+  <h2 id="eh" class="rv">Coming up at The Ship</h2>
+  <ul class="ev evx">{event_cards()}<li class="rv evp"><div class="dt"><span class="n">7</span><span class="m">AM CT<br>Mon to Fri</span></div><h3>Faith and Wisdom Prayer Call</h3><span class="tm">Weekdays 7 AM, Saturdays 12 PM</span><p class="muted">Pray with Pastor Sharpe and the Fellowship family by phone.</p><p class="where">{ic("phone")}<span>425-436-6200, code 272251#</span></p><a class="btn btn-light ecta" href="tel:+14254366200,,272251%23">Dial In</a></li></ul>
  </div>
 </section>
 
@@ -168,7 +227,7 @@ visit = phero("/images/stock-1.jpg", "A hand raised in worship under warm stage 
   <ul class="vlist rv" data-i="1">
    <li><span class="tile">{ic("pin")}</span><div><strong><a class="ulink" href="{MAPS}">{ADDR}</a></strong><p>Tap the address for directions.</p></div></li>
    <li><span class="tile">{ic("car")}</span><div><strong>Parking</strong><p>Parking details are coming soon. Call the office at <a class="ulink" href="{TEL}">{PHONE}</a> with questions.</p></div></li>
-   <li><span class="tile">{ic("kids")}</span><div><strong>Kidz Zone, Sundays 10:45 AM</strong><p>Kidz Zone and our youth ministry meet during the 10:45 service.</p></div></li>
+   <li><span class="tile">{ic("kids")}</span><div><strong>Kidz Zone, Sundays 10:45 AM</strong><p>For children from age 3 (potty-trained). Students meet for Youth Recharge. Email <a class="ulink" href="mailto:KidzZone@fellowshipchicago.com">KidzZone@fellowshipchicago.com</a> or <a class="ulink" href="mailto:StudentMinistry@fellowshipchicago.com">StudentMinistry@fellowshipchicago.com</a>.</p></div></li>
   </ul>
  </div>
 </section>
@@ -180,6 +239,7 @@ visit = phero("/images/stock-1.jpg", "A hand raised in worship under warm stage 
    <details><summary>Which service should I attend?</summary><p>All three Sunday services are open to everyone. If you are bringing kids, the 10:45 AM service is when Kidz Zone and youth meet.</p></details>
    <details><summary>Can I watch online first?</summary><p>Yes. Every Sunday service streams live on YouTube and Facebook. Visit the Watch page, or search #TheVirtualShip.</p></details>
    <details><summary>Where is the church?</summary><p>4543 S Princeton Ave, Chicago, IL 60609, at 45th and Princeton.</p></details>
+   <details><summary>Is there anything during the week?</summary><p>Refuel meets Tuesdays at 7 PM in season. The Faith and Wisdom Prayer Call is weekdays at 7 AM and Saturdays at noon: dial 425-436-6200, code 272251#. Fellowship Bible Academy offers courses each fall and spring.</p></details>
    <details><summary>Who can I call with questions?</summary><p>The church office at {PHONE}, Tuesday to Friday, 9 AM to 5 PM.</p></details>
   </div>
  </div>
@@ -202,7 +262,7 @@ page("visit.html", "Plan Your Visit in Chicago, IL | Fellowship Chicago",
      "visit.html", visit)
 
 # ------------------------------------------------------------------ WATCH
-watch = phero("/images/stock-4.jpg", "Hands raised under blue stage lights", "Watch",
+watch = phero("/images/worship-team.jpg", "Three Fellowship worship team vocalists singing on stage", "Watch",
               "Worship live every Sunday at 8:00, 10:45 and 1:15, or catch a recent message on demand.") + f"""
 <section class="band b-ink" aria-labelledby="w1">
  <div class="wrap">
@@ -230,8 +290,9 @@ watch = phero("/images/stock-4.jpg", "Hands raised under blue stage lights", "Wa
 <section class="band b-deep" aria-labelledby="w3">
  <div class="wrap">
   <ul class="rows" style="margin-top:0">
-   <li class="rv"><span class="tile">{ic("bolt")}</span><h3 id="w3">Refuel</h3><p>Our midweek service, Tuesdays at 7:00 PM in season. Recharge in person or online.</p><a class="ulink" href="{YT}">Watch on YouTube</a></li>
-   <li class="rv" data-i="1"><span class="tile">{ic("music")}</span><h3>Music</h3><p>From the first LP in 1965 to five Stellar Awards in 2013, music has always carried the message at Fellowship.</p><a class="ulink" href="{YT}">Listen on YouTube</a></li>
+   <li class="rv"><span class="tile">{ic("bolt")}</span><h3 id="w3">Refuel</h3><p>Our midweek worship experience, Tuesdays at 7:00 PM in season. Recharge in person or online.</p><a class="ulink" href="{REFUEL_HANDOUT}">Refuel handout</a></li>
+   <li class="rv" data-i="1"><span class="tile">{ic("music")}</span><h3>Music</h3><p>From the first LP in 1965 to five Stellar Awards in 2013, music has always carried the message at Fellowship.</p><a class="ulink" href="{MUSIC}">Listen to The Flow</a></li>
+   <li class="rv" data-i="2"><span class="tile">{ic("play")}</span><h3>On television</h3><p>Watch Fellowship on Cable 25, Saturdays and Sundays at 9 AM.</p><a class="ulink" href="{YT}">Or stream on YouTube</a></li>
   </ul>
  </div>
 </section>
@@ -242,16 +303,16 @@ page("watch.html", "Watch Church Online in Chicago | Fellowship Chicago Live",
 
 # ------------------------------------------------------------------ CONNECT
 ages = ["Children", "Youth", "Young Adults", "Adults", "Seniors"]
-ints = ["Worship and Arts", "Service and Outreach", "Discipleship", "Fellowship", "Hospitality", "Media and Tech", "Justice"]
+ints = ["Worship and Arts", "Service and Outreach", "Care", "Discipleship", "Fellowship", "Hospitality", "Media and Tech", "Justice"]
 chips = lambda key, opts: f'<div class="chips" data-f="{key}">' + "".join(
     f'<button type="button" aria-pressed="{"true" if o=="All" else "false"}">{o}</button>' for o in ["All"] + opts) + "</div>"
 cards = "".join(
     f'<li data-age="{a}" data-int="{t}"><h3>{n}</h3><p>{s}</p>' +
-    (f'<p class="lead"><strong>Leader:</strong> {l}</p>' if l else "") +
+    ((f'<p class="lead"><strong>Contact: </strong><a class="ulink" href="mailto:{l}">{l}</a></p>' if "@" in l else f'<p class="lead"><strong>Leader:</strong> {l}</p>') if l else "") +
     (f'<p class="lead"><strong>When:</strong> {w}</p>' if w else "") +
     f'<p class="who">For {a.replace("|", ", ")}</p><a class="ulink" href="#join" data-join="{n}">Join {n}</a></li>'
     for n, s, a, t, l, w in MINISTRIES)
-connect = phero("/images/stock-5.jpg", "Arms raised before bright stage lights", "Find your place on deck",
+connect = phero("/images/on-da-block.jpg", "Smiling Fellowship members in Fellowship On Da Block shirts at an outdoor community event", "Find your place on deck",
                 "Every hand on The Ship matters. Filter by who it is for and what you love, then join a team.") + f"""
 <section class="band b-ink" aria-labelledby="c1">
  <div class="wrap">
@@ -262,7 +323,7 @@ connect = phero("/images/stock-5.jpg", "Arms raised before bright stage lights",
   </div>
   <p class="muted" data-count aria-live="polite" style="margin-top:24px">Showing {len(MINISTRIES)} ministries</p>
   <ul class="mins">{cards}</ul>
-  <p class="muted" style="margin-top:24px">Fellowship has many more ministries. Ask the office at <a class="ulink" href="{TEL}">{PHONE}</a> or use the form below and we will connect you.</p>
+  <p class="muted" style="margin-top:24px">Not sure where you fit? Choose "Not sure yet" below, or call the office at <a class="ulink" href="{TEL}">{PHONE}</a>.</p>
  </div>
 </section>
 <section class="band b-deep" id="join" aria-labelledby="c2">
@@ -276,19 +337,22 @@ connect = phero("/images/stock-5.jpg", "Arms raised before bright stage lights",
 </section>
 """
 page("connect.html", "Church Ministries in Chicago, IL | Fellowship Chicago",
-     "Find a ministry at Fellowship Chicago by age group and interest: Kidz Zone, youth, worship and arts, Community Table, food giveaway, social justice and more.",
+     "Find one of 31 ministries at Fellowship Chicago by age and interest: Kidz Zone, Wave Youth, The Crew, Kings and Priests, Sisters With Vision, Freely Give and more.",
      "connect.html", connect)
 
 # ------------------------------------------------------------------ STORY
-tl_items = "".join(f'<li data-y="{y}"><span class="yr">{y}</span><h3>{t}</h3>{f"<p>{b}</p>" if b else ""}</li>' for y, t, b in TIMELINE)
-story = phero("/images/timeline-3.jpg", "Archive photograph from Fellowship's history", "Since 1950, and still sailing",
+tl_items = "".join(f'<li data-y="{y}"><span class="yr">{y}</span><h3>{t}</h3>{f"<p>{b}</p>" if b else ""}' + (f'<figure class="tlimg rvi"><img src="{TL_PHOTOS[y]}" alt="Archive photograph of Fellowship, {y}" width="1024" height="1024" loading="lazy"><figcaption>Fellowship, {y}</figcaption></figure>' if y in TL_PHOTOS else "") + '</li>' for y, t, b in TIMELINE)
+crew = "".join(f'<li class="rv" data-i="{i%6}"><img src="{ph}" alt="{n}, {r}" width="400" height="400" loading="lazy"><strong>{n}</strong><span>{r}</span>' + (f'<a class="ulink" href="mailto:{e}">{e}</a>' if e else "") + '</li>' for i,(n,r,ph,e,t) in enumerate(LEADERS) if ph)
+story = phero("/images/timeline-3.jpg", "Archive photograph of Fellowship in 1954", "Since 1950, and still sailing",
               "Fellowship began with Rev. Dr. Clay Evans. Five generations later, it is still a family sharing the Gospel through acts of love and generosity.") + f"""
 <section class="band b-ink" id="clay-evans" aria-labelledby="s1">
  <div class="wrap two">
   <div class="rv"><h2 id="s1">Rev. Dr. Clay Evans</h2></div>
   <div class="rv" data-i="1">
-   <p class="lede" style="margin-top:0">Rev. Evans founded the church in 1950 as Mount Carmel Missionary Baptist Church. Over fifty years he built it into Fellowship: a radio and television ministry, gospel recordings, a credit union and the building at 45th and Princeton. He retired in 2000.</p>
-   <p class="lede"><span class="accent" style="font-size:1.4em">In 1965, Jesse Jackson Sr. was ordained at Fellowship.</span></p>
+   <p class="lede" style="margin-top:0">Born June 23, 1925 in Brownsville, Tennessee, and ordained in 1950, Rev. Evans founded the church that became Fellowship. He launched the ministerial careers of 93 people, including Mother Consuella York, the first woman ordained in the Baptist denomination in Chicago.</p>
+   <p class="lede">A leader in the Civil Rights Movement from 1965, he was founding national board chairman of the Rainbow (PUSH) Coalition from 1971 to 1976, and founding president of the Broadcast Ministers' Alliance of Chicago. His voice carried on decades of recordings with the Fellowship choirs, and in books including From Plough Handle to Pulpit.</p>
+   <p class="lede">He passed the mantle to Rev. Charles Jenkins on December 8, 2000, and went home to glory in November 2019.</p>
+   <p class="lede"><span class="accent" style="font-size:1.4em">When downtown politics halted construction, the steel frame stood bare for seven years. Fellowship finished it anyway.</span></p>
   </div>
  </div>
 </section>
@@ -300,10 +364,22 @@ story = phero("/images/timeline-3.jpg", "Archive photograph from Fellowship's hi
    <div class="tl-year" aria-hidden="true"><p class="y">1950</p><p class="muted g">Year one</p></div>
    <ol>{tl_items}</ol>
   </div>
-  <ul class="strip">
-   <li class="rvi"><img src="/images/timeline-2.jpg" alt="Archive photograph from Fellowship's history" width="1200" height="900" loading="lazy"></li>
-   <li class="rvi" data-i="2"><img src="/images/timeline-4.jpg" alt="Archive photograph from Fellowship's history" width="1200" height="900" loading="lazy"></li>
-  </ul>
+  </div>
+</section>
+
+<section class="band b-deep" id="built-to-last" aria-labelledby="s6">
+ <div class="wrap btl">
+  <figure class="frame rvi" style="margin:0"><div><img src="/images/built-to-last.jpg" alt="Built to Last: Fellowship Chicago 76th anniversary artwork with a gold 76 and an anchor" width="1080" height="1440" loading="lazy"></div></figure>
+  <div class="rv">
+   <h2 id="s6">Built to last</h2>
+   <p class="lede"><span class="accent" style="font-size:1.35em">Rooted in purpose, growing in focus.</span></p>
+   <p class="lede">In September 2026 Fellowship celebrated 76 years with three Sundays of thanksgiving.</p>
+   <ul class="btl-list">
+    <li><strong>September 6</strong><span>Welcome back Pastor Sharpe and Lady Bri</span></li>
+    <li><strong>September 13</strong><span>Happy 76th anniversary, Fellowship. Deacon Emeriti and Anchors acknowledgement at 10:45, Hero Award Ceremony at 1:15</span></li>
+    <li><strong>September 20</strong><span>Legacy Sunday honoring Pastor Charles Jenkins, Dr. Tara Jenkins, the Jenkins family and the Evans children</span></li>
+   </ul>
+  </div>
  </div>
 </section>
 
@@ -324,7 +400,21 @@ story = phero("/images/timeline-3.jpg", "Archive photograph from Fellowship's hi
 <section class="band b-deep" id="mission" aria-labelledby="s4">
  <div class="wrap">
   <h2 id="s4" class="ship rv"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Our mission, T.H.E. S.H.I.P.</span><span aria-hidden="true">T.H.E. <b>S.H.I.P.</b></span></h2>
+  <p class="lede rv">Fellowship Chicago is a historic multigenerational church committed to sharing and showing the gospel of Jesus Christ through acts of love and generosity, with a dedication to individual growth and social transformation through worship, arts and intentional ministry.</p>
   <ol class="letters">{"".join(f'<li class="rv" data-i="{i}"><span class="L" aria-hidden="true">{l}</span><span class="W">{w}</span></li>' for i,(l,w) in enumerate(MISSION))}</ol>
+ </div>
+</section>
+
+<section class="band b-hull" id="beliefs" aria-labelledby="s7">
+ <div class="wrap">
+  <h2 id="s7" class="rv">What we believe</h2>
+  <ul class="sym">
+   <li class="rv"><h3>God</h3><p>The Creator and Ruler of the universe, eternally existing as the Father, the Son and the Holy Spirit: three coequal, and one God.</p></li>
+   <li class="rv" data-i="1"><h3>Jesus Christ</h3><p>The Son of God, who lived a sinless life, died on a cross for the sins of all people, rose after three days, and will return to reign as King.</p></li>
+   <li class="rv" data-i="2"><h3>The Holy Spirit</h3><p>Present in the world to make us aware of our need for Christ. He lives in every Christian from salvation, giving power, understanding, guidance and spiritual gifts.</p></li>
+   <li class="rv" data-i="3"><h3>Salvation</h3><p>God's free gift, received by trusting in Jesus Christ, not earned by good works. Eternal life begins the moment we receive Him by faith.</p></li>
+  </ul>
+  <p class="lede rv" style="margin-top:40px"><strong>Our core values:</strong> Education. Worship. Fellowship. Evangelism. Generosity.</p>
  </div>
 </section>
 
@@ -333,10 +423,11 @@ story = phero("/images/timeline-3.jpg", "Archive photograph from Fellowship's hi
   <div class="pastor">
    <figure class="frame rvi" style="margin:0"><div><img src="/images/pastor-sharpe.jpg" alt="Pastor Reginald W. Sharpe Jr." width="1200" height="1800" loading="lazy"></div></figure>
    <div class="rv"><p class="muted" style="font-weight:700">Senior Pastor since 2019</p><h2 id="s5" class="pname" style="margin-top:10px">Reginald W. Sharpe Jr.</h2>
-    <p class="lede">The third pastor of Fellowship, after Rev. Dr. Clay Evans and Pastor Charles Jenkins. He serves alongside First Lady Brianna Sharpe.</p></div>
+    <p class="lede">A native of Lithonia, Georgia, and a son of The Greater Travelers Rest Baptist Church in Atlanta, Rev. Sharpe is the third pastor of Fellowship, after Rev. Dr. Clay Evans and Pastor Charles Jenkins.</p>
+    <p class="lede">He serves alongside <strong>First Lady Brianna Sharpe</strong>, "Lady Bri," a native of Stone Mountain, Georgia, and a 2010 graduate in Sacred Music of Johnson C. Smith University.</p></div>
   </div>
   <h3 class="rv" style="margin-top:72px;font-size:clamp(2rem,4vw,3rem)">Our leadership team</h3>
-  <ul class="crew">{"".join(f'<li class="rv" data-i="{i%6}"><strong>{n}</strong><span>{r}</span></li>' for i,(n,r) in enumerate(LEADERS))}</ul>
+  <ul class="crew crewp">{crew}</ul>
  </div>
 </section>
 """
@@ -358,8 +449,11 @@ give = phero("/images/stock-6.jpg", "A wooden cross against a blue sky", "Genero
   <h2 id="g2" class="rv">Other ways to give</h2>
   <ul class="ways">
    <li class="rv"><h3>Cash App</h3><p class="v">$FellowshipChicago</p><div class="btns" style="margin-top:16px"><button class="btn btn-ghost" type="button" data-copy="$FellowshipChicago" style="min-height:46px">{ic("copy")}<span>Copy</span></button><a class="btn btn-ghost" style="min-height:46px" href="https://cash.app/$FellowshipChicago">Open Cash App</a></div></li>
-   <li class="rv" data-i="1"><h3>Zelle, text to give and PayPal</h3><p style="margin-top:10px">Call the church office for current details: <a class="ulink" href="{TEL}">{PHONE}</a>.</p></li>
-   <li class="rv" data-i="2"><h3>By mail</h3><p style="margin-top:10px">Fellowship Missionary Baptist Church<br>{ADDR}</p></li>
+   <li class="rv" data-i="1"><h3>Zelle</h3><p class="v">Give@fellowshipchicago.com</p><div class="btns" style="margin-top:16px"><button class="btn btn-ghost" type="button" data-copy="Give@fellowshipchicago.com" style="min-height:46px">{ic("copy")}<span>Copy</span></button></div></li>
+   <li class="rv" data-i="2"><h3>Text to give</h3><p class="v"><a href="sms:+17735701318">773-570-1318</a></p><p style="margin-top:10px">Text the giving category and amount, for example: Offering $20.</p></li>
+   <li class="rv" data-i="3"><h3>PayPal</h3><p class="v" style="font-size:1.6rem">paypal.fellowshipchicago.com</p><div class="btns" style="margin-top:16px"><a class="btn btn-ghost" style="min-height:46px" href="https://paypal.fellowshipchicago.com">Give with PayPal</a></div></li>
+   <li class="rv" data-i="4"><h3>ShelbyNext Giving app</h3><p style="margin-top:10px">Give from your phone. Search Fellowship in the app.</p><div class="btns" style="margin-top:16px"><a class="btn btn-ghost" style="min-height:46px" href="https://apps.apple.com/us/app/shelbynext-giving/id1022857191">iPhone</a><a class="btn btn-ghost" style="min-height:46px" href="https://play.google.com/store/apps/details?id=com.shelbyinc.giving&amp;hl=en_US">Android</a></div></li>
+   <li class="rv" data-i="5"><h3>By mail</h3><p style="margin-top:10px">Fellowship M.B. Church<br>{ADDR}</p></li>
   </ul>
  </div>
 </section>
@@ -383,7 +477,7 @@ care = phero("/images/stock-2.jpg", "A worshipper with arms open under stage lig
 </section>
 <section class="band b-ink" id="prayer" aria-labelledby="k1">
  <div class="wrap two">
-  <div class="rv"><span class="tile">{ic("heart")}</span><h2 id="k1" style="margin-top:20px">Request prayer</h2><p class="lede">Share what's on your heart. Requests go to our pastoral care team and stay confidential.</p></div>
+  <div class="rv"><span class="tile">{ic("heart")}</span><h2 id="k1" style="margin-top:20px">Request prayer</h2><p class="lede">Share what's on your heart. Requests go to our pastoral care team and stay confidential.</p><p class="lede"><strong>Pray with us by phone:</strong> {PRAYER_CALL}</p></div>
   <div class="card rv" data-i="1">{form("Prayer Request", [
       ("text","first_name","First name","req","half","ac:given-name"),("email","email","Email, for follow-up","half","ac:email"),
       ("textarea","request","Your prayer request","req"),("chk","contact_me","I'd like a pastor to contact me"),("chk","private","Keep this private to the pastoral staff")], "Send Prayer Request")}</div>
@@ -391,7 +485,7 @@ care = phero("/images/stock-2.jpg", "A worshipper with arms open under stage lig
 </section>
 <section class="band b-deep" id="grief" aria-labelledby="k2">
  <div class="wrap two">
-  <div class="rv"><span class="tile">{ic("phone")}</span><h2 id="k2" style="margin-top:20px">Grief support</h2><p class="lede">If you have lost someone, let us walk with you. For funeral arrangements and pastoral care, call <a class="ulink" href="{TEL}">{PHONE}</a>, Tuesday to Friday, 9 AM to 5 PM.</p></div>
+  <div class="rv"><span class="tile">{ic("phone")}</span><h2 id="k2" style="margin-top:20px">Grief support</h2><p class="lede">If you have lost someone, let us walk with you. Join In The Midst, our grief support meeting on Zoom, or call <a class="ulink" href="{TEL}">{PHONE}</a> for funeral arrangements and pastoral care.</p><div class="btns"><a class="btn btn-light" href="{GRIEF_ZOOM}">Join In The Midst</a></div><p class="lede">Our Bereavement and Violence Support ministries walk with families, including those who have lost loved ones to violent crime.</p></div>
   <div class="card rv" data-i="1">{form("Grief Support", [
       ("text","name","Your name","req","half","ac:name"),("tel","phone","Best phone number","req","half","ac:tel"),("textarea","note","How can we help?")], "Request a Call")}</div>
  </div>
@@ -412,7 +506,8 @@ contact = f"""
    <ul class="vlist">
     <li><span class="tile">{ic("pin")}</span><div><strong>Visit</strong><p><a class="ulink" href="{MAPS}">{ADDR}</a></p></div></li>
     <li><span class="tile">{ic("phone")}</span><div><strong>Call</strong><p><a class="ulink" href="{TEL}">{PHONE}</a></p></div></li>
-    <li><span class="tile">{ic("clock")}</span><div><strong>Office hours</strong><p>Tuesday to Friday, 9 AM to 5 PM</p></div></li>
+    <li><span class="tile">{ic("clock")}</span><div><strong>Office hours</strong><p>Tuesday to Friday, 9 AM to 5 PM. Fax (773) 924-9677.</p></div></li>
+    <li><span class="tile">{ic("play")}</span><div><strong>Watch</strong><p>Cable 25, Saturdays and Sundays at 9 AM, and live on YouTube and Facebook.</p></div></li>
    </ul>
    <div class="map" style="margin-top:28px"><iframe title="Map to Fellowship Chicago" loading="lazy" src="https://www.google.com/maps?q=4543+S+Princeton+Ave,+Chicago,+IL+60609&output=embed"></iframe></div>
   </div>
