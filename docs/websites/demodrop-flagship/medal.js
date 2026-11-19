@@ -7,8 +7,8 @@ import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 (function(){
 var cv=document.getElementById('hero-gl'),hero=document.getElementById('top');if(!cv||!hero)return;
 var H=document.documentElement,bot=navigator.webdriver===true,still=function(){return H.classList.contains('still')};
-var gl;try{gl=new THREE.WebGLRenderer({canvas:cv,antialias:true,powerPreference:'high-performance'})}catch(e){return}
-var small=innerWidth<900;gl.setPixelRatio(Math.min(devicePixelRatio,2.5));gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=.82;gl.outputColorSpace=THREE.SRGBColorSpace;
+var gl;try{gl=new THREE.WebGLRenderer({canvas:cv,antialias:false,powerPreference:'high-performance'})}catch(e){return}
+var small=innerWidth<900,maxPR=Math.min(devicePixelRatio||1,2),PR=maxPR;gl.setPixelRatio(PR);gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=.82;gl.outputColorSpace=THREE.SRGBColorSpace;
 var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,400);
 var pm=new THREE.PMREMGenerator(gl);scene.environment=pm.fromScene(new RoomEnvironment(),.035).texture;
 /* backdrop: midnight with a royal-blue bloom behind the emblem */
@@ -91,10 +91,10 @@ var key=new THREE.DirectionalLight(0xFFF1D6,1.6);key.position.set(-14,16,22);sce
 var sweep=new THREE.PointLight(0xFFD98A,120,60,1.7);scene.add(sweep);
 var rimL=new THREE.DirectionalLight(0x6E9CFF,1.2);rimL.position.set(18,-6,-10);scene.add(rimL);
 /* post: bloom */
-var comp=new EffectComposer(gl);comp.addPass(new RenderPass(scene,cam));var bloom=new UnrealBloomPass(new THREE.Vector2(512,512),.5,.45,.97);comp.addPass(bloom);comp.addPass(new OutputPass());
+var comp=new EffectComposer(gl,new THREE.WebGLRenderTarget(2,2,{type:THREE.HalfFloatType,samples:gl.capabilities.isWebGL2?4:0}));comp.addPass(new RenderPass(scene,cam));var bloom=new UnrealBloomPass(new THREE.Vector2(512,512),.5,.45,.97);comp.addPass(bloom);comp.addPass(new OutputPass());
 /* layout */
 var base={x:0,y:0,s:1};
-function size(){var w=hero.clientWidth,h=hero.clientHeight;small=w<900;gl.setSize(w,h,false);comp.setSize(w,h);bloom.setSize(Math.max(256,w>>1),Math.max(256,h>>1));cam.aspect=w/h;
+function size(){var w=hero.clientWidth,h=hero.clientHeight;small=w<900;gl.setPixelRatio(PR);gl.setSize(w,h,false);comp.setPixelRatio(PR);comp.setSize(w,h);bloom.setSize(Math.max(256,w*PR>>1),Math.max(256,h*PR>>1));dust.material.uniforms.px.value=PR;cam.aspect=w/h;
 if(small){cam.fov=38;cam.position.set(0,0,52);var vh=2*52*Math.tan(19*Math.PI/180),vw=vh*cam.aspect;base.s=Math.min(vw*.56/22,vh*.235/22);base.x=0;base.y=vh/2-11*base.s-vh*.08}
 else{cam.fov=30;cam.position.set(0,0,52);var vh2=2*52*Math.tan(15*Math.PI/180),vw2=vh2*cam.aspect;base.s=Math.min(vh2*.7/22,vw2*.4/22);base.x=vw2*.27;base.y=vh2*.01}
 cam.updateProjectionMatrix();scene.background=bgTex()}
@@ -102,7 +102,7 @@ size();addEventListener('resize',size);
 /* motion */
 var tx=0,ty=0,mx=0,my=0;addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
 function ease(v){v=Math.min(1,Math.max(0,v));return 1-Math.pow(1-v,3)}
-var t0=performance.now(),ready=false,live=true,raf=0;
+var t0=performance.now(),ready=false,live=true,raf=0,started=false;
 function frame(now){var t=(now-t0)/1000,done=still()||bot;U.t.value=t;
 var a=done?1:ease((t-.2)/1.9),rv=done?1:ease((t-1.1)/1.8),lit=done?1:ease((t-2.4)/1);
 mx+=(tx-mx)*.05;my+=(ty-my)*.05;
@@ -117,9 +117,9 @@ beacons.forEach(function(b,i){b.material.opacity=lit*(.85+.15*Math.sin(t*2.2+i))
 var sa=done&&bot?.6:t*.5;sweep.position.set(Math.cos(sa)*18+base.x,Math.sin(sa*.7)*9+base.y,14);
 dust.rotation.y=mx*.08;
 comp.render();if(!ready){ready=true;H.classList.add('gl-on')}}
-function loop(now){raf=0;if(!live)return;frame(now);if(!still()&&!bot)raf=requestAnimationFrame(loop)}
-if('IntersectionObserver'in window)new IntersectionObserver(function(es){live=es[0].isIntersecting;if(live&&!raf&&!still()&&!bot)raf=requestAnimationFrame(loop)}).observe(hero);
-if(bot){var n=0;(function warm(){frame(performance.now()+6000);if(++n<3)setTimeout(warm,80)})()}else{raf=requestAnimationFrame(loop)}
+var lastT=0,acc=0,nf=0;function loop(now){raf=0;if(!live)return;frame(now);if(lastT){var d=now-lastT;if(d<200){acc+=d;nf++}if(nf>=40){var avg=acc/nf;acc=0;nf=0;if(avg>22&&PR>1){PR=Math.max(1,PR-.25);size()}}}lastT=now;if(!still()&&!bot)raf=requestAnimationFrame(loop)}
+if('IntersectionObserver'in window)new IntersectionObserver(function(es){live=es[0].isIntersecting;lastT=0;if(live&&started&&!raf&&!still()&&!bot)raf=requestAnimationFrame(loop)}).observe(hero);
+if(bot){var n=0;(function warm(){frame(performance.now()+6000);if(++n<3)setTimeout(warm,80)})()}else{var go=function(){if(started)return;started=true;t0=performance.now();lastT=0;raf=requestAnimationFrame(loop)};var c=gl.compileAsync?gl.compileAsync(scene,cam):null;(c&&c.then?c:Promise.resolve()).then(function(){t0=performance.now();frame(t0);requestAnimationFrame(go)},go)}
 addEventListener('scroll',function(){if(still()&&live)frame(performance.now())},{passive:true});
-var mt=document.getElementById('mtog');if(mt)mt.addEventListener('click',function(){setTimeout(function(){if(!still()&&!raf&&live)raf=requestAnimationFrame(loop);else frame(performance.now())},30)});
+var mt=document.getElementById('mtog');if(mt)mt.addEventListener('click',function(){setTimeout(function(){if(!still()&&!raf&&live&&started)raf=requestAnimationFrame(loop);else frame(performance.now())},30)});
 })();
