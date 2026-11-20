@@ -1,0 +1,53 @@
+SOURCE: https://www.gharvestchurch.com/past-services/
+ Past Services 
+[IFRAME https://www.youtube.com/embed/LozWsQ_wWys?rel=0&showinfo=0]
+[IMG http://img.youtube.com/vi/7SxrYwRbwNE/0.jpg alt=None]
+[IMG http://img.youtube.com/vi/LozWsQ_wWys/0.jpg alt=None]
+[IMG http://img.youtube.com/vi/7JDZh_BluLk/0.jpg alt=None]
+Warning: file_get_contents(http://vimeo.com/api/v2/video/.php): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/gharvest/public_html/wp-content/themes/First/page-templates/tm_media.php on line 71
+[IMG alt=None]
+[IFRAME https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/278554701&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false]
+ Our Media 
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-Wright.png alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-Wright.png>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-NUL.png alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-NUL.png>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson10.png alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson10.png>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1808.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1808.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1994.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1994.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_19801.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_19801.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1863.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1863.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1856.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1856.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1851.jpg alt=Maundy Thursday 2017]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1851.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-ESPN.png alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/01/Johnson-and-ESPN.png>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1863.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2015/10/IMG_1863.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/councilwoman-copy.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/councilwoman-copy.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/FirstSunday.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/FirstSunday.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday3.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday3.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/diaconateordination.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/diaconateordination.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/DeaconessJemison.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/DeaconessJemison.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/councilwoman2-copy.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/councilwoman2-copy.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/deacons.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/deacons.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday2.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday2.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/visitors.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/visitors.jpg>
+[IMG https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday1.jpg alt=]
+ <https://www.gharvestchurch.com/wp-content/uploads/2017/06/MaundyThursday1.jpg>

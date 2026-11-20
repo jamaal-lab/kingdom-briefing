@@ -1,0 +1,672 @@
+
+	
+				
+
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Greater Harvest - ECPv4.2.7//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Greater Harvest
+X-ORIGINAL-URL:https://www.gharvestchurch.com
+X-WR-CALDESC:Events for Greater Harvest
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261026T180000
+DTEND;TZID=UTC+0:20261026T190000
+DTSTAMP:20261120T124206
+CREATED:20261003T175328
+LAST-MODIFIED:20261003T175328
+UID:6288-1793037600-1793041200@www.gharvestchurch.com
+SUMMARY:Genesis Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-ministry-meeting-47/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261027T180000
+DTEND;TZID=UTC+0:20261027T190000
+DTSTAMP:20261120T124206
+CREATED:20261003T175412
+LAST-MODIFIED:20261003T175412
+UID:6290-1793124000-1793127600@www.gharvestchurch.com
+SUMMARY:Diaconate Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/diaconate-ministry-meeting-35/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Diaconate-Ministry.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261028T180000
+DTEND;TZID=UTC+0:20261028T200000
+DTSTAMP:20261120T124206
+CREATED:20261003T181717
+LAST-MODIFIED:20261003T181717
+UID:6293-1793210400-1793217600@www.gharvestchurch.com
+SUMMARY:Choir Rehearsal
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/choir-rehearsal-69/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6997.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261028T180000
+DTEND;TZID=UTC+0:20261028T193000
+DTSTAMP:20261120T124206
+CREATED:20261003T181814
+LAST-MODIFIED:20261003T181814
+UID:6295-1793210400-1793215800@www.gharvestchurch.com
+SUMMARY:CHL Wellness Wednesday
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/chl-wellness-wednesday-4/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/10/Stress.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261029T180000
+DTEND;TZID=UTC+0:20261029T190000
+DTSTAMP:20261120T124206
+CREATED:20261003T181902
+LAST-MODIFIED:20261003T181902
+UID:6298-1793296800-1793300400@www.gharvestchurch.com
+SUMMARY:Sisters in Spirit In-Person Gathering
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sisters-in-spirit-in-person-gathering-12/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Sister-In-Spirit.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261029T190000
+DTEND;TZID=UTC+0:20261029T200000
+DTSTAMP:20261120T124206
+CREATED:20261003T182024
+LAST-MODIFIED:20261003T182024
+UID:6300-1793300400-1793304000@www.gharvestchurch.com
+SUMMARY:Bible Study/Life Series
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/bible-studylife-series-42/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/06/BS.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261031T170000
+DTEND;TZID=UTC+0:20261031T190000
+DTSTAMP:20261120T124206
+CREATED:20261003T182543
+LAST-MODIFIED:20261003T182543
+UID:6302-1793466000-1793473200@www.gharvestchurch.com
+SUMMARY:Truck or Treat
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/truck-or-treat-2/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/10/Pic.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261101T090000
+DTEND;TZID=UTC+0:20261101T100000
+DTSTAMP:20261120T124206
+CREATED:20261021T222314
+LAST-MODIFIED:20261021T222314
+UID:6308-1793523600-1793527200@www.gharvestchurch.com
+SUMMARY:GHC Check-In Corner (Hospitality Ministry)
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-check-in-corner-hospitality-ministry/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/09/Check-In-Corner.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261101T093000
+DTEND;TZID=UTC+0:20261101T101000
+DTSTAMP:20261120T124206
+CREATED:20261021T222434
+LAST-MODIFIED:20261021T222434
+UID:6310-1793525400-1793527800@www.gharvestchurch.com
+SUMMARY:Sunday School
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sunday-school-75/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/03/Sunday-School.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261101T103000
+DTEND;TZID=UTC+0:20261101T120000
+DTSTAMP:20261120T124206
+CREATED:20261021T222539
+LAST-MODIFIED:20261021T222539
+UID:6312-1793529000-1793534400@www.gharvestchurch.com
+SUMMARY:Worship Service (Communion Sunday)
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/worship-service-communion-sunday-2/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/01/1st.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261102T180000
+DTEND;TZID=UTC+0:20261102T190000
+DTSTAMP:20261120T124206
+CREATED:20261021T222635
+LAST-MODIFIED:20261021T222635
+UID:6314-1793642400-1793646000@www.gharvestchurch.com
+SUMMARY:Genesis In-Person Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-in-person-meeting/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261102T180000
+DTEND;TZID=UTC+0:20261102T190000
+DTSTAMP:20261120T124206
+CREATED:20261021T222721
+LAST-MODIFIED:20261021T222818
+UID:6316-1793642400-1793646000@www.gharvestchurch.com
+SUMMARY:Trustee In-Person Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/trustee-in-person-meeting/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261104T180000
+DTEND;TZID=UTC+0:20261104T200000
+DTSTAMP:20261120T124206
+CREATED:20261021T222935
+LAST-MODIFIED:20261021T222935
+UID:6318-1793815200-1793822400@www.gharvestchurch.com
+SUMMARY:Choir Rehearsal
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/choir-rehearsal-70/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6997.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261104T180000
+DTEND;TZID=UTC+0:20261104T190000
+DTSTAMP:20261120T124206
+CREATED:20261021T223037
+LAST-MODIFIED:20261021T223037
+UID:6320-1793815200-1793818800@www.gharvestchurch.com
+SUMMARY:Sister In Spirit In-Person Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sister-in-spirit-in-person-meeting/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Sister-In-Spirit.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261104T190000
+DTEND;TZID=UTC+0:20261104T200000
+DTSTAMP:20261120T124206
+CREATED:20261021T223137
+LAST-MODIFIED:20261021T223137
+UID:6322-1793818800-1793822400@www.gharvestchurch.com
+SUMMARY:Bible/Life Study
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/biblelife-study-20/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/06/BS.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261105T180000
+DTEND;TZID=UTC+0:20261105T190000
+DTSTAMP:20261120T124206
+CREATED:20261024T172220
+LAST-MODIFIED:20261024T172549
+UID:6325-1793901600-1793905200@www.gharvestchurch.com
+SUMMARY:Sisters In Spirit In-Person Gathering
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sisters-in-spirit-in-person-gathering-13/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Sister-In-Spirit.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261105T190000
+DTEND;TZID=UTC+0:20261105T200000
+DTSTAMP:20261120T124206
+CREATED:20261024T172325
+LAST-MODIFIED:20261024T172511
+UID:6327-1793905200-1793908800@www.gharvestchurch.com
+SUMMARY:Bible/Life Study
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/biblelife-study-21/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/06/BS.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261108T090000
+DTEND;TZID=UTC+0:20261108T100000
+DTSTAMP:20261120T124206
+CREATED:20261024T173120
+LAST-MODIFIED:20261024T173120
+UID:6329-1794128400-1794132000@www.gharvestchurch.com
+SUMMARY:GHC Check-In Corner
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-check-in-corner/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/09/Check-In-Corner.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261108T093000
+DTEND;TZID=UTC+0:20261108T101000
+DTSTAMP:20261120T124206
+CREATED:20261024T173341
+LAST-MODIFIED:20261024T173341
+UID:6333-1794130200-1794132600@www.gharvestchurch.com
+SUMMARY:Sunday School
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sunday-school-76/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/03/Sunday-School.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261108T103000
+DTEND;TZID=UTC+0:20261108T120000
+DTSTAMP:20261120T124206
+CREATED:20261024T173230
+LAST-MODIFIED:20261024T173230
+UID:6331-1794133800-1794139200@www.gharvestchurch.com
+SUMMARY:Children Church
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/children-church-6/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Children-Church-School.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261108T103000
+DTEND;TZID=UTC+0:20261108T120000
+DTSTAMP:20261120T124206
+CREATED:20261024T173441
+LAST-MODIFIED:20261024T173441
+UID:6335-1794133800-1794139200@www.gharvestchurch.com
+SUMMARY:worship Service
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/worship-service-55/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/03/2nd.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261109T180000
+DTEND;TZID=UTC+0:20261109T190000
+DTSTAMP:20261120T124206
+CREATED:20261024T174131
+LAST-MODIFIED:20261024T174131
+UID:6337-1794247200-1794250800@www.gharvestchurch.com
+SUMMARY:Genesis Ministry Meeting In-Person
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-ministry-meeting-in-person/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261110T180000
+DTEND;TZID=UTC+0:20261110T190000
+DTSTAMP:20261120T124206
+CREATED:20261024T174247
+LAST-MODIFIED:20261024T174348
+UID:6339-1794333600-1794337200@www.gharvestchurch.com
+SUMMARY:GHC Executive Board Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-executive-board-meeting-2/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261111T180000
+DTEND;TZID=UTC+0:20261111T200000
+DTSTAMP:20261120T124206
+CREATED:20261024T174528
+LAST-MODIFIED:20261024T174528
+UID:6341-1794420000-1794427200@www.gharvestchurch.com
+SUMMARY:Choir Rehearsal
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/choir-rehearsal-71/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6997.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261111T180000
+DTEND;TZID=UTC+0:20261111T193000
+DTSTAMP:20261120T124206
+CREATED:20261024T175106
+LAST-MODIFIED:20261024T175106
+UID:6343-1794420000-1794425400@www.gharvestchurch.com
+SUMMARY:Wellness Wednesday - CHL
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/wellness-wednesday-chl/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/01/CHL-2.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261112T180000
+DTEND;TZID=UTC+0:20261112T190000
+DTSTAMP:20261120T124206
+CREATED:20261024T175235
+LAST-MODIFIED:20261024T175235
+UID:6345-1794506400-1794510000@www.gharvestchurch.com
+SUMMARY:Sisters In Spirit In-Person Gathering
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sisters-in-spirit-in-person-gathering-14/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Sister-In-Spirit.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261112T190000
+DTEND;TZID=UTC+0:20261112T200000
+DTSTAMP:20261120T124206
+CREATED:20261025T152840
+LAST-MODIFIED:20261025T152840
+UID:6349-1794510000-1794513600@www.gharvestchurch.com
+SUMMARY:Bible/Life Study
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/biblelife-study-22/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/06/BS.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261113T183000
+DTEND;TZID=UTC+0:20261113T200000
+DTSTAMP:20261120T124206
+CREATED:20261025T153005
+LAST-MODIFIED:20261025T153005
+UID:6351-1794594600-1794600000@www.gharvestchurch.com
+SUMMARY:EORO Game Night
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/eoro-game-night-4/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_0619.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261114T100000
+DTEND;TZID=UTC+0:20261114T140000
+DTSTAMP:20261120T124206
+CREATED:20261025T153103
+LAST-MODIFIED:20261025T153103
+UID:6353-1794650400-1794664800@www.gharvestchurch.com
+SUMMARY:CHL Blueprint For Wellness
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/chl-blueprint-for-wellness/
+LOCATION:121 Driving Park Avenue \, Rochester
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261115T090000
+DTEND;TZID=UTC+0:20261115T100000
+DTSTAMP:20261120T124206
+CREATED:20261025T153307
+LAST-MODIFIED:20261025T153307
+UID:6355-1794733200-1794736800@www.gharvestchurch.com
+SUMMARY:GHC Check-In Corner - Hospitality Ministry
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-check-in-corner-hospitality-ministry-2/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/09/Check-In-Corner.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261115T093000
+DTEND;TZID=UTC+0:20261115T101000
+DTSTAMP:20261120T124206
+CREATED:20261025T153616
+LAST-MODIFIED:20261025T153616
+UID:6359-1794735000-1794737400@www.gharvestchurch.com
+SUMMARY:Sunday School
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sunday-school-77/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/03/Sunday-School.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261115T103000
+DTEND;TZID=UTC+0:20261115T120000
+DTSTAMP:20261120T124206
+CREATED:20261025T153402
+LAST-MODIFIED:20261025T153402
+UID:6357-1794738600-1794744000@www.gharvestchurch.com
+SUMMARY:Children Church
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/children-church-7/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Children-Church-School.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261115T103000
+DTEND;TZID=UTC+0:20261115T120000
+DTSTAMP:20261120T124206
+CREATED:20261025T153838
+LAST-MODIFIED:20261025T153838
+UID:6361-1794738600-1794744000@www.gharvestchurch.com
+SUMMARY:Worship Service
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/worship-service-56/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/01/3rd.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261116T180000
+DTEND;TZID=UTC+0:20261116T190000
+DTSTAMP:20261120T124206
+CREATED:20261025T153932
+LAST-MODIFIED:20261025T153932
+UID:6363-1794852000-1794855600@www.gharvestchurch.com
+SUMMARY:Genesis Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-ministry-meeting-48/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261117T173000
+DTEND;TZID=UTC+0:20261117T180000
+DTSTAMP:20261120T124206
+CREATED:20261025T154054
+LAST-MODIFIED:20261025T154144
+UID:6365-1794936600-1794938400@www.gharvestchurch.com
+SUMMARY:GHC New Member's Class #1
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-new-members-class-1-7/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6999.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261118T180000
+DTEND;TZID=UTC+0:20261118T200000
+DTSTAMP:20261120T124206
+CREATED:20261025T154313
+LAST-MODIFIED:20261025T154313
+UID:6367-1795024800-1795032000@www.gharvestchurch.com
+SUMMARY:Choir Rehearsal
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/choir-rehearsal-72/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6997.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261118T180000
+DTEND;TZID=UTC+0:20261118T193000
+DTSTAMP:20261120T124206
+CREATED:20261025T154415
+LAST-MODIFIED:20261025T154415
+UID:6369-1795024800-1795030200@www.gharvestchurch.com
+SUMMARY:CHL Wellness Wednesday
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/chl-wellness-wednesday-5/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/01/CHL-2.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261119T173000
+DTEND;TZID=UTC+0:20261119T183000
+DTSTAMP:20261120T124206
+CREATED:20261025T154513
+LAST-MODIFIED:20261025T154513
+UID:6371-1795109400-1795113000@www.gharvestchurch.com
+SUMMARY:GHC New Member's Class #2
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-new-members-class-2-6/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6999.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261119T180000
+DTEND;TZID=UTC+0:20261119T190000
+DTSTAMP:20261120T124206
+CREATED:20261025T154606
+LAST-MODIFIED:20261025T154606
+UID:6373-1795111200-1795114800@www.gharvestchurch.com
+SUMMARY:Sisters In Spirit In-Person Gathering
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sisters-in-spirit-in-person-gathering-15/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Sister-In-Spirit.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261121T140000
+DTEND;TZID=UTC+0:20261121T170000
+DTSTAMP:20261120T124206
+CREATED:20261025T154707
+LAST-MODIFIED:20261025T154707
+UID:6375-1795269600-1795280400@www.gharvestchurch.com
+SUMMARY:Harvest Feast
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/harvest-feast-3/
+LOCATION:121 Driving Park Avenue \, Rochester
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261122T090000
+DTEND;TZID=UTC+0:20261122T100000
+DTSTAMP:20261120T124206
+CREATED:20261025T154833
+LAST-MODIFIED:20261025T154833
+UID:6377-1795338000-1795341600@www.gharvestchurch.com
+SUMMARY:GHC Check-In Corner / Light Breakfast/Coffee
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-check-in-corner-light-breakfastcoffee/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/09/Check-In-Corner.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261122T093000
+DTEND;TZID=UTC+0:20261122T101000
+DTSTAMP:20261120T124206
+CREATED:20261025T155527
+LAST-MODIFIED:20261025T155527
+UID:6383-1795339800-1795342200@www.gharvestchurch.com
+SUMMARY:Sunday School
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sunday-school-78/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/03/Sunday-School.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261122T103000
+DTEND;TZID=UTC+0:20261122T120000
+DTSTAMP:20261120T124206
+CREATED:20261025T154937
+LAST-MODIFIED:20261025T155204
+UID:6379-1795343400-1795348800@www.gharvestchurch.com
+SUMMARY:Worship Service
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/children-church-8/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/01/3rd.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261123T180000
+DTEND;TZID=UTC+0:20261123T190000
+DTSTAMP:20261120T124206
+CREATED:20261025T155639
+LAST-MODIFIED:20261025T155639
+UID:6385-1795456800-1795460400@www.gharvestchurch.com
+SUMMARY:Genesis Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-ministry-meeting-49/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261124T180000
+DTEND;TZID=UTC+0:20261124T190000
+DTSTAMP:20261120T124206
+CREATED:20261025T155715
+LAST-MODIFIED:20261025T160030
+UID:6387-1795543200-1795546800@www.gharvestchurch.com
+SUMMARY:Diaconate Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/diaconate-ministry-meeting-36/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Diaconate-Ministry.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261125T180000
+DTEND;TZID=UTC+0:20261125T200000
+DTSTAMP:20261120T124206
+CREATED:20261025T155802
+LAST-MODIFIED:20261025T155802
+UID:6389-1795629600-1795636800@www.gharvestchurch.com
+SUMMARY:Choir Rehearsal
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/choir-rehearsal-73/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/11/IMG_6997.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261128T080000
+DTEND;TZID=UTC+0:20261128T170000
+DTSTAMP:20261120T124206
+CREATED:20261025T160004
+LAST-MODIFIED:20261025T160004
+UID:6393-1795852800-1795885200@www.gharvestchurch.com
+SUMMARY:Happy Birthday Pastor!
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/happy-birthday-pastor-2/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/04/pic-12.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261129T090000
+DTEND;TZID=UTC+0:20261129T100000
+DTSTAMP:20261120T124206
+CREATED:20261025T160149
+LAST-MODIFIED:20261025T160149
+UID:6395-1795942800-1795946400@www.gharvestchurch.com
+SUMMARY:GHC Check-In Corner / Light Breakfast/Hot Coffee
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/ghc-check-in-corner-light-breakfasthot-coffee/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/png:https://www.gharvestchurch.com/wp-content/uploads/2026/09/Check-In-Corner.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261129T093000
+DTEND;TZID=UTC+0:20261129T101000
+DTSTAMP:20261120T124206
+CREATED:20261025T160258
+LAST-MODIFIED:20261025T160258
+UID:6397-1795944600-1795947000@www.gharvestchurch.com
+SUMMARY:Sunday School
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/sunday-school-79/
+LOCATION:121 Driving Park Avenue\, Rochester\, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2025/03/Sunday-School.jpg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261129T103000
+DTEND;TZID=UTC+0:20261129T120000
+DTSTAMP:20261120T124206
+CREATED:20261025T160405
+LAST-MODIFIED:20261025T160405
+UID:6399-1795948200-1795953600@www.gharvestchurch.com
+SUMMARY:Worship Services/Youth Sunday
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/worship-servicesyouth-sunday/
+LOCATION:121 Driving Park Ave\, Rochester \, NY\, 14613\, United States
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/01/4th.jpeg
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20261130T180000
+DTEND;TZID=UTC+0:20261130T190000
+DTSTAMP:20261120T124206
+CREATED:20261025T160447
+LAST-MODIFIED:20261025T160447
+UID:6401-1796061600-1796065200@www.gharvestchurch.com
+SUMMARY:Genesis Ministry Meeting
+DESCRIPTION:
+URL:https://www.gharvestchurch.com/event/genesis-ministry-meeting-50/
+LOCATION:121 Driving Park Avenue \, Rochester
+ATTACH;FMTTYPE=image/jpeg:https://www.gharvestchurch.com/wp-content/uploads/2026/08/Genesis.jpg
+END:VEVENT
+END:VCALENDAR
